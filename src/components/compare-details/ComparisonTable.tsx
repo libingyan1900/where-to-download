@@ -94,11 +94,13 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
       <Table className="w-full bg-white border-collapse">
         <TableHeader>
           <TableRow className="bg-gray-50/50 backdrop-blur-sm border-b border-gray-200">
-            <TableHead className="w-[160px] px-3 font-semibold sticky left-0 z-20 bg-gray-50/50 border-r border-gray-200">特征</TableHead>
+            <TableHead className="w-[160px] p-2 font-semibold sticky left-0 z-20 bg-gray-50/50 border-r border-gray-200">
+              特征
+            </TableHead>
             {rooms.map((room) => (
               <TableHead 
                 key={room.id}
-                className={`w-[200px] px-3 font-semibold border-r border-gray-200 ${
+                className={`w-[200px] p-2 font-semibold border-r border-gray-200 ${
                   pinnedRooms.includes(room.id) 
                     ? "text-blue-600" 
                     : "text-blue-900"
@@ -125,13 +127,13 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
                   key={feature.key}
                   className="hover:bg-gray-50/50 transition-colors border-b border-gray-200"
                 >
-                  <TableCell className="w-[160px] px-3 font-medium text-gray-700 bg-gray-50/30 whitespace-nowrap sticky left-0 z-20 border-r border-gray-200">
+                  <TableCell className="w-[160px] p-2 font-medium text-gray-700 bg-gray-50/30 whitespace-nowrap sticky left-0 z-20 border-r border-gray-200">
                     {feature.label}
                   </TableCell>
                   {rooms.map((room) => (
                     <TableCell 
                       key={room.id} 
-                      className={`w-[200px] px-3 border-r border-gray-200 ${
+                      className={`w-[200px] p-2 border-r border-gray-200 ${
                         pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600"
                       }`}
                     >
