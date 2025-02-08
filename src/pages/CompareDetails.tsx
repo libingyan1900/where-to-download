@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft, Star, Image, X } from "lucide-react";
@@ -126,7 +125,7 @@ const CompareDetails = () => {
             {rooms.map((room) => (
               <div 
                 key={room.id}
-                className="relative flex-shrink-0 w-[180px] rounded-lg bg-white/80 border border-gray-100 shadow-sm backdrop-blur-sm animate-fadeIn transition-all group hover:bg-white/90"
+                className="relative flex-shrink-0 w-[140px] rounded-lg bg-white/80 border border-gray-100 shadow-sm backdrop-blur-sm animate-fadeIn transition-all group hover:bg-white/90"
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400/40 to-blue-600/40" />
                 <button
@@ -135,20 +134,20 @@ const CompareDetails = () => {
                 >
                   <X className="w-3 h-3 text-gray-400 group-hover:text-gray-600" />
                 </button>
-                <div className="p-2.5 space-y-1.5">
-                  <h3 className="text-sm font-semibold text-blue-900 truncate" title={room.hotelName}>
+                <div className="p-3 space-y-2.5">
+                  <h3 className="text-sm font-semibold text-blue-900 line-clamp-2 min-h-[40px]" title={room.hotelName}>
                     {room.hotelName}
                   </h3>
-                  <p className="text-xs text-gray-600 truncate" title={room.roomType}>
+                  <p className="text-xs text-gray-600 line-clamp-2 min-h-[32px]" title={room.roomType}>
                     {room.roomType}
                   </p>
-                  <div className="flex items-baseline gap-0.5">
+                  <div className="flex items-baseline gap-0.5 mt-auto">
                     <span className="text-base font-bold text-blue-600">¥{room.price}</span>
                     <span className="text-xs text-gray-500">/晚</span>
                   </div>
                   <Button 
                     onClick={() => handleBook(room.id)}
-                    className="w-full h-6 text-xs bg-blue-500/90 hover:bg-blue-600/90 text-white"
+                    className="w-full h-7 text-xs bg-blue-500/90 hover:bg-blue-600/90 text-white"
                   >
                     预订
                   </Button>
@@ -212,4 +211,3 @@ const CompareDetails = () => {
 };
 
 export default CompareDetails;
-
