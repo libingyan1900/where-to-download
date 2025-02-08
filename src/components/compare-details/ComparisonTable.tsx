@@ -20,12 +20,13 @@ const featureGroups = [
   {
     title: "酒店特征",
     features: [
+      { key: "hotelName", label: "酒店名称" },
       { key: "renovationTime", label: "装修时间" },
       { key: "rating", label: "评分" },
       { key: "starRating", label: "星级" },
-      { key: "hotelImage", label: "酒店图片" },
-      { key: "facilities", label: "酒店设施" },
       { key: "distanceInKm", label: "距离" },
+      { key: "facilities", label: "酒店设施" },
+      { key: "hotelImage", label: "酒店图片" },
     ],
   },
   {
