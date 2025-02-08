@@ -1,4 +1,5 @@
 
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft, Star, Image } from "lucide-react";
 import {
@@ -69,10 +70,12 @@ const CompareDetails = () => {
             <Image className="w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400" />
           </div>
         );
+      case "facilities":
+        return room.facilities?.join("、") || "-";
       case "distanceInKm":
         return `${(room.distanceInKm * 1000).toFixed(0)}米`;
       default:
-        return room[key as keyof Room] || "-";
+        return room[key as keyof Room]?.toString() || "-";
     }
   };
 
