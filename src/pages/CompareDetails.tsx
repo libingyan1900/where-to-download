@@ -120,41 +120,45 @@ const CompareDetails = () => {
         </div>
       </div>
 
-      <div className="pt-14 px-4 pb-8 max-w-7xl mx-auto">
-        <div className="flex gap-4 mb-6 overflow-x-auto pb-2 scrollbar-hide">
-          {rooms.map((room) => (
-            <div 
-              key={room.id}
-              className="relative flex-shrink-0 w-[200px] p-3 rounded-lg shadow-md bg-white/90 backdrop-blur-sm animate-fadeIn hover:shadow-lg transition-all"
-            >
-              <button
-                onClick={() => handleRemoveRoom(room.id)}
-                className="absolute top-1 right-1 p-1 rounded-full hover:bg-gray-100 transition-colors"
+      <div className="fixed top-14 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-10">
+        <div className="px-4 py-3 max-w-7xl mx-auto">
+          <div className="flex gap-4 mb-0 overflow-x-auto pb-2 scrollbar-hide">
+            {rooms.map((room) => (
+              <div 
+                key={room.id}
+                className="relative flex-shrink-0 w-[200px] p-3 rounded-lg shadow-md bg-white/90 backdrop-blur-sm animate-fadeIn hover:shadow-lg transition-all"
               >
-                <X className="w-4 h-4 text-gray-400" />
-              </button>
-              <div className="space-y-1.5">
-                <h3 className="text-sm font-semibold text-blue-900 truncate" title={room.hotelName}>
-                  {room.hotelName}
-                </h3>
-                <p className="text-xs text-gray-600 truncate" title={room.roomType}>
-                  {room.roomType}
-                </p>
-                <div className="flex items-baseline gap-0.5">
-                  <span className="text-base font-bold text-blue-600">¥{room.price}</span>
-                  <span className="text-xs text-gray-500">/晚</span>
-                </div>
-                <Button 
-                  onClick={() => handleBook(room.id)}
-                  className="w-full h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white"
+                <button
+                  onClick={() => handleRemoveRoom(room.id)}
+                  className="absolute top-1 right-1 p-1 rounded-full hover:bg-gray-100 transition-colors"
                 >
-                  预订
-                </Button>
+                  <X className="w-4 h-4 text-gray-400" />
+                </button>
+                <div className="space-y-1.5">
+                  <h3 className="text-sm font-semibold text-blue-900 truncate" title={room.hotelName}>
+                    {room.hotelName}
+                  </h3>
+                  <p className="text-xs text-gray-600 truncate" title={room.roomType}>
+                    {room.roomType}
+                  </p>
+                  <div className="flex items-baseline gap-0.5">
+                    <span className="text-base font-bold text-blue-600">¥{room.price}</span>
+                    <span className="text-xs text-gray-500">/晚</span>
+                  </div>
+                  <Button 
+                    onClick={() => handleBook(room.id)}
+                    className="w-full h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    预订
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+      </div>
 
+      <div className="pt-32 px-4 pb-8 max-w-7xl mx-auto">
         <div className="overflow-x-auto rounded-lg shadow-lg animate-fadeIn">
           <Table className="bg-white">
             <TableHeader>
