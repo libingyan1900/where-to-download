@@ -27,7 +27,14 @@ const RoomComparison = () => {
     breakfast: "双人自助早餐",
     confirmationRules: "立即确认",
     cancellationRules: "预订后24小时内可免费取消",
-    distanceInKm: 0
+    distanceInKm: 0,
+    renovationTime: "2023年",
+    rating: 4.8,
+    starRating: 5,
+    facilities: ["停车场", "健身房", "游泳池"],
+    floor: "25-88层",
+    window: "落地窗",
+    bedType: "特大床"
   };
 
   const recommendedRooms: Room[] = [
@@ -47,7 +54,14 @@ const RoomComparison = () => {
       breakfast: "双人自助早餐",
       confirmationRules: "立即确认",
       cancellationRules: "预订后12小时内可免费取消",
-      distanceInKm: 0.8
+      distanceInKm: 0.8,
+      renovationTime: "2022年",
+      rating: 4.9,
+      starRating: 5,
+      facilities: ["停车场", "健身房", "游泳池", "SPA"],
+      floor: "35-98层",
+      window: "观江落地窗",
+      bedType: "特大床"
     },
     {
       id: "3",
@@ -65,13 +79,28 @@ const RoomComparison = () => {
       breakfast: "双人自助早餐 + 下午茶",
       confirmationRules: "立即确认",
       cancellationRules: "预订后48小时内可免费取消",
-      distanceInKm: 1.2
+      distanceInKm: 1.2,
+      renovationTime: "2021年",
+      rating: 4.7,
+      starRating: 5,
+      facilities: ["停车场", "健身房", "游泳池", "SPA", "行政酒廊"],
+      floor: "40-108层",
+      window: "全景落地窗",
+      bedType: "特大床"
     }
   ];
 
   const handleCompare = () => {
     if (selectedRooms.length > 0) {
-      navigate('/compare-details', { state: { rooms: [currentRoom.id, ...selectedRooms] } });
+      const selectedRoomsData = [
+        currentRoom,
+        ...recommendedRooms.filter(room => selectedRooms.includes(room.id))
+      ];
+      navigate('/compare-details', { 
+        state: { 
+          selectedRooms: selectedRoomsData
+        } 
+      });
     }
   };
 

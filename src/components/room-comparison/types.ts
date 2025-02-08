@@ -15,5 +15,15 @@ export interface Room {
   breakfast: string;
   confirmationRules: string;
   cancellationRules: string;
-  distanceInKm: number; // Added distance field
+  distanceInKm: number;
+  // 新增字段
+  renovationTime?: string;
+  rating?: number;
+  starRating?: number;
+  hotelImage?: string;
+  facilities?: string[];
+  floor?: string;
+  window?: string;
+  bedType?: string;
+  roomImage?: string;
 }

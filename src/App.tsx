@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import RoomComparison from "./pages/RoomComparison";
+import CompareDetails from "./pages/CompareDetails";
 
 const queryClient = new QueryClient();
 
@@ -19,7 +20,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/room-comparison" element={<RoomComparison />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/compare-details" element={<CompareDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
