@@ -12,8 +12,8 @@ export interface Room {
   size: string;
   maxGuests: number;
   features: RoomFeature[];
-  image: string;
   breakfast: string;
   confirmationRules: string;
   cancellationRules: string;
+  distanceInKm: number; // Added distance field
 }

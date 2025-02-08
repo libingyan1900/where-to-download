@@ -24,10 +24,10 @@ const RoomComparison = () => {
       { name: "行政酒廊", available: true },
       { name: "观景阳台", available: true }
     ],
-    image: "https://placehold.co/600x400",
     breakfast: "双人自助早餐",
     confirmationRules: "立即确认",
-    cancellationRules: "预订后24小时内可免费取消"
+    cancellationRules: "预订后24小时内可免费取消",
+    distanceInKm: 0
   };
 
   const recommendedRooms: Room[] = [
@@ -44,10 +44,10 @@ const RoomComparison = () => {
         { name: "行政酒廊", available: true },
         { name: "观景阳台", available: true }
       ],
-      image: "https://placehold.co/600x400",
       breakfast: "双人自助早餐",
       confirmationRules: "立即确认",
-      cancellationRules: "预订后12小时内可免费取消"
+      cancellationRules: "预订后12小时内可免费取消",
+      distanceInKm: 0.8
     },
     {
       id: "3",
@@ -62,10 +62,10 @@ const RoomComparison = () => {
         { name: "行政酒廊", available: true },
         { name: "观景阳台", available: true }
       ],
-      image: "https://placehold.co/600x400",
       breakfast: "双人自助早餐 + 下午茶",
       confirmationRules: "立即确认",
-      cancellationRules: "预订后48小时内可免费取消"
+      cancellationRules: "预订后48小时内可免费取消",
+      distanceInKm: 1.2
     }
   ];
 

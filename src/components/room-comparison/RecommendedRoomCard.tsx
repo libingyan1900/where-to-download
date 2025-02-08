@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { UtensilsCrossed, Ban, GitCompare, Plus } from "lucide-react";
+import { UtensilsCrossed, Ban, GitCompare, Plus, Navigation } from "lucide-react";
 import { Room } from "./types";
 
 interface RecommendedRoomCardProps {
@@ -25,15 +25,16 @@ export const RecommendedRoomCard = ({
         isSelected ? 'ring-2 ring-blue-500' : ''
       }`}
     >
-      <div className="flex gap-3 p-3">
-        <img
-          src={room.image}
-          alt={room.roomType}
-          className="w-24 h-24 object-cover rounded-md"
-        />
+      <div className="p-3">
         <div className="flex-1 min-w-0">
           <div className="mb-2">
-            <h3 className="text-sm font-medium text-gray-900 truncate">{room.hotelName}</h3>
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-medium text-gray-900 truncate">{room.hotelName}</h3>
+              <div className="flex items-center text-xs text-gray-600">
+                <Navigation className="w-3 h-3 mr-1" />
+                <span>{room.distanceInKm}km</span>
+              </div>
+            </div>
             <p className="text-xs text-gray-600">{room.roomType}</p>
           </div>
           <div className="space-y-1">
