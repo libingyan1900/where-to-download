@@ -6,7 +6,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-b from-gray-50 to-white">
+      <div className="relative bg-gradient-to-b from-blue-50 to-white">
         <div className="container px-4 py-20 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -14,13 +14,13 @@ const Index = () => {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-600">
               智能商旅管理平台
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-8">
               差旅壹号 - 为企业打造智能、高效、便捷的商务差旅解决方案
             </p>
-            <button className="bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition-colors duration-300 flex items-center mx-auto">
+            <button className="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-300 flex items-center mx-auto">
               开始使用
               <ArrowRight className="ml-2 w-4 h-4" />
             </button>
@@ -29,7 +29,7 @@ const Index = () => {
       </div>
 
       {/* Features Section */}
-      <div className="py-20 bg-gray-50">
+      <div className="py-20 bg-blue-50">
         <div className="container px-4 mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -37,7 +37,7 @@ const Index = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-900">
               为什么选择差旅壹号
             </h2>
             <p className="text-gray-600">
@@ -75,10 +75,10 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="glass-card p-6 rounded-2xl text-center"
               >
-                <div className="inline-block p-3 bg-black rounded-lg text-white mb-4">
+                <div className="inline-block p-3 bg-blue-600 rounded-lg text-white mb-4">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-blue-900">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
               </motion.div>
             ))}
@@ -95,17 +95,17 @@ const Index = () => {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-blue-900">
               开启智能商旅新时代
             </h2>
             <p className="text-gray-600 mb-8">
               立即体验差旅壹号，让您的企业差旅管理更加高效
             </p>
             <div className="flex justify-center gap-4">
-              <button className="bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition-colors duration-300">
+              <button className="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-300">
                 预约演示
               </button>
-              <button className="border border-black text-black px-8 py-3 rounded-full hover:bg-gray-50 transition-colors duration-300">
+              <button className="border border-blue-600 text-blue-600 px-8 py-3 rounded-full hover:bg-blue-50 transition-colors duration-300">
                 了解更多
               </button>
             </div>
