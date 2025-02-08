@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Building2, Bed, Wifi, Coffee, Users, GitCompare, Plus } from "lucide-react";
+import { Building2, Bed, Wifi, Coffee, Users, GitCompare, Plus, UtensilsCrossed, FileCheck, Ban } from "lucide-react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -18,6 +18,9 @@ interface Room {
   maxGuests: number;
   features: RoomFeature[];
   image: string;
+  breakfast: string;
+  confirmationRules: string;
+  cancellationRules: string;
 }
 
 const RoomComparison = () => {
@@ -37,7 +40,10 @@ const RoomComparison = () => {
       { name: "行政酒廊", available: true },
       { name: "观景阳台", available: true }
     ],
-    image: "https://placehold.co/600x400"
+    image: "https://placehold.co/600x400",
+    breakfast: "双人自助早餐",
+    confirmationRules: "立即确认",
+    cancellationRules: "预订后24小时内可免费取消"
   };
 
   const recommendedRooms: Room[] = [
@@ -54,7 +60,10 @@ const RoomComparison = () => {
         { name: "行政酒廊", available: true },
         { name: "观景阳台", available: true }
       ],
-      image: "https://placehold.co/600x400"
+      image: "https://placehold.co/600x400",
+      breakfast: "双人自助早餐",
+      confirmationRules: "立即确认",
+      cancellationRules: "预订后12小时内可免费取消"
     },
     {
       id: "3",
@@ -69,7 +78,10 @@ const RoomComparison = () => {
         { name: "行政酒廊", available: true },
         { name: "观景阳台", available: true }
       ],
-      image: "https://placehold.co/600x400"
+      image: "https://placehold.co/600x400",
+      breakfast: "双人自助早餐 + 下午茶",
+      confirmationRules: "立即确认",
+      cancellationRules: "预订后48小时内可免费取消"
     }
   ];
 
@@ -98,7 +110,7 @@ const RoomComparison = () => {
           返回
         </button>
         <h1 className="text-lg font-medium">房型对比</h1>
-        <div className="w-10" /> {/* 占位，保持标题居中 */}
+        <div className="w-10" />
       </div>
 
       <div className="pt-14 pb-20 px-4">
@@ -134,6 +146,21 @@ const RoomComparison = () => {
                   <span>可住{currentRoom.maxGuests}人</span>
                 </div>
               </div>
+              {/* 新增的信息展示 */}
+              <div className="space-y-2 border-t border-gray-100 pt-2">
+                <div className="flex items-center text-sm text-gray-600">
+                  <UtensilsCrossed className="w-4 h-4 mr-2" />
+                  <span>{currentRoom.breakfast}</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-600">
+                  <FileCheck className="w-4 h-4 mr-2" />
+                  <span>{currentRoom.confirmationRules}</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-600">
+                  <Ban className="w-4 h-4 mr-2" />
+                  <span>{currentRoom.cancellationRules}</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -163,7 +190,17 @@ const RoomComparison = () => {
                       <h3 className="text-sm font-medium text-gray-900 truncate">{room.hotelName}</h3>
                       <p className="text-xs text-gray-600">{room.roomType}</p>
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="space-y-1">
+                      <div className="flex items-center text-xs text-gray-600">
+                        <UtensilsCrossed className="w-3 h-3 mr-1" />
+                        <span className="truncate">{room.breakfast}</span>
+                      </div>
+                      <div className="flex items-center text-xs text-gray-600">
+                        <Ban className="w-3 h-3 mr-1" />
+                        <span className="truncate">{room.cancellationRules}</span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center mt-2">
                       <span className="text-base font-semibold text-blue-600">¥{room.price}</span>
                       <button
                         onClick={() => toggleRoomSelection(room.id)}
