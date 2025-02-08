@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Star, Image } from "lucide-react";
 import {
@@ -93,11 +94,10 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
       <Table className="w-full bg-white">
         <TableHeader>
           <TableRow className="bg-gray-50/50 backdrop-blur-sm">
-            <TableHead className="w-32 font-semibold sticky left-0 z-20 bg-gray-50/50">特征</TableHead>
             {rooms.map((room) => (
               <TableHead 
                 key={room.id}
-                className={`font-semibold ${
+                className={`w-[200px] px-3 font-semibold ${
                   pinnedRooms.includes(room.id) 
                     ? "text-blue-600" 
                     : "text-blue-900"
@@ -113,7 +113,7 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
             <React.Fragment key={group.title}>
               <TableRow>
                 <TableCell
-                  colSpan={rooms.length + 1}
+                  colSpan={rooms.length}
                   className="bg-blue-50/50 backdrop-blur-sm font-medium text-blue-900 border-t-2 border-blue-100"
                 >
                   {group.title}
@@ -124,13 +124,10 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
                   key={feature.key}
                   className="hover:bg-gray-50/50 transition-colors"
                 >
-                  <TableCell className="font-medium text-gray-700 bg-gray-50/30 whitespace-nowrap px-4 sticky left-0 z-20">
-                    {feature.label}
-                  </TableCell>
                   {rooms.map((room) => (
                     <TableCell 
                       key={room.id} 
-                      className={pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600"}
+                      className={`px-3 ${pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600"}`}
                     >
                       {renderFeatureValue(room, feature.key)}
                     </TableCell>
