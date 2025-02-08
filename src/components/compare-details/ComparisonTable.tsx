@@ -13,6 +13,7 @@ import { Room } from "@/components/room-comparison/types";
 
 interface ComparisonTableProps {
   rooms: Room[];
+  pinnedRooms?: string[];
 }
 
 const featureGroups = [
@@ -86,7 +87,7 @@ const renderFeatureValue = (room: Room, key: string) => {
   }
 };
 
-export const ComparisonTable = ({ rooms }: ComparisonTableProps) => {
+export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProps) => {
   return (
     <div className="overflow-x-auto rounded-lg shadow-lg animate-fadeIn">
       <Table className="bg-white">
@@ -96,7 +97,11 @@ export const ComparisonTable = ({ rooms }: ComparisonTableProps) => {
             {rooms.map((room) => (
               <TableHead 
                 key={room.id}
-                className="font-semibold text-blue-900"
+                className={`font-semibold ${
+                  pinnedRooms.includes(room.id) 
+                    ? "text-blue-600 sticky left-32" 
+                    : "text-blue-900"
+                }`}
               >
                 {room.hotelName}
               </TableHead>
@@ -123,7 +128,14 @@ export const ComparisonTable = ({ rooms }: ComparisonTableProps) => {
                     {feature.label}
                   </TableCell>
                   {rooms.map((room) => (
-                    <TableCell key={room.id} className="text-gray-600">
+                    <TableCell 
+                      key={room.id} 
+                      className={`text-gray-600 ${
+                        pinnedRooms.includes(room.id) 
+                          ? "sticky left-32 bg-white" 
+                          : ""
+                      }`}
+                    >
                       {renderFeatureValue(room, feature.key)}
                     </TableCell>
                   ))}

@@ -15,9 +15,11 @@ const CompareDetails = () => {
   const [rooms, setRooms] = React.useState<Room[]>(
     location.state?.selectedRooms as Room[] || []
   );
+  const [pinnedRooms, setPinnedRooms] = React.useState<string[]>([]);
 
   const handleRemoveRoom = (roomId: string) => {
     setRooms(prev => prev.filter(room => room.id !== roomId));
+    setPinnedRooms(prev => prev.filter(id => id !== roomId));
   };
 
   const handleBook = (roomId: string) => {
@@ -35,10 +37,27 @@ const CompareDetails = () => {
     navigate('/room-comparison');
   };
 
+  const handleTogglePin = (roomId: string) => {
+    setPinnedRooms(prev => 
+      prev.includes(roomId) 
+        ? prev.filter(id => id !== roomId)
+        : [...prev, roomId]
+    );
+  };
+
   if (rooms.length === 0) {
     navigate('/room-comparison');
     return null;
   }
+
+  // 对房间进行排序，将固定的房间排在前面
+  const sortedRooms = [...rooms].sort((a, b) => {
+    const aIsPinned = pinnedRooms.includes(a.id);
+    const bIsPinned = pinnedRooms.includes(b.id);
+    if (aIsPinned && !bIsPinned) return -1;
+    if (!aIsPinned && bIsPinned) return 1;
+    return 0;
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
@@ -59,12 +78,14 @@ const CompareDetails = () => {
       <div className="fixed top-14 left-0 right-0 bg-gradient-to-b from-white/95 via-white/90 to-transparent backdrop-blur-[2px] z-10">
         <div className="px-4 py-3 max-w-7xl mx-auto">
           <div className="flex gap-3 mb-0 overflow-x-auto pb-2 scrollbar-hide">
-            {rooms.map((room) => (
+            {sortedRooms.map((room) => (
               <RoomCard
                 key={room.id}
                 room={room}
                 onRemove={handleRemoveRoom}
                 onBook={handleBook}
+                isPinned={pinnedRooms.includes(room.id)}
+                onTogglePin={handleTogglePin}
               />
             ))}
             {rooms.length < 5 && (
@@ -78,7 +99,10 @@ const CompareDetails = () => {
       </div>
 
       <div className="pt-40 px-4 pb-8 max-w-7xl mx-auto">
-        <ComparisonTable rooms={rooms} />
+        <ComparisonTable 
+          rooms={sortedRooms}
+          pinnedRooms={pinnedRooms}
+        />
       </div>
     </div>
   );
