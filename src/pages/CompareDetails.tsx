@@ -80,7 +80,9 @@ const CompareDetails = () => {
           <table className="w-full border-collapse">
             <tbody>
               <tr>
-                <td className="p-3 min-w-[140px]" />
+                <td className="p-3 min-w-[140px]">
+                  <div className="font-medium text-gray-700">对比房型</div>
+                </td>
                 {sortedRooms.map((room) => (
                   <td key={room.id} className="p-3 min-w-[140px]">
                     <RoomCard
