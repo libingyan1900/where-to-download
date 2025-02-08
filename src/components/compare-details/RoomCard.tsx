@@ -33,21 +33,24 @@ export const RoomCard = ({
         </button>
       </div>
       <div className="p-3 space-y-2.5">
-        <div className="flex items-start gap-2 min-h-[40px]">
+        <div className="space-y-2">
           {onTogglePin && (
             <button
               onClick={() => onTogglePin(room.id)}
-              className="flex-shrink-0 p-1.5 rounded-md bg-white/80 hover:bg-white/95 transition-all group-hover:shadow-sm"
-              title={isPinned ? "取消固定" : "固定"}
+              className="flex items-center gap-1.5 w-full p-1.5 rounded-md bg-white/80 hover:bg-white/95 transition-all group-hover:shadow-sm"
+              title={isPinned ? "取消固定" : "固定到左侧"}
             >
               {isPinned ? (
                 <Pin className="w-4 h-4 text-blue-600" />
               ) : (
                 <PinOff className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
               )}
+              <span className="text-xs text-gray-600 group-hover:text-gray-800">
+                {isPinned ? "取消固定" : "固定到左侧"}
+              </span>
             </button>
           )}
-          <h3 className="text-sm font-semibold text-blue-900 flex-1" title={room.hotelName}>
+          <h3 className="text-sm font-semibold text-blue-900 line-clamp-2" title={room.hotelName}>
             {room.hotelName}
           </h3>
         </div>
@@ -68,4 +71,3 @@ export const RoomCard = ({
     </div>
   );
 };
-
