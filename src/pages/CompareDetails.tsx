@@ -126,15 +126,16 @@ const CompareDetails = () => {
             {rooms.map((room) => (
               <div 
                 key={room.id}
-                className="relative flex-shrink-0 w-[200px] p-3 rounded-lg shadow-md bg-white/90 backdrop-blur-sm animate-fadeIn hover:shadow-lg transition-all"
+                className="relative flex-shrink-0 w-[200px] rounded-xl bg-gradient-to-br from-white to-blue-50 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-blue-100/50 backdrop-blur-sm animate-fadeIn hover:shadow-lg transition-all overflow-hidden"
               >
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600" />
                 <button
                   onClick={() => handleRemoveRoom(room.id)}
-                  className="absolute top-1 right-1 p-1 rounded-full hover:bg-gray-100 transition-colors"
+                  className="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 hover:bg-white shadow-sm hover:shadow transition-all group"
                 >
-                  <X className="w-4 h-4 text-gray-400" />
+                  <X className="w-3.5 h-3.5 text-gray-400 group-hover:text-gray-600" />
                 </button>
-                <div className="space-y-1.5">
+                <div className="p-3 space-y-2">
                   <h3 className="text-sm font-semibold text-blue-900 truncate" title={room.hotelName}>
                     {room.hotelName}
                   </h3>
@@ -147,7 +148,7 @@ const CompareDetails = () => {
                   </div>
                   <Button 
                     onClick={() => handleBook(room.id)}
-                    className="w-full h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white"
+                    className="w-full h-7 text-xs bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-sm"
                   >
                     预订
                   </Button>
