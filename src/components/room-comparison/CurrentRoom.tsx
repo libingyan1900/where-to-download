@@ -16,11 +16,6 @@ export const CurrentRoom = ({ room }: CurrentRoomProps) => {
         animate={{ opacity: 1, y: 0 }}
         className="bg-white rounded-xl shadow-sm overflow-hidden"
       >
-        <img
-          src={room.image}
-          alt={room.roomType}
-          className="w-full h-48 object-cover"
-        />
         <div className="p-4 space-y-3">
           <div>
             <h3 className="text-base font-medium text-gray-900">{room.hotelName}</h3>
