@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ChevronLeft, Star, Image, X } from "lucide-react";
+import { ChevronLeft, Star, Image, X, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -11,10 +11,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Room } from "@/components/room-comparison/types";
+import { useToast } from "@/components/ui/use-toast";
 
 const CompareDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [rooms, setRooms] = React.useState<Room[]>(
     location.state?.selectedRooms as Room[] || []
   );
@@ -25,6 +27,17 @@ const CompareDetails = () => {
 
   const handleBook = (roomId: string) => {
     console.log('Booking room:', roomId);
+  };
+
+  const handleAddRoom = () => {
+    if (rooms.length >= 5) {
+      toast({
+        description: "最多只能对比5个房型",
+        variant: "destructive",
+      });
+      return;
+    }
+    navigate('/room-comparison');
   };
 
   const featureGroups = [
@@ -154,6 +167,18 @@ const CompareDetails = () => {
                 </div>
               </div>
             ))}
+            {rooms.length < 5 && (
+              <button
+                onClick={handleAddRoom}
+                className="flex flex-col items-center justify-center w-[140px] h-[182px] rounded-lg border border-dashed border-gray-300 bg-white/50 hover:bg-white/80 transition-colors group"
+              >
+                <Plus className="w-5 h-5 mb-2 text-gray-400 group-hover:text-gray-600" />
+                <span className="text-sm text-gray-500 group-hover:text-gray-700">添加房型</span>
+                <span className="text-xs text-gray-400 mt-1">
+                  还可添加 {5 - rooms.length} 个
+                </span>
+              </button>
+            )}
           </div>
         </div>
       </div>
