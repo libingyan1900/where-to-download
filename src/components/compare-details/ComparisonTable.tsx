@@ -97,7 +97,7 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
           {group.features.map((feature) => (
             <TableRow 
               key={feature.key}
-              className="hover:bg-gray-50/50 transition-colors border-b border-gray-200"
+              className="hover:bg-gray-50/50 transition-colors"
             >
               <TableCell className="w-[160px] p-2 font-medium text-gray-700 bg-gray-50/30 whitespace-nowrap sticky left-0 z-20 border-r border-gray-200">
                 {feature.label}
@@ -113,15 +113,7 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
                 </TableCell>
               ))}
               {rooms.length < 5 && (
-                <TableCell 
-                  className="w-[200px] p-2" 
-                  style={{ 
-                    background: 'transparent',
-                    border: 'none',
-                    outline: 'none',
-                    boxShadow: 'none'
-                  }}
-                />
+                <div className="w-[200px] p-2" />
               )}
             </TableRow>
           ))}
