@@ -24,20 +24,7 @@ export const RoomCard = ({
       className="relative flex-shrink-0 w-[140px] rounded-lg bg-white/80 border border-gray-100 shadow-sm backdrop-blur-sm animate-fadeIn transition-all group hover:bg-white/90"
     >
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400/40 to-blue-600/40" />
-      <div className="absolute top-2 right-2 flex items-center gap-1">
-        {onTogglePin && (
-          <button
-            onClick={() => onTogglePin(room.id)}
-            className="p-1 rounded-full bg-white/80 hover:bg-white/95 transition-all group-hover:shadow-sm"
-            title={isPinned ? "取消固定" : "固定"}
-          >
-            {isPinned ? (
-              <Pin className="w-3 h-3 text-blue-600" />
-            ) : (
-              <PinOff className="w-3 h-3 text-gray-400 group-hover:text-gray-600" />
-            )}
-          </button>
-        )}
+      <div className="absolute top-2 right-2">
         <button
           onClick={() => onRemove(room.id)}
           className="p-1 rounded-full bg-white/80 hover:bg-white/95 transition-all group-hover:shadow-sm"
@@ -46,9 +33,24 @@ export const RoomCard = ({
         </button>
       </div>
       <div className="p-3 space-y-2.5">
-        <h3 className="text-sm font-semibold text-blue-900 line-clamp-2 min-h-[40px]" title={room.hotelName}>
-          {room.hotelName}
-        </h3>
+        <div className="flex items-start gap-2 min-h-[40px]">
+          {onTogglePin && (
+            <button
+              onClick={() => onTogglePin(room.id)}
+              className="flex-shrink-0 p-1.5 rounded-md bg-white/80 hover:bg-white/95 transition-all group-hover:shadow-sm"
+              title={isPinned ? "取消固定" : "固定"}
+            >
+              {isPinned ? (
+                <Pin className="w-4 h-4 text-blue-600" />
+              ) : (
+                <PinOff className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
+              )}
+            </button>
+          )}
+          <h3 className="text-sm font-semibold text-blue-900 flex-1" title={room.hotelName}>
+            {room.hotelName}
+          </h3>
+        </div>
         <p className="text-xs text-gray-600 line-clamp-2 min-h-[32px]" title={room.roomType}>
           {room.roomType}
         </p>
@@ -66,3 +68,4 @@ export const RoomCard = ({
     </div>
   );
 };
+
