@@ -115,9 +115,16 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
               {rooms.length < 5 && (
                 <TableCell 
                   className="w-[200px] p-2" 
-                  style={{ border: 'none', backgroundColor: 'transparent' }}
+                  style={{ 
+                    border: 'none', 
+                    backgroundColor: 'transparent',
+                    borderLeft: 'none',
+                    borderRight: 'none',
+                    borderBottom: 'none',
+                    borderTop: 'none'
+                  }}
                 >
-                  {/* Empty cell without borders */}
+                  {/* Empty cell without any borders */}
                 </TableCell>
               )}
             </TableRow>
