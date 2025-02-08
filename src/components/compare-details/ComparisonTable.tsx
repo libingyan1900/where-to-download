@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Star, Image } from "lucide-react";
 import {
@@ -90,17 +89,17 @@ const renderFeatureValue = (room: Room, key: string) => {
 
 export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProps) => {
   return (
-    <div className="overflow-x-auto">
+    <div className="relative overflow-x-auto">
       <Table className="w-full bg-white">
-        <TableHeader className="sticky top-0 z-10">
+        <TableHeader>
           <TableRow className="bg-gray-50/50 backdrop-blur-sm">
-            <TableHead className="w-32 font-semibold">特征</TableHead>
+            <TableHead className="w-32 font-semibold sticky left-0 z-20 bg-gray-50/50">特征</TableHead>
             {rooms.map((room) => (
               <TableHead 
                 key={room.id}
                 className={`font-semibold ${
                   pinnedRooms.includes(room.id) 
-                    ? "text-blue-600 sticky left-32" 
+                    ? "text-blue-600" 
                     : "text-blue-900"
                 }`}
               >
@@ -125,17 +124,13 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
                   key={feature.key}
                   className="hover:bg-gray-50/50 transition-colors"
                 >
-                  <TableCell className="font-medium text-gray-700 bg-gray-50/30 whitespace-nowrap px-4">
+                  <TableCell className="font-medium text-gray-700 bg-gray-50/30 whitespace-nowrap px-4 sticky left-0 z-20">
                     {feature.label}
                   </TableCell>
                   {rooms.map((room) => (
                     <TableCell 
                       key={room.id} 
-                      className={`text-gray-600 ${
-                        pinnedRooms.includes(room.id) 
-                          ? "sticky left-32 bg-white" 
-                          : ""
-                      }`}
+                      className={pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600"}
                     >
                       {renderFeatureValue(room, feature.key)}
                     </TableCell>

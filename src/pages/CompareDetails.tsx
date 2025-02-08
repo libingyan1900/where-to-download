@@ -76,11 +76,11 @@ const CompareDetails = () => {
       </div>
 
       <div className="pt-14 pb-4 px-4 max-w-7xl mx-auto">
-        <div className="overflow-x-auto">
+        <div className="relative overflow-x-auto">
           <table className="w-full border-collapse">
             <tbody>
               <tr>
-                <td className="p-3 min-w-[140px]">
+                <td className="p-3 min-w-[140px] sticky left-0 z-20 bg-white">
                   <div className="font-medium text-gray-700">对比房型</div>
                 </td>
                 {sortedRooms.map((room) => (
