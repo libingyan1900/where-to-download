@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -87,7 +86,7 @@ const CompareDetails = () => {
           <div className="min-w-[720px]">
             <Table className="w-full bg-white border-collapse">
               <TableHeader>
-                <TableRow className="bg-gray-50/50 backdrop-blur-sm border-b border-gray-200">
+                <TableRow className="bg-gray-50/50 backdrop-blur-sm">
                   <TableHead className="w-[160px] p-2 font-semibold sticky left-0 z-20 bg-gray-50/50 border-r border-gray-200">
                     酒店列表
                   </TableHead>
@@ -106,7 +105,7 @@ const CompareDetails = () => {
                     </TableHead>
                   ))}
                   {rooms.length < 5 && (
-                    <TableHead className="w-[200px] p-2 border-r border-gray-200">
+                    <TableHead className="w-[200px] p-2">
                       <AddRoomButton
                         remainingSlots={5 - rooms.length}
                         onClick={handleAddRoom}
@@ -130,4 +129,3 @@ const CompareDetails = () => {
 };
 
 export default CompareDetails;
-

@@ -113,7 +113,7 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
                 </TableCell>
               ))}
               {rooms.length < 5 && (
-                <TableCell className="w-[200px] p-2 border-r border-gray-200" />
+                <TableCell className="w-[200px] p-2" />
               )}
             </TableRow>
           ))}
@@ -122,4 +122,3 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
     </>
   );
 };
-
