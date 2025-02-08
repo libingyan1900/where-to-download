@@ -1,14 +1,7 @@
 
 import React from "react";
 import { Star, Image } from "lucide-react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { TableCell, TableRow } from "@/components/ui/table";
 import { Room } from "@/components/room-comparison/types";
 
 interface ComparisonTableProps {
@@ -90,62 +83,43 @@ const renderFeatureValue = (room: Room, key: string) => {
 
 export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProps) => {
   return (
-    <div className="relative overflow-x-auto">
-      <Table className="w-full bg-white border-collapse">
-        <TableHeader>
-          <TableRow className="bg-gray-50/50 backdrop-blur-sm border-b border-gray-200">
-            <TableHead className="w-[160px] p-2 font-semibold sticky left-0 z-20 bg-gray-50/50 border-r border-gray-200">
-              特征
-            </TableHead>
-            {rooms.map((room) => (
-              <TableHead 
-                key={room.id}
-                className={`w-[200px] p-2 font-semibold border-r border-gray-200 ${
-                  pinnedRooms.includes(room.id) 
-                    ? "text-blue-600" 
-                    : "text-blue-900"
-                }`}
-              >
-                {room.hotelName}
-              </TableHead>
-            ))}
+    <>
+      {featureGroups.map((group) => (
+        <React.Fragment key={group.title}>
+          <TableRow>
+            <TableCell
+              colSpan={rooms.length + (rooms.length < 5 ? 2 : 1)}
+              className="bg-blue-50/50 backdrop-blur-sm font-medium text-blue-900 border-t-2 border-blue-100"
+            >
+              {group.title}
+            </TableCell>
           </TableRow>
-        </TableHeader>
-        <TableBody>
-          {featureGroups.map((group) => (
-            <React.Fragment key={group.title}>
-              <TableRow>
-                <TableCell
-                  colSpan={rooms.length + 1}
-                  className="bg-blue-50/50 backdrop-blur-sm font-medium text-blue-900 border-t-2 border-blue-100"
+          {group.features.map((feature) => (
+            <TableRow 
+              key={feature.key}
+              className="hover:bg-gray-50/50 transition-colors border-b border-gray-200"
+            >
+              <TableCell className="w-[160px] p-2 font-medium text-gray-700 bg-gray-50/30 whitespace-nowrap sticky left-0 z-20 border-r border-gray-200">
+                {feature.label}
+              </TableCell>
+              {rooms.map((room) => (
+                <TableCell 
+                  key={room.id} 
+                  className={`w-[200px] p-2 border-r border-gray-200 ${
+                    pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600"
+                  }`}
                 >
-                  {group.title}
+                  {renderFeatureValue(room, feature.key)}
                 </TableCell>
-              </TableRow>
-              {group.features.map((feature) => (
-                <TableRow 
-                  key={feature.key}
-                  className="hover:bg-gray-50/50 transition-colors border-b border-gray-200"
-                >
-                  <TableCell className="w-[160px] p-2 font-medium text-gray-700 bg-gray-50/30 whitespace-nowrap sticky left-0 z-20 border-r border-gray-200">
-                    {feature.label}
-                  </TableCell>
-                  {rooms.map((room) => (
-                    <TableCell 
-                      key={room.id} 
-                      className={`w-[200px] p-2 border-r border-gray-200 ${
-                        pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600"
-                      }`}
-                    >
-                      {renderFeatureValue(room, feature.key)}
-                    </TableCell>
-                  ))}
-                </TableRow>
               ))}
-            </React.Fragment>
+              {rooms.length < 5 && (
+                <TableCell className="w-[200px] p-2 border-r border-gray-200" />
+              )}
+            </TableRow>
           ))}
-        </TableBody>
-      </Table>
-    </div>
+        </React.Fragment>
+      ))}
+    </>
   );
 };
+

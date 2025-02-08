@@ -7,6 +7,14 @@ import { useToast } from "@/components/ui/use-toast";
 import { RoomCard } from "@/components/compare-details/RoomCard";
 import { AddRoomButton } from "@/components/compare-details/AddRoomButton";
 import { ComparisonTable } from "@/components/compare-details/ComparisonTable";
+import { 
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const CompareDetails = () => {
   const location = useLocation();
@@ -77,39 +85,43 @@ const CompareDetails = () => {
       <div className="pt-14 max-w-7xl mx-auto">
         <div className="relative overflow-x-auto">
           <div className="min-w-[720px]">
-            <div className="flex">
-              <div className="w-[160px] p-2 sticky left-0 z-10">
-                <div className="h-[140px] rounded-lg bg-white/80 border border-gray-100 shadow-sm backdrop-blur-sm flex items-center justify-center">
-                  <span className="text-gray-400">酒店列表</span>
-                </div>
-              </div>
-              {sortedRooms.map((room) => (
-                <div key={room.id} className="w-[200px] p-2">
-                  <RoomCard
-                    room={room}
-                    onRemove={handleRemoveRoom}
-                    onBook={handleBook}
-                    isPinned={pinnedRooms.includes(room.id)}
-                    onTogglePin={handleTogglePin}
-                  />
-                </div>
-              ))}
-              {rooms.length < 5 && (
-                <div className="w-[200px] p-2">
-                  <AddRoomButton
-                    remainingSlots={5 - rooms.length}
-                    onClick={handleAddRoom}
-                  />
-                </div>
-              )}
-            </div>
-
-            <div className="pb-8">
-              <ComparisonTable 
-                rooms={sortedRooms}
-                pinnedRooms={pinnedRooms}
-              />
-            </div>
+            <Table className="w-full bg-white border-collapse">
+              <TableHeader>
+                <TableRow className="bg-gray-50/50 backdrop-blur-sm border-b border-gray-200">
+                  <TableHead className="w-[160px] p-2 font-semibold sticky left-0 z-20 bg-gray-50/50 border-r border-gray-200">
+                    酒店列表
+                  </TableHead>
+                  {sortedRooms.map((room) => (
+                    <TableHead 
+                      key={room.id}
+                      className="w-[200px] p-2 border-r border-gray-200"
+                    >
+                      <RoomCard
+                        room={room}
+                        onRemove={handleRemoveRoom}
+                        onBook={handleBook}
+                        isPinned={pinnedRooms.includes(room.id)}
+                        onTogglePin={handleTogglePin}
+                      />
+                    </TableHead>
+                  ))}
+                  {rooms.length < 5 && (
+                    <TableHead className="w-[200px] p-2 border-r border-gray-200">
+                      <AddRoomButton
+                        remainingSlots={5 - rooms.length}
+                        onClick={handleAddRoom}
+                      />
+                    </TableHead>
+                  )}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <ComparisonTable 
+                  rooms={sortedRooms}
+                  pinnedRooms={pinnedRooms}
+                />
+              </TableBody>
+            </Table>
           </div>
         </div>
       </div>
@@ -118,3 +130,4 @@ const CompareDetails = () => {
 };
 
 export default CompareDetails;
+
