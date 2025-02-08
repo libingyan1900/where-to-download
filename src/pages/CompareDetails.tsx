@@ -25,7 +25,6 @@ const CompareDetails = () => {
   };
 
   const handleBook = (roomId: string) => {
-    // Booking logic here
     console.log('Booking room:', roomId);
   };
 
@@ -122,28 +121,32 @@ const CompareDetails = () => {
       </div>
 
       <div className="pt-14 px-4 pb-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        <div className="flex gap-4 mb-6 overflow-x-auto pb-2 scrollbar-hide">
           {rooms.map((room) => (
             <div 
               key={room.id}
-              className="relative p-4 rounded-lg shadow-lg bg-white/90 backdrop-blur-sm animate-fadeIn hover:shadow-xl transition-shadow"
+              className="relative flex-shrink-0 w-[200px] p-3 rounded-lg shadow-md bg-white/90 backdrop-blur-sm animate-fadeIn hover:shadow-lg transition-all"
             >
               <button
                 onClick={() => handleRemoveRoom(room.id)}
-                className="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-100 transition-colors"
+                className="absolute top-1 right-1 p-1 rounded-full hover:bg-gray-100 transition-colors"
               >
-                <X className="w-5 h-5 text-gray-500" />
+                <X className="w-4 h-4 text-gray-400" />
               </button>
-              <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-blue-900">{room.hotelName}</h3>
-                <p className="text-gray-600">{room.roomType}</p>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-xl font-bold text-blue-600">¥{room.price}</span>
-                  <span className="text-sm text-gray-500">/晚</span>
+              <div className="space-y-1.5">
+                <h3 className="text-sm font-semibold text-blue-900 truncate" title={room.hotelName}>
+                  {room.hotelName}
+                </h3>
+                <p className="text-xs text-gray-600 truncate" title={room.roomType}>
+                  {room.roomType}
+                </p>
+                <div className="flex items-baseline gap-0.5">
+                  <span className="text-base font-bold text-blue-600">¥{room.price}</span>
+                  <span className="text-xs text-gray-500">/晚</span>
                 </div>
                 <Button 
                   onClick={() => handleBook(room.id)}
-                  className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white"
+                  className="w-full h-7 text-xs bg-blue-600 hover:bg-blue-700 text-white"
                 >
                   预订
                 </Button>
