@@ -91,14 +91,14 @@ const renderFeatureValue = (room: Room, key: string) => {
 export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProps) => {
   return (
     <div className="relative overflow-x-auto">
-      <Table className="w-full bg-white">
+      <Table className="w-full bg-white border-collapse">
         <TableHeader>
-          <TableRow className="bg-gray-50/50 backdrop-blur-sm">
-            <TableHead className="w-[160px] px-3 font-semibold sticky left-0 z-20 bg-gray-50/50">特征</TableHead>
+          <TableRow className="bg-gray-50/50 backdrop-blur-sm border-b border-gray-200">
+            <TableHead className="w-[160px] px-3 font-semibold sticky left-0 z-20 bg-gray-50/50 border-r border-gray-200">特征</TableHead>
             {rooms.map((room) => (
               <TableHead 
                 key={room.id}
-                className={`w-[200px] px-3 font-semibold ${
+                className={`w-[200px] px-3 font-semibold border-r border-gray-200 ${
                   pinnedRooms.includes(room.id) 
                     ? "text-blue-600" 
                     : "text-blue-900"
@@ -123,15 +123,17 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
               {group.features.map((feature) => (
                 <TableRow 
                   key={feature.key}
-                  className="hover:bg-gray-50/50 transition-colors"
+                  className="hover:bg-gray-50/50 transition-colors border-b border-gray-200"
                 >
-                  <TableCell className="w-[160px] px-3 font-medium text-gray-700 bg-gray-50/30 whitespace-nowrap sticky left-0 z-20">
+                  <TableCell className="w-[160px] px-3 font-medium text-gray-700 bg-gray-50/30 whitespace-nowrap sticky left-0 z-20 border-r border-gray-200">
                     {feature.label}
                   </TableCell>
                   {rooms.map((room) => (
                     <TableCell 
                       key={room.id} 
-                      className={`w-[200px] px-3 ${pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600"}`}
+                      className={`w-[200px] px-3 border-r border-gray-200 ${
+                        pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600"
+                      }`}
                     >
                       {renderFeatureValue(room, feature.key)}
                     </TableCell>
