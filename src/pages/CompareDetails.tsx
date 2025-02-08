@@ -75,30 +75,38 @@ const CompareDetails = () => {
         </div>
       </div>
 
-      <div className="fixed top-14 left-0 right-0 bg-gradient-to-b from-white/95 via-white/90 to-transparent backdrop-blur-[2px] z-10">
-        <div className="px-4 py-3 max-w-7xl mx-auto">
-          <div className="flex gap-3 mb-0 overflow-x-auto pb-2 scrollbar-hide">
-            {sortedRooms.map((room) => (
-              <RoomCard
-                key={room.id}
-                room={room}
-                onRemove={handleRemoveRoom}
-                onBook={handleBook}
-                isPinned={pinnedRooms.includes(room.id)}
-                onTogglePin={handleTogglePin}
-              />
-            ))}
-            {rooms.length < 5 && (
-              <AddRoomButton
-                remainingSlots={5 - rooms.length}
-                onClick={handleAddRoom}
-              />
-            )}
-          </div>
+      <div className="pt-14 pb-4 px-4 max-w-7xl mx-auto">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <tbody>
+              <tr>
+                <td className="p-3 min-w-[140px]" />
+                {sortedRooms.map((room) => (
+                  <td key={room.id} className="p-3 min-w-[140px]">
+                    <RoomCard
+                      room={room}
+                      onRemove={handleRemoveRoom}
+                      onBook={handleBook}
+                      isPinned={pinnedRooms.includes(room.id)}
+                      onTogglePin={handleTogglePin}
+                    />
+                  </td>
+                ))}
+                {rooms.length < 5 && (
+                  <td className="p-3 min-w-[140px]">
+                    <AddRoomButton
+                      remainingSlots={5 - rooms.length}
+                      onClick={handleAddRoom}
+                    />
+                  </td>
+                )}
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <div className="pt-40 px-4 pb-8 max-w-7xl mx-auto">
+      <div className="px-4 pb-8 max-w-7xl mx-auto">
         <ComparisonTable 
           rooms={sortedRooms}
           pinnedRooms={pinnedRooms}

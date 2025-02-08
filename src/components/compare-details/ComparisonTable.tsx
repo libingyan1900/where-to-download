@@ -90,9 +90,9 @@ const renderFeatureValue = (room: Room, key: string) => {
 
 export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProps) => {
   return (
-    <div className="overflow-x-auto rounded-lg shadow-lg animate-fadeIn">
-      <Table className="bg-white">
-        <TableHeader>
+    <div className="overflow-x-auto">
+      <Table className="w-full bg-white">
+        <TableHeader className="sticky top-0 z-10">
           <TableRow className="bg-gray-50/50 backdrop-blur-sm">
             <TableHead className="w-32 font-semibold">特征</TableHead>
             {rooms.map((room) => (
@@ -125,7 +125,7 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
                   key={feature.key}
                   className="hover:bg-gray-50/50 transition-colors"
                 >
-                  <TableCell className="font-medium text-gray-700 bg-gray-50/30 [writing-mode:horizontal-tb] whitespace-nowrap px-4">
+                  <TableCell className="font-medium text-gray-700 bg-gray-50/30 whitespace-nowrap px-4">
                     {feature.label}
                   </TableCell>
                   {rooms.map((room) => (
