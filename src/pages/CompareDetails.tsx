@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -77,6 +78,11 @@ const CompareDetails = () => {
         <div className="overflow-x-auto">
           <div className="min-w-[720px]">
             <div className="flex">
+              <div className="w-[200px] p-3">
+                <div className="h-[140px] rounded-lg bg-white/80 border border-gray-100 shadow-sm backdrop-blur-sm flex items-center justify-center">
+                  <span className="text-gray-400">房型对比</span>
+                </div>
+              </div>
               {sortedRooms.map((room) => (
                 <div key={room.id} className="w-[200px] p-3">
                   <RoomCard
