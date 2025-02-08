@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Star, Image } from "lucide-react";
 import { TableCell, TableRow } from "@/components/ui/table";
@@ -123,9 +122,7 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
                     borderBottom: 'none',
                     borderTop: 'none'
                   }}
-                >
-                  {/* Empty cell without any borders */}
-                </TableCell>
+                />
               )}
             </TableRow>
           ))}
