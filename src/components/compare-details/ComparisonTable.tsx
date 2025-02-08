@@ -115,7 +115,7 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
               <TableRow>
                 <TableCell
                   colSpan={rooms.length + 1}
-                  className="bg-blue-50/50 backdrop-blur-sm font-medium text-blue-900"
+                  className="bg-blue-50/50 backdrop-blur-sm font-medium text-blue-900 border-t-2 border-blue-100"
                 >
                   {group.title}
                 </TableCell>
@@ -125,7 +125,7 @@ export const ComparisonTable = ({ rooms, pinnedRooms = [] }: ComparisonTableProp
                   key={feature.key}
                   className="hover:bg-gray-50/50 transition-colors"
                 >
-                  <TableCell className="font-medium text-gray-700">
+                  <TableCell className="font-medium text-gray-700 bg-gray-50/30 [writing-mode:horizontal-tb] whitespace-nowrap px-4">
                     {feature.label}
                   </TableCell>
                   {rooms.map((room) => (
