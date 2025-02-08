@@ -159,7 +159,7 @@ const CompareDetails = () => {
         </div>
       </div>
 
-      <div className="pt-32 px-4 pb-8 max-w-7xl mx-auto">
+      <div className="pt-40 px-4 pb-8 max-w-7xl mx-auto">
         <div className="overflow-x-auto rounded-lg shadow-lg animate-fadeIn">
           <Table className="bg-white">
             <TableHeader>
