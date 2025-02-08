@@ -120,18 +120,18 @@ const CompareDetails = () => {
         </div>
       </div>
 
-      <div className="fixed top-14 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-10">
+      <div className="fixed top-14 left-0 right-0 bg-gradient-to-b from-white/95 via-white/90 to-transparent backdrop-blur-[2px] z-10">
         <div className="px-4 py-3 max-w-7xl mx-auto">
           <div className="flex gap-4 mb-0 overflow-x-auto pb-2 scrollbar-hide">
             {rooms.map((room) => (
               <div 
                 key={room.id}
-                className="relative flex-shrink-0 w-[200px] rounded-xl bg-gradient-to-br from-white to-blue-50 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-blue-100/50 backdrop-blur-sm animate-fadeIn hover:shadow-lg transition-all overflow-hidden"
+                className="relative flex-shrink-0 w-[200px] rounded-xl bg-white/80 border border-gray-100 shadow-sm backdrop-blur-sm animate-fadeIn transition-all group hover:bg-white/90"
               >
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400/40 to-blue-600/40" />
                 <button
                   onClick={() => handleRemoveRoom(room.id)}
-                  className="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 hover:bg-white shadow-sm hover:shadow transition-all group"
+                  className="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 hover:bg-white/95 transition-all group-hover:shadow-sm"
                 >
                   <X className="w-3.5 h-3.5 text-gray-400 group-hover:text-gray-600" />
                 </button>
@@ -148,7 +148,7 @@ const CompareDetails = () => {
                   </div>
                   <Button 
                     onClick={() => handleBook(room.id)}
-                    className="w-full h-7 text-xs bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white shadow-sm"
+                    className="w-full h-7 text-xs bg-blue-500/90 hover:bg-blue-600/90 text-white"
                   >
                     预订
                   </Button>
