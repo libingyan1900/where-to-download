@@ -32,7 +32,7 @@ export const RecommendedRoomCard = ({
               <h3 className="text-sm font-medium text-gray-900 truncate">{room.hotelName}</h3>
               <div className="flex items-center text-xs text-gray-600">
                 <Navigation className="w-3 h-3 mr-1" />
-                <span>{room.distanceInKm}km</span>
+                <span>距金茂大酒店 {(room.distanceInKm * 1000).toFixed(0)}米</span>
               </div>
             </div>
             <p className="text-xs text-gray-600">{room.roomType}</p>
