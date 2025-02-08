@@ -75,16 +75,16 @@ const CompareDetails = () => {
       </div>
 
       <div className="pt-14 max-w-7xl mx-auto">
-        <div className="overflow-x-auto">
-          <div className="min-w-[720px] px-3">
-            <div className="flex -mx-3">
-              <div className="w-[200px] px-3 sticky left-0">
+        <div className="relative overflow-x-auto">
+          <div className="min-w-[720px]">
+            <div className="flex">
+              <div className="w-[160px] p-2 sticky left-0 z-10">
                 <div className="h-[140px] rounded-lg bg-white/80 border border-gray-100 shadow-sm backdrop-blur-sm flex items-center justify-center">
-                  <span className="text-gray-400">房型对比</span>
+                  <span className="text-gray-400">酒店列表</span>
                 </div>
               </div>
               {sortedRooms.map((room) => (
-                <div key={room.id} className="w-[200px] px-3">
+                <div key={room.id} className="w-[200px] p-2">
                   <RoomCard
                     room={room}
                     onRemove={handleRemoveRoom}
@@ -95,7 +95,7 @@ const CompareDetails = () => {
                 </div>
               ))}
               {rooms.length < 5 && (
-                <div className="w-[200px] px-3">
+                <div className="w-[200px] p-2">
                   <AddRoomButton
                     remainingSlots={5 - rooms.length}
                     onClick={handleAddRoom}
