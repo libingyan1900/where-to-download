@@ -1,7 +1,8 @@
 
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ChevronLeft, Star, Image } from "lucide-react";
+import { ChevronLeft, Star, Image, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -15,7 +16,18 @@ import { Room } from "@/components/room-comparison/types";
 const CompareDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const rooms = location.state?.selectedRooms as Room[] || [];
+  const [rooms, setRooms] = React.useState<Room[]>(
+    location.state?.selectedRooms as Room[] || []
+  );
+
+  const handleRemoveRoom = (roomId: string) => {
+    setRooms(prev => prev.filter(room => room.id !== roomId));
+  };
+
+  const handleBook = (roomId: string) => {
+    // Booking logic here
+    console.log('Booking room:', roomId);
+  };
 
   const featureGroups = [
     {
@@ -88,6 +100,11 @@ const CompareDetails = () => {
     }
   };
 
+  if (rooms.length === 0) {
+    navigate('/room-comparison');
+    return null;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <div className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b z-10">
@@ -105,6 +122,36 @@ const CompareDetails = () => {
       </div>
 
       <div className="pt-14 px-4 pb-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          {rooms.map((room) => (
+            <div 
+              key={room.id}
+              className="relative p-4 rounded-lg shadow-lg bg-white/90 backdrop-blur-sm animate-fadeIn hover:shadow-xl transition-shadow"
+            >
+              <button
+                onClick={() => handleRemoveRoom(room.id)}
+                className="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-100 transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold text-blue-900">{room.hotelName}</h3>
+                <p className="text-gray-600">{room.roomType}</p>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-xl font-bold text-blue-600">¥{room.price}</span>
+                  <span className="text-sm text-gray-500">/晚</span>
+                </div>
+                <Button 
+                  onClick={() => handleBook(room.id)}
+                  className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white"
+                >
+                  预订
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <div className="overflow-x-auto rounded-lg shadow-lg animate-fadeIn">
           <Table className="bg-white">
             <TableHeader>
