@@ -50,7 +50,6 @@ const CompareDetails = () => {
     return null;
   }
 
-  // 对房间进行排序，将固定的房间排在前面
   const sortedRooms = [...rooms].sort((a, b) => {
     const aIsPinned = pinnedRooms.includes(a.id);
     const bIsPinned = pinnedRooms.includes(b.id);
@@ -75,44 +74,42 @@ const CompareDetails = () => {
         </div>
       </div>
 
-      <div className="pt-14 pb-4 px-4 max-w-7xl mx-auto">
+      <div className="pt-14 max-w-7xl mx-auto">
         <div className="relative overflow-x-auto">
-          <table className="w-full border-collapse">
-            <tbody>
-              <tr>
-                <td className="p-3 min-w-[140px] sticky left-0 z-20 bg-white">
-                  <div className="font-medium text-gray-700">对比房型</div>
-                </td>
-                {sortedRooms.map((room) => (
-                  <td key={room.id} className="p-3 min-w-[140px]">
-                    <RoomCard
-                      room={room}
-                      onRemove={handleRemoveRoom}
-                      onBook={handleBook}
-                      isPinned={pinnedRooms.includes(room.id)}
-                      onTogglePin={handleTogglePin}
-                    />
-                  </td>
-                ))}
-                {rooms.length < 5 && (
-                  <td className="p-3 min-w-[140px]">
-                    <AddRoomButton
-                      remainingSlots={5 - rooms.length}
-                      onClick={handleAddRoom}
-                    />
-                  </td>
-                )}
-              </tr>
-            </tbody>
-          </table>
+          <div className="sticky left-0 z-20 bg-white">
+            <div className="p-3 min-w-[140px]">
+              <div className="font-medium text-gray-700">对比房型</div>
+            </div>
+          </div>
+          <div className="flex">
+            {sortedRooms.map((room) => (
+              <div key={room.id} className="p-3 min-w-[140px]">
+                <RoomCard
+                  room={room}
+                  onRemove={handleRemoveRoom}
+                  onBook={handleBook}
+                  isPinned={pinnedRooms.includes(room.id)}
+                  onTogglePin={handleTogglePin}
+                />
+              </div>
+            ))}
+            {rooms.length < 5 && (
+              <div className="p-3 min-w-[140px]">
+                <AddRoomButton
+                  remainingSlots={5 - rooms.length}
+                  onClick={handleAddRoom}
+                />
+              </div>
+            )}
+          </div>
         </div>
-      </div>
 
-      <div className="px-4 pb-8 max-w-7xl mx-auto">
-        <ComparisonTable 
-          rooms={sortedRooms}
-          pinnedRooms={pinnedRooms}
-        />
+        <div className="pb-8">
+          <ComparisonTable 
+            rooms={sortedRooms}
+            pinnedRooms={pinnedRooms}
+          />
+        </div>
       </div>
     </div>
   );
