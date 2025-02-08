@@ -1,6 +1,7 @@
 
 import { motion } from "framer-motion";
-import { UtensilsCrossed, Ban, GitCompare, Plus, Navigation } from "lucide-react";
+import { UtensilsCrossed, Ban, Navigation, ShoppingCart } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Room } from "./types";
 
 interface RecommendedRoomCardProps {
@@ -29,7 +30,14 @@ export const RecommendedRoomCard = ({
         <div className="flex-1 min-w-0">
           <div className="mb-2">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-medium text-gray-900 truncate">{room.hotelName}</h3>
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  checked={isSelected}
+                  onCheckedChange={() => onToggleSelection(room.id)}
+                  className="border-blue-500"
+                />
+                <h3 className="text-sm font-medium text-gray-900 truncate">{room.hotelName}</h3>
+              </div>
               <div className="flex items-center text-xs text-gray-600">
                 <Navigation className="w-3 h-3 mr-1" />
                 <span>距金茂大酒店 {(room.distanceInKm * 1000).toFixed(0)}米</span>
@@ -50,24 +58,11 @@ export const RecommendedRoomCard = ({
           <div className="flex justify-between items-center mt-2">
             <span className="text-base font-semibold text-blue-600">¥{room.price}</span>
             <button
-              onClick={() => onToggleSelection(room.id)}
-              className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-sm ${
-                isSelected
-                  ? 'bg-blue-600 text-white'
-                  : 'border border-blue-600 text-blue-600'
-              }`}
+              onClick={() => {}} // Booking function to be implemented
+              className="flex items-center gap-1 px-3 py-1.5 rounded-full text-sm bg-blue-600 text-white"
             >
-              {isSelected ? (
-                <>
-                  <GitCompare className="w-3.5 h-3.5" />
-                  已选择
-                </>
-              ) : (
-                <>
-                  <Plus className="w-3.5 h-3.5" />
-                  加入对比
-                </>
-              )}
+              <ShoppingCart className="w-3.5 h-3.5" />
+              预定
             </button>
           </div>
         </div>
