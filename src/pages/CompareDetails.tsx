@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -86,7 +85,7 @@ const CompareDetails = () => {
         <div className="relative overflow-x-auto">
           <div className="min-w-[720px]">
             <Table className="w-full bg-white border-collapse">
-              <TableHeader>
+              <TableHeader className="sticky top-14 z-10">
                 <TableRow className="bg-gray-50/50 backdrop-blur-sm">
                   <TableHead className="w-[160px] px-2 py-4 font-semibold sticky left-0 z-20 bg-gray-50/50 border-r border-gray-200">
                     酒店列表
@@ -94,23 +93,27 @@ const CompareDetails = () => {
                   {sortedRooms.map((room) => (
                     <TableHead 
                       key={room.id}
-                      className="w-[140px] px-0 py-2 border-r border-gray-200"
+                      className="w-[200px] p-4 border-r border-gray-200"
                     >
-                      <RoomCard
-                        room={room}
-                        onRemove={handleRemoveRoom}
-                        onBook={handleBook}
-                        isPinned={pinnedRooms.includes(room.id)}
-                        onTogglePin={handleTogglePin}
-                      />
+                      <div className="px-2">
+                        <RoomCard
+                          room={room}
+                          onRemove={handleRemoveRoom}
+                          onBook={handleBook}
+                          isPinned={pinnedRooms.includes(room.id)}
+                          onTogglePin={handleTogglePin}
+                        />
+                      </div>
                     </TableHead>
                   ))}
                   {rooms.length < 5 && (
-                    <TableHead className="w-[140px] px-0 py-2">
-                      <AddRoomButton
-                        remainingSlots={5 - rooms.length}
-                        onClick={handleAddRoom}
-                      />
+                    <TableHead className="w-[200px] p-4">
+                      <div className="px-2">
+                        <AddRoomButton
+                          remainingSlots={5 - rooms.length}
+                          onClick={handleAddRoom}
+                        />
+                      </div>
                     </TableHead>
                   )}
                 </TableRow>

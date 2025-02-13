@@ -154,7 +154,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
       role="table"
       aria-label="房型对比表格"
     >
-      <div className="absolute right-4 top-0 text-sm text-gray-500 flex items-center gap-2 animate-bounce">
+      <div className="absolute right-4 top-4 text-sm text-gray-500 flex items-center gap-2">
         <ArrowLeftRight className="w-4 h-4" />
         <span>左右滑动查看更多</span>
       </div>
