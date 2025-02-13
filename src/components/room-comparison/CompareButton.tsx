@@ -14,7 +14,7 @@ export const CompareButton = ({ selectedCount, onCompare }: CompareButtonProps) 
         disabled={selectedCount === 0}
         className={`w-full flex items-center justify-center gap-2 py-3 rounded-full text-white ${
           selectedCount > 0
-            ? 'bg-blue-600 active:bg-blue-700'
+            ? 'bg-[#409EFF] hover:bg-[#66b1ff] active:bg-[#3a8ee6]'
             : 'bg-gray-400'
         }`}
       >
