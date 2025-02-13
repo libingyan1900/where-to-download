@@ -78,9 +78,9 @@ const CompareDetails = () => {
         </div>
       </div>
 
-      <div className="fixed top-14 bottom-0 left-0 right-0 overflow-auto overscroll-none will-change-scroll">
-        <div className={`min-w-[720px] relative ${isMobile ? 'px-0' : 'p-4'}`}>
-          <div className="w-full">
+      <div className="fixed top-14 bottom-0 left-0 right-0 overflow-x-auto overflow-y-auto overscroll-none">
+        <div className="min-w-[720px] relative">
+          <div className="w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
             <Table>
               <TableBody className="relative">
                 <TableRow className="border-b align-top">
