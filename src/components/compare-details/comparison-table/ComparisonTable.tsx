@@ -7,6 +7,7 @@ import { featureGroups } from "./feature-groups";
 import { FeatureValue } from "./FeatureValue";
 import { Room } from "@/components/room-comparison/types";
 import { Separator } from "@/components/ui/separator";
+import { ChevronLeft } from "lucide-react";
 
 export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeated = false }: ComparisonTableProps & { hideRepeated?: boolean }) => {
   const [sortConfig, setSortConfig] = useState<{
@@ -102,7 +103,8 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
           className="w-[80px] min-w-[80px] max-w-[80px] p-2 sticky left-0 z-20 bg-white"
         >
           <div className="h-8 flex items-center">
-            <span className="text-sm font-medium text-gray-900">酒店对比</span>
+            <ChevronLeft className="w-4 h-4 text-blue-500 -rotate-90" />
+            <span className="text-sm font-medium text-gray-900 ml-1">酒店对比</span>
           </div>
         </TableCell>
         {sortedRooms.map((_, index) => (
