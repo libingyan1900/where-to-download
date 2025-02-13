@@ -86,7 +86,7 @@ const CompareDetails = () => {
                 <TableRow className="border-b align-top">
                   <TableCell className="w-[80px] min-w-[80px] max-w-[80px] p-2 border-r bg-[#F1F1F1] text-gray-600 sticky left-0 z-30 shadow-[2px_0_4px_rgba(0,0,0,0.1)]">
                     <div className="h-[182px] w-full flex flex-col items-center justify-center gap-2">
-                      <span className="text-sm font-medium">优势项高亮</span>
+                      <span className="text-sm font-medium">隐藏相同</span>
                       <Switch
                         checked={hideRepeated}
                         onCheckedChange={setHideRepeated}
