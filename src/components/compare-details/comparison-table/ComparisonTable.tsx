@@ -1,79 +1,11 @@
 
 import React, { useCallback, useState } from "react";
-import { Star, Image, ArrowLeftRight } from "lucide-react";
+import { ArrowLeftRight } from "lucide-react";
 import { TableCell, TableRow } from "@/components/ui/table";
-import { Room } from "@/components/room-comparison/types";
 import { cn } from "@/lib/utils";
-
-interface ComparisonTableProps {
-  rooms: Room[];
-  pinnedRooms?: string[];
-}
-
-const featureGroups = [
-  {
-    title: "酒店特征",
-    features: [
-      { key: "hotelName", label: "酒店名称", sortable: true },
-      { key: "renovationTime", label: "装修时间", sortable: true },
-      { key: "rating", label: "评分", sortable: true },
-      { key: "starRating", label: "星级", sortable: true },
-      { key: "distanceInKm", label: "距离", sortable: true },
-      { key: "facilities", label: "酒店设施" },
-      { key: "hotelImage", label: "酒店图片" },
-    ],
-  },
-  {
-    title: "房型特征",
-    features: [
-      { key: "roomType", label: "房型名称", sortable: true },
-      { key: "size", label: "面积", sortable: true },
-      { key: "floor", label: "楼层", sortable: true },
-      { key: "window", label: "窗户" },
-      { key: "bedType", label: "床型" },
-      { key: "roomImage", label: "房型图片" },
-    ],
-  },
-  {
-    title: "政策信息",
-    features: [
-      { key: "breakfast", label: "早餐" },
-      { key: "cancellationRules", label: "取消规则" },
-      { key: "confirmationRules", label: "确认时效" },
-    ],
-  },
-];
-
-const ImageWithFallback: React.FC<{ 
-  src?: string; 
-  alt: string;
-  className?: string;
-}> = ({ src, alt, className }) => {
-  const [error, setError] = useState(false);
-
-  return (
-    <div className={cn(
-      "relative w-32 h-24 rounded-lg overflow-hidden glass-card",
-      "group hover:shadow-lg transition-all duration-300",
-      className
-    )}>
-      {!error && src ? (
-        <img
-          src={src}
-          alt={alt}
-          className="w-full h-full object-cover"
-          onError={() => setError(true)}
-          loading="lazy"
-        />
-      ) : (
-        <Image 
-          className="w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400" 
-          aria-hidden="true"
-        />
-      )}
-    </div>
-  );
-};
+import { ComparisonTableProps } from "./types";
+import { featureGroups } from "./feature-groups";
+import { FeatureValue } from "./FeatureValue";
 
 export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: ComparisonTableProps) => {
   const [sortConfig, setSortConfig] = useState<{
@@ -85,8 +17,8 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
     if (!sortConfig) return rooms;
 
     return [...rooms].sort((a, b) => {
-      const aValue = a[sortConfig.key as keyof Room];
-      const bValue = b[sortConfig.key as keyof Room];
+      const aValue = a[sortConfig.key as keyof typeof a];
+      const bValue = b[sortConfig.key as keyof typeof b];
 
       if (aValue === bValue) return 0;
       if (aValue === undefined || aValue === null) return 1;
@@ -107,45 +39,6 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
       }
       return { key, direction: 'asc' };
     });
-  }, []);
-
-  const renderFeatureValue = useCallback((room: Room, key: string) => {
-    switch (key) {
-      case "starRating":
-        return (
-          <div className="flex items-center" role="img" aria-label={`${room.starRating || 0}星级`}>
-            {Array.from({ length: room.starRating || 0 }).map((_, index) => (
-              <Star
-                key={index}
-                className="w-4 h-4 text-yellow-400 fill-current"
-              />
-            ))}
-          </div>
-        );
-      case "hotelImage":
-      case "roomImage":
-        return (
-          <ImageWithFallback
-            src={room[key]?.toString()}
-            alt={key === "hotelImage" ? `${room.hotelName}照片` : `${room.roomType}照片`}
-          />
-        );
-      case "facilities":
-        return room.facilities?.join("、") || "-";
-      case "distanceInKm":
-        return `${(room.distanceInKm * 1000).toFixed(0)}米`;
-      case "rating":
-        return (
-          <div className="flex items-center">
-            <span className="text-lg font-semibold text-blue-600">
-              {room.rating}
-            </span>
-            <span className="text-sm text-gray-500 ml-1">/5.0</span>
-          </div>
-        );
-      default:
-        return room[key as keyof Room]?.toString() || "-";
-    }
   }, []);
 
   return (
@@ -207,7 +100,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
                   )}
                   role="cell"
                 >
-                  {renderFeatureValue(room, feature.key)}
+                  <FeatureValue room={room} featureKey={feature.key} />
                 </TableCell>
               ))}
               {rooms.length < 5 && (
