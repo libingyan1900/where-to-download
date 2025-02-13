@@ -20,8 +20,8 @@ export const RoomCard = ({
   onTogglePin
 }: RoomCardProps) => {
   return (
-    <div className="relative w-full rounded-lg bg-white border border-[#33C3F0]/30 shadow-sm hover:shadow-md transition-all duration-200">
-      <div className="absolute top-0 left-0 right-0 h-2 bg-[#33C3F0]" />
+    <div className="relative w-full rounded-lg bg-white border border-blue-500/30 shadow-sm hover:shadow-md transition-all duration-200">
+      <div className="absolute top-0 left-0 right-0 h-2 bg-blue-600" />
       <div className="absolute top-2.5 right-2.5 z-10">
         <button
           onClick={(e) => {
@@ -45,7 +45,7 @@ export const RoomCard = ({
               title={isPinned ? "取消固定" : "固定到左侧"}
             >
               {isPinned ? (
-                <Pin className="w-4 h-4 text-[#33C3F0]" />
+                <Pin className="w-4 h-4 text-blue-600" />
               ) : (
                 <PinOff className="w-4 h-4 text-[#8E9196] hover:text-[#221F26]" />
               )}
@@ -62,7 +62,7 @@ export const RoomCard = ({
           {room.roomType}
         </p>
         <div className="flex items-baseline gap-1">
-          <span className="text-lg font-bold text-[#33C3F0]">¥{room.price}</span>
+          <span className="text-lg font-bold text-blue-600">¥{room.price}</span>
           <span className="text-xs text-[#8E9196]">/晚</span>
         </div>
         <Button 
@@ -70,7 +70,7 @@ export const RoomCard = ({
             e.stopPropagation();
             onBook(room.id);
           }}
-          className="w-full h-7 text-sm bg-[#33C3F0] hover:bg-[#1EAEDB] text-white shadow-sm hover:shadow"
+          className="w-full h-7 text-sm bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow"
         >
           预订
         </Button>
