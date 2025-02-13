@@ -458,17 +458,73 @@ const Index = () => {
             {functionModules.map((module, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl hover:shadow-lg transition-shadow"
+                initial={{ 
+                  opacity: 0,
+                  y: 100,
+                  scale: 0.8,
+                  rotateX: 45
+                }}
+                whileInView={{ 
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  rotateX: 0
+                }}
+                transition={{ 
+                  duration: 0.8,
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  rotateY: 5,
+                  translateY: -10,
+                  boxShadow: "0 20px 30px rgba(0,0,0,0.2)"
+                }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl transform perspective-1000"
               >
-                <div className="bg-white/20 p-3 rounded-lg w-fit mb-4">
+                <motion.div 
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ 
+                    delay: index * 0.2 + 0.3,
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                  className="bg-white/20 p-3 rounded-lg w-fit mb-4"
+                >
                   {module.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">{module.title}</h3>
-                <p className="text-white/80">{module.description}</p>
+                </motion.div>
+                <motion.h3 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.2 + 0.4 }}
+                  className="text-xl font-semibold mb-2 text-white"
+                >
+                  {module.title}
+                </motion.h3>
+                <motion.p 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.2 + 0.5 }}
+                  className="text-white/80"
+                >
+                  {module.description}
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.2 + 0.6 }}
+                  className="absolute -bottom-2 -right-2 w-20 h-20 bg-blue-400/20 rounded-full blur-xl"
+                />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.2 + 0.7 }}
+                  className="absolute -top-2 -left-2 w-20 h-20 bg-white/10 rounded-full blur-xl"
+                />
               </motion.div>
             ))}
           </div>
