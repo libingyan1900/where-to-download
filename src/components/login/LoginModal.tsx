@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { X, MessageCircle, MessageSquare, Send } from "lucide-react";
+import { MessageCircle, MessageSquare, Send } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -41,14 +41,8 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" />
           
           <div className="relative p-8">
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex items-center mb-6">
               <h2 className="text-2xl font-semibold tracking-tight">欢迎登录</h2>
-              <button
-                onClick={() => setShowLoginModal(false)}
-                className="rounded-full p-1 hover:bg-gray-100 transition-colors"
-              >
-                <X className="h-4 w-4" />
-              </button>
             </div>
 
             <div className="grid grid-cols-2 gap-8">
