@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -11,6 +10,8 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { 
   Table,
   TableBody,
+  TableCell,
+  TableRow,
 } from "@/components/ui/table";
 
 const CompareDetails = () => {
@@ -77,46 +78,41 @@ const CompareDetails = () => {
       <div className="w-full overflow-x-auto">
         <div className={`min-w-[720px] ${isMobile ? 'px-0' : 'p-4'}`}>
           <div className="w-full">
-            <div className="flex">
-              <div className="w-[140px] flex-shrink-0 p-2 border-r border-gray-200">
-                <div className="h-[182px]" />
-              </div>
-              <div className="flex flex-1">
-                {sortedRooms.map((room) => (
-                  <div 
-                    key={room.id}
-                    className="w-[200px] flex-shrink-0 p-2 border-r border-gray-200"
-                  >
-                    <RoomCard
-                      room={room}
-                      onRemove={handleRemoveRoom}
-                      onBook={handleBook}
-                      isPinned={pinnedRooms.includes(room.id)}
-                      onTogglePin={handleTogglePin}
-                    />
-                  </div>
-                ))}
-                {rooms.length < 5 && (
-                  <div className="w-[200px] flex-shrink-0 p-2">
-                    <AddRoomButton
-                      remainingSlots={5 - rooms.length}
-                      onClick={handleAddRoom}
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-            
-            <div className={isMobile ? '-mx-2' : ''}>
-              <Table>
-                <TableBody>
-                  <ComparisonTable 
-                    rooms={sortedRooms}
-                    pinnedRooms={pinnedRooms}
-                  />
-                </TableBody>
-              </Table>
-            </div>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell className="w-[140px] p-2 align-top">
+                    <div className="h-[182px]" />
+                  </TableCell>
+                  {sortedRooms.map((room) => (
+                    <TableCell 
+                      key={room.id} 
+                      className="w-[200px] p-2 align-top"
+                    >
+                      <RoomCard
+                        room={room}
+                        onRemove={handleRemoveRoom}
+                        onBook={handleBook}
+                        isPinned={pinnedRooms.includes(room.id)}
+                        onTogglePin={handleTogglePin}
+                      />
+                    </TableCell>
+                  ))}
+                  {rooms.length < 5 && (
+                    <TableCell className="w-[200px] p-2 align-top">
+                      <AddRoomButton
+                        remainingSlots={5 - rooms.length}
+                        onClick={handleAddRoom}
+                      />
+                    </TableCell>
+                  )}
+                </TableRow>
+                <ComparisonTable 
+                  rooms={sortedRooms}
+                  pinnedRooms={pinnedRooms}
+                />
+              </TableBody>
+            </Table>
           </div>
         </div>
       </div>
