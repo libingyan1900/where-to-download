@@ -21,7 +21,7 @@ export const RoomCard = ({
 }: RoomCardProps) => {
   return (
     <div className="relative w-full rounded-lg bg-white border border-[#E2D1C3] shadow-sm hover:shadow-md transition-all duration-200">
-      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1EAEDB] to-[#33C3F0] opacity-50" />
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1EAEDB] to-[#33C3F0]" />
       <div className="absolute top-2.5 right-2.5 z-10">
         <button
           onClick={(e) => {
@@ -70,7 +70,7 @@ export const RoomCard = ({
             e.stopPropagation();
             onBook(room.id);
           }}
-          className="w-full h-7 text-sm bg-[#1EAEDB] hover:bg-[#0FA0CE] text-white shadow-sm hover:shadow"
+          className="w-full h-7 text-sm bg-[#33C3F0] hover:bg-[#1EAEDB] text-white shadow-sm hover:shadow"
         >
           预订
         </Button>
