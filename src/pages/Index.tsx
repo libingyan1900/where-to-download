@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Navigation } from "@/components/navigation/Navigation";
 import { LoginModal } from "@/components/login/LoginModal";
@@ -57,7 +58,7 @@ const Index = () => {
                 <Card className="p-6 h-full bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 border-0">
                   <div className="flex items-start space-x-4">
                     <div className="bg-gradient-to-br from-blue-100 to-blue-50 p-3 rounded-lg">
-                      {point.icon}
+                      <point.icon className="w-8 h-8 text-blue-600" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -181,7 +182,7 @@ const Index = () => {
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.5 }}
                       >
-                        {feature.icon}
+                        <feature.icon className="w-8 h-8" />
                       </motion.div>
                     </div>
                     <div className="text-left">
@@ -252,7 +253,7 @@ const Index = () => {
                         whileHover={{ rotate: -360 }}
                         transition={{ duration: 0.5 }}
                       >
-                        {feature.icon}
+                        <feature.icon className="w-8 h-8" />
                       </motion.div>
                     </div>
                     <div className="text-left">
@@ -292,7 +293,7 @@ const Index = () => {
                 className="flex items-center space-x-4"
               >
                 <div className="bg-gradient-to-br from-blue-100 to-blue-50 p-3 rounded-lg">
-                  {module.icon}
+                  <module.icon className="w-8 h-8" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">{module.title}</h3>
