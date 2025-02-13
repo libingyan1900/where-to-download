@@ -432,10 +432,6 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Connecting Lines */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="w-full h-full border-2 border-dashed border-blue-200 rounded-lg opacity-30" />
-            </div>
           </div>
         </div>
       </div>
