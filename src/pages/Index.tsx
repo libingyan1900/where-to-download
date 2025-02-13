@@ -63,56 +63,81 @@ const Index = () => {
   ];
 
   const travelServices = [
-    { 
-      icon: <Plane className="w-6 h-6" />, 
-      title: "机票", 
-      description: "7*24不间断服务；多渠道预订",
-      bgColor: "from-blue-400 to-blue-600",
-      highlight: "全球航线覆盖"
+    {
+      icon: <Hotel className="w-8 h-8 text-white" />,
+      title: "酒店",
+      bgColor: "bg-blue-500",
+      shortcut: true
     },
-    { 
-      icon: <Train className="w-6 h-6" />, 
-      title: "火车", 
-      description: "多接口渠道火车票查询、预订功能",
-      bgColor: "from-green-400 to-green-600",
-      highlight: "高铁动卧全覆盖"
+    {
+      icon: <Plane className="w-8 h-8 text-white" />,
+      title: "国内机票",
+      bgColor: "bg-blue-500",
+      shortcut: true
     },
-    { 
-      icon: <Users className="w-6 h-6" />, 
-      title: "机场VIP", 
-      description: "专属贵宾休息室息，VIP通道等",
-      bgColor: "from-purple-400 to-purple-600",
-      highlight: "尊享贵宾服务"
+    {
+      icon: <Train className="w-8 h-8 text-white" />,
+      title: "火车票",
+      bgColor: "bg-blue-500",
+      shortcut: true
     },
-    { 
-      icon: <Hotel className="w-6 h-6" />, 
-      title: "酒店", 
-      description: "国内外近30万家酒店查询及预订",
-      bgColor: "from-yellow-400 to-yellow-600",
-      highlight: "优质住宿体验"
-    },
-    { 
-      icon: <Car className="w-6 h-6" />, 
-      title: "用车", 
-      description: "用车覆盖全国300多个城市",
-      bgColor: "from-red-400 to-red-600",
-      highlight: "专车接送服务"
-    },
-    { 
-      icon: <BadgeCheck className="w-6 h-6" />, 
-      title: "保险", 
-      description: "产品种类齐全，供应渠道广",
-      bgColor: "from-indigo-400 to-indigo-600",
-      highlight: "全方位保障"
+    {
+      icon: <Car className="w-8 h-8 text-white" />,
+      title: "用车",
+      bgColor: "bg-blue-500",
+      shortcut: true
     }
   ];
 
-  const functionModules = [
-    { icon: <CreditCard className="w-6 h-6" />, title: "预订", description: "支持机票、火车票、用车、酒店等产品的预订" },
-    { icon: <CheckSquare className="w-6 h-6" />, title: "审批", description: "支持多渠道审批，自定义申请模板" },
-    { icon: <PieChart className="w-6 h-6" />, title: "报表", description: "智能差旅报告管控企业差旅，差旅费用透明，合规" },
-    { icon: <FileText className="w-6 h-6" />, title: "报销", description: "每月开具一张发票报销当月所有出差出行费用" },
-    { icon: <Wallet className="w-6 h-6" />, title: "支付", description: "支持月结、现结、预存，支持多种支付方式" }
+  const additionalServices = [
+    {
+      icon: <Globe className="w-8 h-8 text-blue-500" />,
+      title: "国际机票",
+      description: "全球航线预订"
+    },
+    {
+      icon: <Car className="w-8 h-8 text-blue-500" />,
+      title: "外卖",
+      description: "商旅餐饮服务"
+    },
+    {
+      icon: <FileText className="w-8 h-8 text-blue-500" />,
+      title: "询价单",
+      description: "快速获取报价"
+    },
+    {
+      icon: <Globe className="w-8 h-8 text-blue-500" />,
+      title: "出行攻略",
+      description: "智能行程规划"
+    }
+  ];
+
+  const businessServices = [
+    {
+      icon: <CheckSquare className="w-8 h-8 text-[#40A9FF]" />,
+      title: "审批",
+      description: "一键审批流程"
+    },
+    {
+      icon: <Clock className="w-8 h-8 text-[#40A9FF]" />,
+      title: "外勤签到",
+      description: "智能考勤管理"
+    },
+    {
+      icon: <Receipt className="w-8 h-8 text-[#40A9FF]" />,
+      title: "差旅报告",
+      description: "自动生成报表"
+    },
+    {
+      icon: <PieChart className="w-8 h-8 text-[#40A9FF]" />,
+      title: "差旅标准",
+      description: "企业制度管理"
+    },
+    {
+      icon: <FileText className="w-8 h-8 text-[#40A9FF]" />,
+      title: "表单",
+      description: "自定义申请单"
+    }
   ];
 
   return (
@@ -256,50 +281,58 @@ const Index = () => {
               差旅云平台
             </h2>
             <p className="text-xl text-gray-600">Travel Business Cloud Platform</p>
-            <div className="mt-6 max-w-2xl mx-auto">
-              <p className="text-gray-600">
-                打造一站式智能差旅管理平台，为企业提供全方位差旅服务解决方案
-              </p>
-            </div>
           </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {travelServices.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
-                  <div className={`bg-gradient-to-r ${service.bgColor} p-6 group-hover:scale-105 transition-transform duration-300`}>
-                    <div className="flex items-center justify-between">
-                      <div className="bg-white/20 p-3 rounded-lg backdrop-blur-sm">
-                        {service.icon}
-                      </div>
-                      <span className="text-white/80 text-sm font-medium">
-                        {service.highlight}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 text-gray-900">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4">
-                      {service.description}
-                    </p>
-                    <div className="flex items-center text-sm text-blue-600 group-hover:translate-x-2 transition-transform duration-300">
-                      <span>立即预订</span>
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+
+          {/* Shortcuts Grid */}
+          <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-t-3xl p-8">
+            <div className="grid grid-cols-4 gap-8">
+              {travelServices.map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="flex flex-col items-center cursor-pointer"
+                >
+                  <div className="mb-2">{service.icon}</div>
+                  <span className="text-white text-sm">{service.title}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Additional Services */}
+          <div className="bg-white rounded-b-3xl shadow-lg p-8">
+            <div className="grid grid-cols-4 gap-6 mb-8">
+              {additionalServices.map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="flex flex-col items-center p-4 cursor-pointer hover:bg-gray-50 rounded-xl transition-colors"
+                >
+                  <div className="mb-2">{service.icon}</div>
+                  <span className="text-gray-900 text-sm font-medium mb-1">{service.title}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Business Services */}
+            <div className="grid grid-cols-3 gap-4">
+              {businessServices.map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="flex flex-col items-center p-4 cursor-pointer hover:bg-blue-50 rounded-xl transition-colors"
+                >
+                  <div className="mb-2">{service.icon}</div>
+                  <span className="text-gray-900 text-sm font-medium mb-1">{service.title}</span>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
