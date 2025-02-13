@@ -27,6 +27,34 @@ const Index = () => {
     }
   ];
 
+  const functionModules = [
+    {
+      icon: <Globe className="w-8 h-8 text-white" />,
+      title: "全球资源",
+      description: "连接全球优质差旅资源，覆盖200+国家地区"
+    },
+    {
+      icon: <Building2 className="w-8 h-8 text-white" />,
+      title: "企业管控",
+      description: "完善的预算管理和审批流程，支持多级审批"
+    },
+    {
+      icon: <Users className="w-8 h-8 text-white" />,
+      title: "专业服务",
+      description: "7×24小时专业团队支持，快速响应需求"
+    },
+    {
+      icon: <BadgeCheck className="w-8 h-8 text-white" />,
+      title: "智能合规",
+      description: "智能化的差旅政策管理，确保差旅合规"
+    },
+    {
+      icon: <Wallet className="w-8 h-8 text-white" />,
+      title: "费用管理",
+      description: "智能费用统计，自动化报销流程"
+    }
+  ];
+
   const painPoints = [
     {
       icon: <TrendingUp className="w-12 h-12 text-blue-600" />,
@@ -350,6 +378,7 @@ const Index = () => {
             <h2 className="text-3xl font-bold mb-4">五大功能模块</h2>
             <p className="text-xl text-gray-600">Five Function Modules</p>
           </motion.div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {functionModules.map((module, index) => (
               <motion.div
@@ -358,13 +387,13 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gray-50 p-6 rounded-xl hover:bg-gray-100 transition-colors"
+                className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl hover:shadow-lg transition-shadow"
               >
-                <div className="inline-block p-3 bg-blue-600 rounded-lg text-white mb-4">
+                <div className="bg-white/20 p-3 rounded-lg w-fit mb-4">
                   {module.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{module.title}</h3>
-                <p className="text-gray-600">{module.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-white">{module.title}</h3>
+                <p className="text-white/80">{module.description}</p>
               </motion.div>
             ))}
           </div>
