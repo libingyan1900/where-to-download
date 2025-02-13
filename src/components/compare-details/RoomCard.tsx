@@ -21,7 +21,7 @@ export const RoomCard = ({
 }: RoomCardProps) => {
   return (
     <div 
-      className="relative flex-shrink-0 w-[200px] rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all duration-200"
+      className="relative w-full rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all duration-200"
     >
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600 opacity-40" />
       <div className="absolute top-2 right-2 z-10">
