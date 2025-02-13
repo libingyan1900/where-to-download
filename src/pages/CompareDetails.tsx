@@ -7,7 +7,13 @@ import { RoomCard } from "@/components/compare-details/RoomCard";
 import { AddRoomButton } from "@/components/compare-details/AddRoomButton";
 import { ComparisonTable } from "@/components/compare-details/comparison-table/ComparisonTable";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { 
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "@/components/ui/table";
+
 const CompareDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -48,10 +54,14 @@ const CompareDetails = () => {
     if (!aIsPinned && bIsPinned) return 1;
     return 0;
   });
-  return <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <div className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b z-10">
         <div className="flex items-center h-14 px-4">
-          <button onClick={() => navigate(-1)} className="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+          >
             <ChevronLeft className="w-5 h-5" />
             返回
           </button>
@@ -66,22 +76,43 @@ const CompareDetails = () => {
             <Table>
               <TableBody>
                 <TableRow className="border-b">
-                  <TableCell className="w-[140px] p-2 align-top border-r bg-gray-50/30 rounded-none">
-                    <div className="h-[182px] w-[140px]" />
+                  <TableCell className="w-[140px] min-w-[140px] max-w-[140px] p-2 align-top border-r bg-gray-50/30">
+                    <div className="h-[182px] w-full" />
                   </TableCell>
-                  {sortedRooms.map((room, index) => <TableCell key={room.id} className={`w-[200px] p-2 align-top ${index < sortedRooms.length - 1 ? 'border-r' : ''}`}>
-                      <RoomCard room={room} onRemove={handleRemoveRoom} onBook={handleBook} isPinned={pinnedRooms.includes(room.id)} onTogglePin={handleTogglePin} />
-                    </TableCell>)}
-                  {rooms.length < 5 && <TableCell className="w-[200px] p-2 align-top">
-                      <AddRoomButton remainingSlots={5 - rooms.length} onClick={handleAddRoom} />
-                    </TableCell>}
+                  {sortedRooms.map((room, index) => (
+                    <TableCell 
+                      key={room.id} 
+                      className={`w-[200px] p-2 align-top ${index < sortedRooms.length - 1 ? 'border-r' : ''}`}
+                    >
+                      <RoomCard
+                        room={room}
+                        onRemove={handleRemoveRoom}
+                        onBook={handleBook}
+                        isPinned={pinnedRooms.includes(room.id)}
+                        onTogglePin={handleTogglePin}
+                      />
+                    </TableCell>
+                  ))}
+                  {rooms.length < 5 && (
+                    <TableCell className="w-[200px] p-2 align-top">
+                      <AddRoomButton
+                        remainingSlots={5 - rooms.length}
+                        onClick={handleAddRoom}
+                      />
+                    </TableCell>
+                  )}
                 </TableRow>
-                <ComparisonTable rooms={sortedRooms} pinnedRooms={pinnedRooms} />
+                <ComparisonTable 
+                  rooms={sortedRooms}
+                  pinnedRooms={pinnedRooms}
+                />
               </TableBody>
             </Table>
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default CompareDetails;
