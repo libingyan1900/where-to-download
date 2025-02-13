@@ -91,10 +91,10 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
             >
               <TableCell 
                 className={cn(
-                  "w-[120px] min-w-[120px] max-w-[120px] p-2 font-medium text-white",
-                  "whitespace-nowrap sticky left-0 z-20 border-r border-gray-300",
-                  "bg-[#8E9196] shadow-[2px_0_4px_rgba(0,0,0,0.1)]",
-                  feature.sortable && "cursor-pointer hover:bg-[#9FA3A8]"
+                  "w-[120px] min-w-[120px] max-w-[120px] p-2 font-medium text-gray-600",
+                  "whitespace-nowrap sticky left-0 z-20 border-r border-gray-200",
+                  "bg-[#F1F1F1] shadow-[2px_0_4px_rgba(0,0,0,0.1)]",
+                  feature.sortable && "cursor-pointer hover:bg-[#E5E5E5]"
                 )}
                 onClick={() => feature.sortable && handleSort(feature.key)}
                 role="rowheader"

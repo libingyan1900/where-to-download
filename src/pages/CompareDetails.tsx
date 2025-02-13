@@ -84,7 +84,7 @@ const CompareDetails = () => {
             <Table>
               <TableBody className="relative">
                 <TableRow className="border-b align-top">
-                  <TableCell className="w-[120px] min-w-[120px] max-w-[120px] p-2 border-r bg-[#8E9196] text-white sticky left-0 z-30 shadow-[2px_0_4px_rgba(0,0,0,0.1)]">
+                  <TableCell className="w-[120px] min-w-[120px] max-w-[120px] p-2 border-r bg-[#F1F1F1] text-gray-600 sticky left-0 z-30 shadow-[2px_0_4px_rgba(0,0,0,0.1)]">
                     <div className="h-[182px] w-full flex flex-col items-center justify-center gap-2">
                       <span className="text-sm font-medium">优势项高亮</span>
                       <Switch
