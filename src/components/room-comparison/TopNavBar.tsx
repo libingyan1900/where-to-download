@@ -8,7 +8,7 @@ export const TopNavBar = () => {
     <div className="fixed top-0 left-0 right-0 bg-white z-10 px-4 py-3 flex justify-between items-center shadow-sm">
       <button
         onClick={() => navigate(-1)}
-        className="text-[#409EFF] hover:text-[#66b1ff]"
+        className="text-blue-600"
       >
         返回
       </button>

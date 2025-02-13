@@ -23,7 +23,7 @@ export const RecommendedRoomCard = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.1 }}
       className={`bg-white rounded-lg shadow-sm overflow-hidden ${
-        isSelected ? 'ring-2 ring-[#409EFF]' : ''
+        isSelected ? 'ring-2 ring-blue-500' : ''
       }`}
     >
       <div className="p-3">
@@ -34,7 +34,7 @@ export const RecommendedRoomCard = ({
                 <Checkbox
                   checked={isSelected}
                   onCheckedChange={() => onToggleSelection(room.id)}
-                  className="border-[#409EFF]"
+                  className="border-blue-500"
                 />
                 <h3 className="text-sm font-medium text-gray-900 truncate">{room.hotelName}</h3>
               </div>
@@ -56,10 +56,10 @@ export const RecommendedRoomCard = ({
             </div>
           </div>
           <div className="flex justify-between items-center mt-2">
-            <span className="text-base font-semibold text-[#409EFF]">¥{room.price}</span>
+            <span className="text-base font-semibold text-blue-600">¥{room.price}</span>
             <button
               onClick={() => {}} // Booking function to be implemented
-              className="flex items-center gap-1 px-3 py-1.5 rounded-full text-sm bg-[#409EFF] hover:bg-[#66b1ff] text-white"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-full text-sm bg-blue-600 text-white"
             >
               <ShoppingCart className="w-3.5 h-3.5" />
               预定
