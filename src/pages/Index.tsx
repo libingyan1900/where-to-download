@@ -375,33 +375,37 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="relative z-10 px-8"
+                className="relative z-10 px-4"
               >
-                <div className="relative max-w-[280px] mx-auto">
+                <div className="relative max-w-[300px] mx-auto">
                   {/* iPhone Frame */}
-                  <div className="relative bg-black rounded-[3rem] p-4 shadow-xl">
-                    {/* Notch */}
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-36 h-6 bg-black rounded-b-3xl z-20"></div>
-                    
-                    {/* Screen */}
-                    <div className="relative rounded-[2.5rem] overflow-hidden bg-white">
+                  <div className="relative bg-gradient-to-b from-[#E3C5AC] via-[#F7E1D1] to-[#E3C5AC] rounded-[2.5rem] p-2 shadow-lg">
+                    {/* Inner Frame */}
+                    <div className="relative bg-black rounded-[2.3rem] p-[2px] overflow-hidden">
                       {/* Dynamic Island */}
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-7 bg-black rounded-b-3xl z-10"></div>
+                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[90px] h-[35px] bg-black rounded-b-[18px] z-20">
+                        {/* Camera & Sensors */}
+                        <div className="absolute top-3 right-7 w-2 h-2 rounded-full bg-[#1a1a1a]"></div>
+                        <div className="absolute top-3 right-12 w-2 h-2 rounded-full bg-[#0f0f0f]"></div>
+                      </div>
                       
-                      {/* App Screenshot */}
-                      <img 
-                        src="/lovable-uploads/5efc6822-1e0b-40dd-9e6d-83ce2367c068.png" 
-                        alt="差旅壹号APP界面" 
-                        className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300"
-                      />
+                      {/* Screen Content */}
+                      <div className="relative rounded-[2.2rem] overflow-hidden bg-white">
+                        <img 
+                          src="/lovable-uploads/5efc6822-1e0b-40dd-9e6d-83ce2367c068.png" 
+                          alt="差旅壹号APP界面" 
+                          className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
                     </div>
                     
                     {/* Volume Buttons */}
-                    <div className="absolute left-[-2px] top-20 w-[2px] h-8 bg-gray-600 rounded-l"></div>
-                    <div className="absolute left-[-2px] top-32 w-[2px] h-8 bg-gray-600 rounded-l"></div>
+                    <div className="absolute left-[-1px] top-24 w-[1px] h-6 bg-[#E3C5AC] rounded-l shadow-inner"></div>
+                    <div className="absolute left-[-1px] top-36 w-[1px] h-6 bg-[#E3C5AC] rounded-l shadow-inner"></div>
+                    <div className="absolute left-[-1px] top-48 w-[1px] h-12 bg-[#E3C5AC] rounded-l shadow-inner"></div>
                     
                     {/* Power Button */}
-                    <div className="absolute right-[-2px] top-24 w-[2px] h-12 bg-gray-600 rounded-r"></div>
+                    <div className="absolute right-[-1px] top-32 w-[1px] h-12 bg-[#E3C5AC] rounded-r shadow-inner"></div>
                   </div>
                 </div>
               </motion.div>
