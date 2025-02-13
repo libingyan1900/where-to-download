@@ -10,7 +10,6 @@ export const featureGroups: FeatureGroup[] = [
       { key: "rating", label: "评分", sortable: true },
       { key: "starRating", label: "星级", sortable: true },
       { key: "distanceInKm", label: "距离", sortable: true },
-      { key: "facilities", label: "酒店设施" },
       { key: "hotelImage", label: "酒店图片" },
       { key: "roomType", label: "房型名称", sortable: true },
       { key: "size", label: "面积", sortable: true },
