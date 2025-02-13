@@ -317,14 +317,16 @@ const Index = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="relative max-w-md mx-auto lg:max-w-lg"
             >
               <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl p-1 shadow-xl">
-                <img 
-                  src="/lovable-uploads/5efc6822-1e0b-40dd-9e6d-83ce2367c068.png" 
-                  alt="差旅壹号APP界面" 
-                  className="rounded-2xl w-full"
-                />
+                <div className="overflow-hidden rounded-2xl">
+                  <img 
+                    src="/lovable-uploads/5efc6822-1e0b-40dd-9e6d-83ce2367c068.png" 
+                    alt="差旅壹号APP界面" 
+                    className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
               </div>
             </motion.div>
 
