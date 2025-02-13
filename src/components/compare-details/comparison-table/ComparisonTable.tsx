@@ -81,14 +81,24 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
   }, [hideRepeated]);
 
   const getLabelAlignment = (label: string) => {
-    if (label.length === 2) return 'pl-4';
-    if (label.length === 4) return 'text-center';
-    // 处理"装修时间"这样的四字标题
-    if (label === '装修时间') return 'text-center';
-    // 处理较长的标题文字
+    // 两个字的标题靠左对齐，给予适当的内边距
+    if (label.length === 2) return 'pl-6';
+    
+    // 三个字的标题居中对齐
+    if (label.length === 3) return 'text-center';
+    
+    // 四个字的标题居中对齐，但给予稍大的字间距以提高可读性
+    if (label.length === 4) return 'text-center tracking-wider';
+    
+    // "装修时间"这样的四字标题也使用相同的样式
+    if (label === '装修时间') return 'text-center tracking-wider';
+    
+    // 较长标题采用靠左对齐并垂直居中的布局
     if (['酒店设施', '酒店图片', '房型图片', '取消规则', '确认时效'].includes(label)) {
-      return 'pl-4 flex items-center h-full';
+      return 'pl-4 flex items-center h-full tracking-normal';
     }
+    
+    // 默认样式
     return 'text-center';
   };
 
@@ -106,6 +116,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
                   "w-[100px] min-w-[100px] max-w-[100px] p-2 font-medium text-gray-600",
                   "whitespace-nowrap sticky left-0 z-20 border-r border-gray-200",
                   "bg-[#F1F1F1] shadow-[2px_0_4px_rgba(0,0,0,0.1)]",
+                  "leading-relaxed", // 增加行高
                   getLabelAlignment(feature.label),
                   feature.sortable && "cursor-pointer hover:bg-[#E5E5E5]"
                 )}
