@@ -168,7 +168,7 @@ const Index = () => {
     }
   ];
 
-  const travelFeatures = [
+  const leftFeatures = [
     {
       icon: <Plane className="w-8 h-8" />,
       title: "机票",
@@ -178,7 +178,10 @@ const Index = () => {
       icon: <Train className="w-8 h-8" />,
       title: "火车",
       description: "多接口实现火车票查询、预订功能"
-    },
+    }
+  ];
+
+  const rightFeatures = [
     {
       icon: <Hotel className="w-8 h-8" />,
       title: "酒店",
@@ -335,13 +338,34 @@ const Index = () => {
           </motion.div>
 
           <div className="relative max-w-6xl mx-auto">
-            {/* Center App Image */}
-            <div className="flex justify-center mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              {/* Left Features */}
+              <div className="space-y-8">
+                {leftFeatures.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                    className="flex items-center space-x-4"
+                  >
+                    <div className="bg-white rounded-full p-4 shadow-lg w-16 h-16 flex items-center justify-center flex-shrink-0">
+                      {feature.icon}
+                    </div>
+                    <div className="text-left">
+                      <h3 className="text-lg font-semibold mb-1">{feature.title}</h3>
+                      <p className="text-gray-600 text-sm">{feature.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Center App Image */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="w-64 relative z-10"
+                className="relative z-10"
               >
                 <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl p-1 shadow-xl">
                   <div className="overflow-hidden rounded-2xl">
@@ -353,28 +377,30 @@ const Index = () => {
                   </div>
                 </div>
               </motion.div>
+
+              {/* Right Features */}
+              <div className="space-y-8">
+                {rightFeatures.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                    className="flex items-center space-x-4"
+                  >
+                    <div className="bg-white rounded-full p-4 shadow-lg w-16 h-16 flex items-center justify-center flex-shrink-0">
+                      {feature.icon}
+                    </div>
+                    <div className="text-left">
+                      <h3 className="text-lg font-semibold mb-1">{feature.title}</h3>
+                      <p className="text-gray-600 text-sm">{feature.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
-            {/* Surrounding Features */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 relative">
-              {travelFeatures.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="bg-white rounded-full p-4 shadow-lg mx-auto w-16 h-16 flex items-center justify-center mb-4">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Connecting Lines (Optional) */}
+            {/* Connecting Lines */}
             <div className="absolute inset-0 pointer-events-none">
               <div className="w-full h-full border-2 border-dashed border-blue-200 rounded-lg opacity-30" />
             </div>
