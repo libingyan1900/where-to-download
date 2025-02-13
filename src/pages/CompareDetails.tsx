@@ -78,16 +78,16 @@ const CompareDetails = () => {
 
       <div className="w-full overflow-x-auto">
         <div className="min-w-[720px] p-4">
-          <Table className="w-full">
-            <TableHeader>
-              <TableRow className="bg-white">
-                <TableHead className="w-[140px] p-2 border-r border-gray-200">
-                  <div className="h-[182px]" />
-                </TableHead>
+          <div className="w-full">
+            <div className="flex">
+              <div className="w-[140px] flex-shrink-0 p-2 border-r border-gray-200">
+                <div className="h-[182px]" />
+              </div>
+              <div className="flex flex-1">
                 {sortedRooms.map((room) => (
-                  <TableHead 
+                  <div 
                     key={room.id}
-                    className="w-[200px] p-2 border-r border-gray-200"
+                    className="w-[200px] flex-shrink-0 p-2 border-r border-gray-200"
                   >
                     <RoomCard
                       room={room}
@@ -96,25 +96,28 @@ const CompareDetails = () => {
                       isPinned={pinnedRooms.includes(room.id)}
                       onTogglePin={handleTogglePin}
                     />
-                  </TableHead>
+                  </div>
                 ))}
                 {rooms.length < 5 && (
-                  <TableHead className="w-[200px] p-2">
+                  <div className="w-[200px] flex-shrink-0 p-2">
                     <AddRoomButton
                       remainingSlots={5 - rooms.length}
                       onClick={handleAddRoom}
                     />
-                  </TableHead>
+                  </div>
                 )}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <ComparisonTable 
-                rooms={sortedRooms}
-                pinnedRooms={pinnedRooms}
-              />
-            </TableBody>
-          </Table>
+              </div>
+            </div>
+            
+            <Table>
+              <TableBody>
+                <ComparisonTable 
+                  rooms={sortedRooms}
+                  pinnedRooms={pinnedRooms}
+                />
+              </TableBody>
+            </Table>
+          </div>
         </div>
       </div>
     </div>
