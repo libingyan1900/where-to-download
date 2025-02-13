@@ -51,7 +51,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
             >
               <TableCell 
                 className={cn(
-                  "w-[200px] min-w-[200px] max-w-[200px] p-2 font-medium text-gray-700 bg-gray-50/30",
+                  "w-[120px] min-w-[120px] max-w-[120px] p-2 font-medium text-gray-700 bg-gray-50/30",
                   "whitespace-nowrap sticky left-0 z-20 border-r border-gray-200",
                   feature.sortable && "cursor-pointer hover:bg-gray-100"
                 )}
