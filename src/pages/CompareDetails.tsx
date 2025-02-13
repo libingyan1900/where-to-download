@@ -79,12 +79,12 @@ const CompareDetails = () => {
       </div>
 
       <div className="fixed top-14 bottom-0 left-0 right-0 overflow-x-auto overflow-y-auto overscroll-none">
-        <div className="min-w-[720px] relative">
+        <div className="min-w-[560px] relative">
           <div className="w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
             <Table>
               <TableBody className="relative">
                 <TableRow className="border-b align-top">
-                  <TableCell className="w-[100px] min-w-[100px] max-w-[100px] p-2 border-r bg-[#F1F1F1] text-gray-600 sticky left-0 z-30 shadow-[2px_0_4px_rgba(0,0,0,0.1)]">
+                  <TableCell className="w-[80px] min-w-[80px] max-w-[80px] p-2 border-r bg-[#F1F1F1] text-gray-600 sticky left-0 z-30 shadow-[2px_0_4px_rgba(0,0,0,0.1)]">
                     <div className="h-[182px] w-full flex flex-col items-center justify-center gap-2">
                       <span className="text-sm font-medium">优势项高亮</span>
                       <Switch
@@ -96,7 +96,7 @@ const CompareDetails = () => {
                   {sortedRooms.map((room, index) => (
                     <TableCell 
                       key={room.id} 
-                      className={`w-[200px] min-w-[200px] max-w-[200px] p-2 ${index < sortedRooms.length - 1 ? 'border-r' : ''}`}
+                      className={`w-[160px] min-w-[160px] max-w-[160px] p-2 ${index < sortedRooms.length - 1 ? 'border-r' : ''}`}
                     >
                       <RoomCard
                         room={room}
@@ -108,7 +108,7 @@ const CompareDetails = () => {
                     </TableCell>
                   ))}
                   {rooms.length < 5 && (
-                    <TableCell className="w-[200px] min-w-[200px] max-w-[200px] p-2">
+                    <TableCell className="w-[160px] min-w-[160px] max-w-[160px] p-2">
                       <AddRoomButton
                         remainingSlots={5 - rooms.length}
                         onClick={handleAddRoom}
