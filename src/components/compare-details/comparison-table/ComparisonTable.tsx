@@ -41,11 +41,43 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
     });
   }, []);
 
-  const shouldHideCell = useCallback((rooms: Room[], index: number, featureKey: string) => {
-    if (!hideRepeated || index === 0) return false;
-    const currentValue = rooms[index][featureKey as keyof Room];
-    const previousValue = rooms[index - 1][featureKey as keyof Room];
-    return currentValue === previousValue;
+  const isAdvantage = useCallback((rooms: Room[], currentIndex: number, featureKey: string) => {
+    if (!hideRepeated) return false;
+    
+    const currentValue = rooms[currentIndex][featureKey as keyof Room];
+    if (currentValue === undefined || currentValue === null) return false;
+
+    // 对不同类型的字段进行不同的优势判断
+    switch (featureKey) {
+      case 'price':
+        // 价格最低为优势
+        return rooms.every((room, i) => 
+          i === currentIndex || 
+          room.price === undefined || 
+          room.price === null || 
+          room.price > (rooms[currentIndex].price ?? 0)
+        );
+      case 'rating':
+      case 'starRating':
+        // 评分最高为优势
+        return rooms.every((room, i) => 
+          i === currentIndex || 
+          room[featureKey] === undefined || 
+          room[featureKey] === null || 
+          (room[featureKey] ?? 0) < (rooms[currentIndex][featureKey] ?? 0)
+        );
+      case 'size':
+        // 面积最大为优势（假设面积格式为"30㎡"这样的字符串）
+        const getNumericSize = (size: string | undefined | null) => 
+          size ? parseFloat(size.replace(/[^0-9.]/g, '')) : 0;
+        const currentSize = getNumericSize(currentValue as string);
+        return rooms.every((room, i) => 
+          i === currentIndex || 
+          getNumericSize(room.size) < currentSize
+        );
+      default:
+        return false;
+    }
   }, [hideRepeated]);
 
   return (
@@ -87,13 +119,12 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
                     "w-[200px] min-w-[200px] max-w-[200px] p-2",
                     index < sortedRooms.length - 1 ? "border-r border-gray-200" : "",
                     pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600",
+                    isAdvantage(sortedRooms, index, feature.key) && "bg-blue-50/50 font-medium text-blue-600",
                     "focus-within:bg-blue-50/30"
                   )}
                   role="cell"
                 >
-                  {!shouldHideCell(sortedRooms, index, feature.key) && (
-                    <FeatureValue room={room} featureKey={feature.key} />
-                  )}
+                  <FeatureValue room={room} featureKey={feature.key} />
                 </TableCell>
               ))}
               {rooms.length < 5 && (

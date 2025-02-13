@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -86,7 +85,7 @@ const CompareDetails = () => {
                 <TableRow className="border-b align-top">
                   <TableCell className="w-[120px] min-w-[120px] max-w-[120px] p-2 border-r bg-gray-50/30">
                     <div className="h-[182px] w-full flex flex-col items-center justify-center gap-2">
-                      <span className="text-sm font-medium text-gray-600">隐藏重复项</span>
+                      <span className="text-sm font-medium text-gray-600">优势项高亮</span>
                       <Switch
                         checked={hideRepeated}
                         onCheckedChange={setHideRepeated}
