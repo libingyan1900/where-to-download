@@ -66,7 +66,7 @@ const CompareDetails = () => {
             <Table>
               <TableBody>
                 <TableRow className="border-b">
-                  <TableCell className="w-[140px] p-2 align-top border-r bg-gray-50/30 rounded-sm">
+                  <TableCell className="w-[140px] p-2 align-top border-r bg-gray-50/30 rounded-none">
                     <div className="h-[182px] w-[140px]" />
                   </TableCell>
                   {sortedRooms.map((room, index) => <TableCell key={room.id} className={`w-[200px] p-2 align-top ${index < sortedRooms.length - 1 ? 'border-r' : ''}`}>
