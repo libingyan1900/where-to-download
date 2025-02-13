@@ -63,12 +63,48 @@ const Index = () => {
   ];
 
   const travelServices = [
-    { icon: <Plane className="w-6 h-6" />, title: "机票", description: "7*24不间断服务；多渠道预订" },
-    { icon: <Train className="w-6 h-6" />, title: "火车", description: "多接口渠道火车票查询、预订功能" },
-    { icon: <Users className="w-6 h-6" />, title: "机场VIP", description: "专属贵宾休息室息，VIP通道等" },
-    { icon: <Hotel className="w-6 h-6" />, title: "酒店", description: "国内外近30万家酒店查询及预订" },
-    { icon: <Car className="w-6 h-6" />, title: "用车", description: "用车覆盖全国300多个城市" },
-    { icon: <BadgeCheck className="w-6 h-6" />, title: "保险", description: "产品种类齐全，供应渠道广" }
+    { 
+      icon: <Plane className="w-6 h-6" />, 
+      title: "机票", 
+      description: "7*24不间断服务；多渠道预订",
+      bgColor: "from-blue-400 to-blue-600",
+      highlight: "全球航线覆盖"
+    },
+    { 
+      icon: <Train className="w-6 h-6" />, 
+      title: "火车", 
+      description: "多接口渠道火车票查询、预订功能",
+      bgColor: "from-green-400 to-green-600",
+      highlight: "高铁动卧全覆盖"
+    },
+    { 
+      icon: <Users className="w-6 h-6" />, 
+      title: "机场VIP", 
+      description: "专属贵宾休息室息，VIP通道等",
+      bgColor: "from-purple-400 to-purple-600",
+      highlight: "尊享贵宾服务"
+    },
+    { 
+      icon: <Hotel className="w-6 h-6" />, 
+      title: "酒店", 
+      description: "国内外近30万家酒店查询及预订",
+      bgColor: "from-yellow-400 to-yellow-600",
+      highlight: "优质住宿体验"
+    },
+    { 
+      icon: <Car className="w-6 h-6" />, 
+      title: "用车", 
+      description: "用车覆盖全国300多个城市",
+      bgColor: "from-red-400 to-red-600",
+      highlight: "专车接送服务"
+    },
+    { 
+      icon: <BadgeCheck className="w-6 h-6" />, 
+      title: "保险", 
+      description: "产品种类齐全，供应渠道广",
+      bgColor: "from-indigo-400 to-indigo-600",
+      highlight: "全方位保障"
+    }
   ];
 
   const functionModules = [
@@ -207,7 +243,7 @@ const Index = () => {
       </div>
 
       {/* Travel Services Section */}
-      <div className="py-20 bg-gray-50">
+      <div className="py-20 bg-gradient-to-b from-blue-50 via-white to-blue-50">
         <div className="container px-4 mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -216,9 +252,17 @@ const Index = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold mb-4">差旅云平台</h2>
+            <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+              差旅云平台
+            </h2>
             <p className="text-xl text-gray-600">Travel Business Cloud Platform</p>
+            <div className="mt-6 max-w-2xl mx-auto">
+              <p className="text-gray-600">
+                打造一站式智能差旅管理平台，为企业提供全方位差旅服务解决方案
+              </p>
+            </div>
           </motion.div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {travelServices.map((service, index) => (
               <motion.div
@@ -227,13 +271,33 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                className="group"
               >
-                <div className="inline-block p-3 bg-blue-100 rounded-lg text-blue-600 mb-4">
-                  {service.icon}
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
+                  <div className={`bg-gradient-to-r ${service.bgColor} p-6 group-hover:scale-105 transition-transform duration-300`}>
+                    <div className="flex items-center justify-between">
+                      <div className="bg-white/20 p-3 rounded-lg backdrop-blur-sm">
+                        {service.icon}
+                      </div>
+                      <span className="text-white/80 text-sm font-medium">
+                        {service.highlight}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      {service.description}
+                    </p>
+                    <div className="flex items-center text-sm text-blue-600 group-hover:translate-x-2 transition-transform duration-300">
+                      <span>立即预订</span>
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
               </motion.div>
             ))}
           </div>
