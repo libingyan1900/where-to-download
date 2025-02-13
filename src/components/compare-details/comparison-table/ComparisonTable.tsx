@@ -1,4 +1,3 @@
-
 import React, { useCallback, useState } from "react";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
@@ -137,7 +136,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
                   <TableCell 
                     key={room.id} 
                     className={cn(
-                      "w-[160px] min-w-[160px] max-w-[160px] p-2",
+                      "w-[140px] min-w-[140px] max-w-[140px] p-2",
                       index < sortedRooms.length - 1 ? "border-r border-gray-200" : "",
                       pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600",
                       isAdvantage(sortedRooms, index, feature.key) && "bg-blue-50/50 font-medium text-blue-600",
@@ -150,7 +149,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
                 ))}
                 {rooms.length < 5 && (
                   <TableCell 
-                    className="w-[160px] min-w-[160px] max-w-[160px] p-2"
+                    className="w-[140px] min-w-[140px] max-w-[140px] p-2"
                     role="cell"
                   >
                     <div />
