@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -69,7 +68,7 @@ const CompareDetails = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <div className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b z-10">
-        <div className="flex items-center h-14 px-4 max-w-7xl mx-auto">
+        <div className="flex items-center h-14 px-4">
           <button
             onClick={() => navigate(-1)}
             className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
@@ -82,51 +81,45 @@ const CompareDetails = () => {
         </div>
       </div>
 
-      <div className="pt-14 px-4">
-        <div className="overflow-x-auto">
-          <div className="min-w-[720px] max-w-[1400px] mx-auto">
-            <Table className="w-full bg-white border-collapse">
-              <TableHeader className="sticky top-14 z-10">
-                <TableRow className="bg-gray-50/50 backdrop-blur-sm">
-                  <TableHead className="w-[160px] px-2 py-4 font-semibold sticky left-0 z-20 bg-gray-50/50 border-r border-gray-200">
-                    酒店列表
+      <div className="w-full overflow-x-auto">
+        <div className="min-w-[720px] p-4">
+          <Table className="w-full">
+            <TableHeader>
+              <TableRow className="bg-white">
+                <TableHead className="w-[160px] px-2 py-4 font-semibold sticky left-0 z-20 bg-white border-r border-gray-200">
+                  酒店列表
+                </TableHead>
+                {sortedRooms.map((room) => (
+                  <TableHead 
+                    key={room.id}
+                    className="w-[200px] p-2 border-r border-gray-200"
+                  >
+                    <RoomCard
+                      room={room}
+                      onRemove={handleRemoveRoom}
+                      onBook={handleBook}
+                      isPinned={pinnedRooms.includes(room.id)}
+                      onTogglePin={handleTogglePin}
+                    />
                   </TableHead>
-                  {sortedRooms.map((room) => (
-                    <TableHead 
-                      key={room.id}
-                      className="w-[200px] p-4 border-r border-gray-200"
-                    >
-                      <div className="px-2">
-                        <RoomCard
-                          room={room}
-                          onRemove={handleRemoveRoom}
-                          onBook={handleBook}
-                          isPinned={pinnedRooms.includes(room.id)}
-                          onTogglePin={handleTogglePin}
-                        />
-                      </div>
-                    </TableHead>
-                  ))}
-                  {rooms.length < 5 && (
-                    <TableHead className="w-[200px] p-4">
-                      <div className="px-2">
-                        <AddRoomButton
-                          remainingSlots={5 - rooms.length}
-                          onClick={handleAddRoom}
-                        />
-                      </div>
-                    </TableHead>
-                  )}
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <ComparisonTable 
-                  rooms={sortedRooms}
-                  pinnedRooms={pinnedRooms}
-                />
-              </TableBody>
-            </Table>
-          </div>
+                ))}
+                {rooms.length < 5 && (
+                  <TableHead className="w-[200px] p-2">
+                    <AddRoomButton
+                      remainingSlots={5 - rooms.length}
+                      onClick={handleAddRoom}
+                    />
+                  </TableHead>
+                )}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <ComparisonTable 
+                rooms={sortedRooms}
+                pinnedRooms={pinnedRooms}
+              />
+            </TableBody>
+          </Table>
         </div>
       </div>
     </div>
