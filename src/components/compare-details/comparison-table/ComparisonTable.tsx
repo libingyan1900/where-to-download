@@ -1,3 +1,4 @@
+
 import React, { useCallback, useState } from "react";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
@@ -93,7 +94,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
                   "w-[100px] min-w-[100px] max-w-[100px] p-2 font-medium text-gray-600",
                   "whitespace-nowrap sticky left-0 z-20 border-r border-gray-200",
                   "bg-[#F1F1F1] shadow-[2px_0_4px_rgba(0,0,0,0.1)]",
-                  "text-center",
+                  "text-center align-top pt-3",
                   feature.sortable && "cursor-pointer hover:bg-[#E5E5E5]"
                 )}
                 onClick={() => feature.sortable && handleSort(feature.key)}
