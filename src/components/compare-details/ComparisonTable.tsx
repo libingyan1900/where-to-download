@@ -163,7 +163,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
         <React.Fragment key={group.title}>
           <TableRow>
             <TableCell
-              colSpan={sortedRooms.length + (sortedRooms.length < 5 ? 2 : 1)}
+              colSpan={rooms.length + (rooms.length < 5 ? 2 : 1)}
               className="bg-blue-50/50 backdrop-blur-sm font-medium text-blue-900 border-t-2 border-blue-100"
             >
               {group.title}
@@ -176,7 +176,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
             >
               <TableCell 
                 className={cn(
-                  "w-[160px] p-2 font-medium text-gray-700 bg-gray-50/30",
+                  "w-[140px] p-2 font-medium text-gray-700 bg-gray-50/30",
                   "whitespace-nowrap sticky left-0 z-20 border-r border-gray-200",
                   feature.sortable && "cursor-pointer hover:bg-gray-100"
                 )}
@@ -210,7 +210,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
                   {renderFeatureValue(room, feature.key)}
                 </TableCell>
               ))}
-              {sortedRooms.length < 5 && (
+              {rooms.length < 5 && (
                 <TableCell 
                   className="w-[200px] p-2"
                   role="cell"

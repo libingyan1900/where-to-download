@@ -87,7 +87,7 @@ const CompareDetails = () => {
           <Table className="w-full">
             <TableHeader>
               <TableRow className="bg-white">
-                <TableHead className="w-[100px] px-2 py-4 font-medium sticky left-0 z-20 bg-white border-r border-gray-200">
+                <TableHead className="w-[140px] px-2 py-4 font-medium sticky left-0 z-20 bg-white border-r border-gray-200">
                   对比项目
                 </TableHead>
                 {sortedRooms.map((room) => (
