@@ -1,8 +1,11 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const HeroSection = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="relative bg-gradient-to-b from-blue-50 via-white to-transparent">
       <div className="container px-4 py-20 mx-auto">
@@ -25,6 +28,7 @@ export const HeroSection = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 flex items-center mx-auto"
+            onClick={() => navigate('/room-comparison')}
           >
             立即体验
             <ArrowRight className="ml-2 w-4 h-4 animate-bounce" />
