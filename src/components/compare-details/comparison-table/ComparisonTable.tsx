@@ -101,9 +101,9 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
         <TableCell 
           className="w-[80px] min-w-[80px] max-w-[80px] p-2 sticky left-0 z-20 bg-white"
         >
-          <div className="h-8 flex items-center whitespace-nowrap">
-            <div className="w-[3px] h-[14px] bg-blue-500 rounded-full" />
-            <span className="text-sm font-medium text-gray-900 ml-2">酒店对比</span>
+          <div className="h-8 flex items-center gap-2 whitespace-nowrap">
+            <div className="min-w-[3px] w-[3px] h-[14px] bg-blue-500 rounded-full flex-shrink-0" />
+            <span className="text-sm font-medium text-gray-900">酒店对比</span>
           </div>
         </TableCell>
         {sortedRooms.map((_, index) => (
