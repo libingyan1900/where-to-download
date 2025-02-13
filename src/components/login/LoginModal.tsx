@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
-import { cn } from "@/lib/utils";
 import { QRCode } from "./QRCode";
 
 interface LoginModalProps {
@@ -16,7 +15,6 @@ interface LoginModalProps {
 }
 
 export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProps) => {
-  const [loginType, setLoginType] = useState<'account' | 'phone'>('account');
   const [rememberUser, setRememberUser] = useState(false);
   const { toast } = useToast();
 
@@ -47,91 +45,53 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
 
             <div className="grid grid-cols-2 gap-8">
               <div className="space-y-6">
-                <div className="flex space-x-4">
-                  <button
-                    onClick={() => setLoginType('account')}
-                    className={cn(
-                      "flex-1 py-2 text-sm font-medium rounded-full transition-all",
-                      loginType === 'account'
-                        ? "bg-blue-600 text-white shadow-lg"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                    )}
-                  >
-                    账号登录
-                  </button>
-                  <button
-                    onClick={() => setLoginType('phone')}
-                    className={cn(
-                      "flex-1 py-2 text-sm font-medium rounded-full transition-all",
-                      loginType === 'phone'
-                        ? "bg-blue-600 text-white shadow-lg"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                    )}
-                  >
-                    扫码登录
-                  </button>
-                </div>
+                <form onSubmit={handleLogin} className="space-y-4">
+                  <div className="space-y-4">
+                    <Input
+                      type="text"
+                      placeholder="请输入账号"
+                      className="h-11 rounded-xl bg-gray-50 border-0 focus-visible:ring-2 focus-visible:ring-blue-600"
+                    />
+                    <Input
+                      type="password"
+                      placeholder="请输入密码"
+                      className="h-11 rounded-xl bg-gray-50 border-0 focus-visible:ring-2 focus-visible:ring-blue-600"
+                    />
+                  </div>
 
-                {loginType === 'account' ? (
-                  <form onSubmit={handleLogin} className="space-y-4">
-                    <div className="space-y-4">
-                      <Input
-                        type="text"
-                        placeholder="请输入账号"
-                        className="h-11 rounded-xl bg-gray-50 border-0 focus-visible:ring-2 focus-visible:ring-blue-600"
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="remember"
+                        checked={rememberUser}
+                        onCheckedChange={(checked) => setRememberUser(checked as boolean)}
                       />
-                      <Input
-                        type="password"
-                        placeholder="请输入密码"
-                        className="h-11 rounded-xl bg-gray-50 border-0 focus-visible:ring-2 focus-visible:ring-blue-600"
-                      />
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="remember"
-                          checked={rememberUser}
-                          onCheckedChange={(checked) => setRememberUser(checked as boolean)}
-                        />
-                        <label
-                          htmlFor="remember"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          记住用户名
-                        </label>
-                      </div>
-                      <a
-                        href="#"
-                        className="text-sm font-medium text-blue-600 hover:underline"
+                      <label
+                        htmlFor="remember"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
-                        忘记密码?
-                      </a>
+                        记住用户名
+                      </label>
                     </div>
-
-                    <Button
-                      type="submit"
-                      className="w-full h-11 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg"
+                    <a
+                      href="#"
+                      className="text-sm font-medium text-blue-600 hover:underline"
                     >
-                      登录
-                    </Button>
-                  </form>
-                ) : null}
+                      忘记密码?
+                    </a>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full h-11 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg"
+                  >
+                    登录
+                  </Button>
+                </form>
               </div>
 
               <div className="flex flex-col items-center justify-center border-l border-gray-100 pl-8">
-                {loginType === 'phone' ? (
-                  <div className="w-48 h-48 bg-gray-100 rounded-lg flex items-center justify-center">
-                    <QRCode />
-                  </div>
-                ) : (
-                  <div className="text-center space-y-4">
-                    <p className="text-sm text-gray-500 mb-6">扫码登录更方便</p>
-                    <img src="/lovable-uploads/8f563438-fb2b-4fd7-a524-391c1f9eaf55.png" 
-                         alt="App Screenshot" 
-                         className="w-48 h-auto rounded-lg shadow-lg mx-auto" />
-                  </div>
-                )}
+                <QRCode />
               </div>
             </div>
 
