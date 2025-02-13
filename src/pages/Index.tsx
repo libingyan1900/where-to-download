@@ -1,8 +1,8 @@
-
 import { useState } from "react";
 import { Navigation } from "@/components/navigation/Navigation";
 import { LoginModal } from "@/components/login/LoginModal";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { Footer } from "@/components/sections/Footer";
 import { features, functionModules, painPoints, travelServices, additionalServices, businessServices, leftFeatures, rightFeatures } from "@/constants/travelData";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
@@ -304,6 +304,8 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
