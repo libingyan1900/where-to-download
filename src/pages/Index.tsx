@@ -370,20 +370,38 @@ const Index = () => {
                 ))}
               </div>
 
-              {/* Center App Image */}
+              {/* Center App Image with iPhone Frame */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="relative z-10"
+                className="relative z-10 px-8"
               >
-                <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl p-1 shadow-xl">
-                  <div className="overflow-hidden rounded-2xl">
-                    <img 
-                      src="/lovable-uploads/5efc6822-1e0b-40dd-9e6d-83ce2367c068.png" 
-                      alt="差旅壹号APP界面" 
-                      className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300"
-                    />
+                <div className="relative max-w-[280px] mx-auto">
+                  {/* iPhone Frame */}
+                  <div className="relative bg-black rounded-[3rem] p-4 shadow-xl">
+                    {/* Notch */}
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-36 h-6 bg-black rounded-b-3xl z-20"></div>
+                    
+                    {/* Screen */}
+                    <div className="relative rounded-[2.5rem] overflow-hidden bg-white">
+                      {/* Dynamic Island */}
+                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-7 bg-black rounded-b-3xl z-10"></div>
+                      
+                      {/* App Screenshot */}
+                      <img 
+                        src="/lovable-uploads/5efc6822-1e0b-40dd-9e6d-83ce2367c068.png" 
+                        alt="差旅壹号APP界面" 
+                        className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    
+                    {/* Volume Buttons */}
+                    <div className="absolute left-[-2px] top-20 w-[2px] h-8 bg-gray-600 rounded-l"></div>
+                    <div className="absolute left-[-2px] top-32 w-[2px] h-8 bg-gray-600 rounded-l"></div>
+                    
+                    {/* Power Button */}
+                    <div className="absolute right-[-2px] top-24 w-[2px] h-12 bg-gray-600 rounded-r"></div>
                   </div>
                 </div>
               </motion.div>
