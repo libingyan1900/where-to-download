@@ -7,19 +7,17 @@ import { useToast } from "@/components/ui/use-toast";
 import { RoomCard } from "@/components/compare-details/RoomCard";
 import { AddRoomButton } from "@/components/compare-details/AddRoomButton";
 import { ComparisonTable } from "@/components/compare-details/comparison-table/ComparisonTable";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { 
   Table,
   TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
 } from "@/components/ui/table";
 
 const CompareDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const isMobile = useIsMobile();
   const [rooms, setRooms] = React.useState<Room[]>(location.state?.selectedRooms as Room[] || []);
   const [pinnedRooms, setPinnedRooms] = React.useState<string[]>([]);
 
@@ -77,7 +75,7 @@ const CompareDetails = () => {
       </div>
 
       <div className="w-full overflow-x-auto">
-        <div className="min-w-[720px] p-4">
+        <div className={`min-w-[720px] ${isMobile ? 'px-0' : 'p-4'}`}>
           <div className="w-full">
             <div className="flex">
               <div className="w-[140px] flex-shrink-0 p-2 border-r border-gray-200">
@@ -109,14 +107,16 @@ const CompareDetails = () => {
               </div>
             </div>
             
-            <Table>
-              <TableBody>
-                <ComparisonTable 
-                  rooms={sortedRooms}
-                  pinnedRooms={pinnedRooms}
-                />
-              </TableBody>
-            </Table>
+            <div className={isMobile ? '-mx-2' : ''}>
+              <Table>
+                <TableBody>
+                  <ComparisonTable 
+                    rooms={sortedRooms}
+                    pinnedRooms={pinnedRooms}
+                  />
+                </TableBody>
+              </Table>
+            </div>
           </div>
         </div>
       </div>
