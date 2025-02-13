@@ -379,7 +379,7 @@ const Index = () => {
               >
                 <div className="relative max-w-[300px] mx-auto">
                   {/* iPhone Frame */}
-                  <div className="relative bg-gradient-to-b from-[#E3C5AC] via-[#F7E1D1] to-[#E3C5AC] rounded-[2.5rem] p-2 shadow-lg">
+                  <div className="relative bg-gradient-to-b from-[#2D2D2D] via-[#1A1A1A] to-[#2D2D2D] rounded-[2.5rem] p-2 shadow-lg">
                     {/* Inner Frame */}
                     <div className="relative bg-black rounded-[2.3rem] p-[2px] overflow-hidden">
                       {/* Dynamic Island */}
@@ -392,7 +392,7 @@ const Index = () => {
                       {/* Screen Content */}
                       <div className="relative rounded-[2.2rem] overflow-hidden bg-white">
                         <img 
-                          src="/lovable-uploads/5efc6822-1e0b-40dd-9e6d-83ce2367c068.png" 
+                          src="/lovable-uploads/8f563438-fb2b-4fd7-a524-391c1f9eaf55.png" 
                           alt="差旅壹号APP界面" 
                           className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300"
                         />
@@ -400,12 +400,12 @@ const Index = () => {
                     </div>
                     
                     {/* Volume Buttons */}
-                    <div className="absolute left-[-1px] top-24 w-[1px] h-6 bg-[#E3C5AC] rounded-l shadow-inner"></div>
-                    <div className="absolute left-[-1px] top-36 w-[1px] h-6 bg-[#E3C5AC] rounded-l shadow-inner"></div>
-                    <div className="absolute left-[-1px] top-48 w-[1px] h-12 bg-[#E3C5AC] rounded-l shadow-inner"></div>
+                    <div className="absolute left-[-1px] top-24 w-[1px] h-6 bg-[#2D2D2D] rounded-l shadow-inner"></div>
+                    <div className="absolute left-[-1px] top-36 w-[1px] h-6 bg-[#2D2D2D] rounded-l shadow-inner"></div>
+                    <div className="absolute left-[-1px] top-48 w-[1px] h-12 bg-[#2D2D2D] rounded-l shadow-inner"></div>
                     
                     {/* Power Button */}
-                    <div className="absolute right-[-1px] top-32 w-[1px] h-12 bg-[#E3C5AC] rounded-r shadow-inner"></div>
+                    <div className="absolute right-[-1px] top-32 w-[1px] h-12 bg-[#2D2D2D] rounded-r shadow-inner"></div>
                   </div>
                 </div>
               </motion.div>
