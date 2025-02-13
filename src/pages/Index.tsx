@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Globe, Building2, Users, BadgeCheck, ArrowRight, Plane, Train, Car, Hotel, CreditCard, FileText, CheckSquare, PieChart, Wallet } from "lucide-react";
+import { Globe, Building2, Users, BadgeCheck, ArrowRight, Plane, Train, Car, Hotel, CreditCard, FileText, CheckSquare, PieChart, Wallet, TrendingUp, Clock, Receipt, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const Index = () => {
   const features = [
@@ -28,24 +29,36 @@ const Index = () => {
 
   const painPoints = [
     {
-      title: "效率明显提高，成本降低30%以上",
-      description: "通过差旅壹号行业解决方案，不仅管理效率提升了60%，甚至差旅成本还降低了30%以上，员工满意了，财务不忙了，企业老板也满意了，真正实现\"让企业差旅更简洁，让员工和企业都满意\"。",
-      pain: "差旅痛点：员工和财务对差旅满意度差，天天闹；差旅成本居高不下。"
+      icon: <TrendingUp className="w-12 h-12 text-blue-600" />,
+      title: "效率提升60%，成本节省30%",
+      description: "通过差旅壹号的智能解决方案，企业管理效率显著提升60%，差旅成本大幅降低30%。让员工体验更好的差旅服务，让企业管理更加轻松。",
+      pain: "传统痛点：繁琐的审批流程、高额的差旅成本、低效的管理方式",
+      stats: [
+        { label: "效率提升", value: "60%" },
+        { label: "成本节省", value: "30%" },
+        { label: "员工满意度", value: "95%" }
+      ]
     },
     {
-      title: "手机随时在线审批和预订",
-      description: "差旅壹号提供差旅管理综合解决方案，多渠道审批，智能差旅报告自动生成，轻轻松松一点，完成差旅流程，员工不闹了，工作成果大幅提升。",
-      pain: "差旅痛点：外出办公，员工天天催着需要审批；差旅成本太高，老板不满意；差旅管理太混乱，做份差旅报告好难。"
+      icon: <Clock className="w-12 h-12 text-blue-600" />,
+      title: "随时随地，一键预订审批",
+      description: "移动端支持全流程操作，从预订到审批一气呵成。智能化差旅报告自动生成，让差旅管理变得轻松简单。",
+      pain: "传统痛点：审批流程慢、沟通成本高、报告难做",
+      features: ["移动端一站式服务", "智能报告生成", "实时审批通知"]
     },
     {
-      title: "一个月只要一张发票，发票规范了，效率提高了",
-      description: "差旅壹号合作企业可以享受企业垫资月结方案，员工无需进行差旅报销，每月开具一张发票即可报销当月所有差旅出现费用。",
-      pain: "差旅痛点：凭证堆成山，发票审核工作量大，发票不规范。"
+      icon: <Receipt className="w-12 h-12 text-blue-600" />,
+      title: "月度单据，智能报销",
+      description: "企业可享受月结服务，系统自动汇总差旅支出，每月仅需一张发票，极大简化财务工作。",
+      pain: "传统痛点：单据繁多、报销周期长、人工审核慢",
+      benefits: ["单据自动汇总", "智能对账核销", "发票合规管理"]
     },
     {
-      title: "不借款，不垫钱，不报销，说走就走",
-      description: "差旅壹号为符合差旅月结条件的企业提供垫资月结服务，企业员工登录差旅壹号APP预订差旅产品，无需付费，同时差旅壹号打通企业财务报销系统，差旅壹号预订数据自动生成报销凭据，无缝对接企业报销流程。",
-      pain: "差旅痛点：出差借款慢，出差自己要替公司垫款；发票老掉，报账贴发票每个月要贴大半天；领导老不签字，又不敢催；报账慢，老板OA审核慢，出差垫钱垫到没钱陪女朋友看电影。"
+      icon: <Zap className="w-12 h-12 text-blue-600" />,
+      title: "无需垫资，即订即行",
+      description: "企业专属的差旅信用额度，员工无需垫资，系统自动完成费用结算，支持多种支付方式。",
+      pain: "传统痛点：现金垫付压力大、审批报销慢、账期过长",
+      advantages: ["企业信用支付", "自动化结算", "多样支付方式"]
     }
   ];
 
@@ -95,27 +108,101 @@ const Index = () => {
       </div>
 
       {/* Pain Points Section */}
-      <div className="py-20 bg-white">
+      <div className="py-20 bg-gradient-to-b from-blue-50 to-white">
         <div className="container px-4 mx-auto">
-          {painPoints.map((point, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="max-w-4xl mx-auto mb-16 last:mb-0"
-            >
-              <div className="bg-blue-50 p-4 rounded-lg mb-4">
-                <p className="text-blue-800">{point.pain}</p>
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">{point.title}</h3>
-              <p className="text-gray-600 mb-6">{point.description}</p>
-              <Button variant="outline" className="hover:bg-blue-50">
-                立即体验 <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </motion.div>
-          ))}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-blue-900">
+              解决企业差旅难题
+            </h2>
+            <p className="text-xl text-gray-600">
+              让差旅管理更简单，让企业效率更高
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {painPoints.map((point, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Card className="p-6 h-full bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <div className="flex items-start space-x-4">
+                    <div className="bg-blue-50 p-3 rounded-lg">
+                      {point.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                        {point.title}
+                      </h3>
+                      <div className="bg-red-50 text-red-700 text-sm p-2 rounded-lg mb-3">
+                        {point.pain}
+                      </div>
+                      <p className="text-gray-600 mb-4">{point.description}</p>
+                      
+                      {point.stats && (
+                        <div className="grid grid-cols-3 gap-4 mb-4">
+                          {point.stats.map((stat, idx) => (
+                            <div key={idx} className="text-center">
+                              <div className="text-2xl font-bold text-blue-600">
+                                {stat.value}
+                              </div>
+                              <div className="text-sm text-gray-500">
+                                {stat.label}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      
+                      {point.features && (
+                        <div className="flex flex-wrap gap-2">
+                          {point.features.map((feature, idx) => (
+                            <span key={idx} className="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      
+                      {point.benefits && (
+                        <div className="grid grid-cols-3 gap-2">
+                          {point.benefits.map((benefit, idx) => (
+                            <div key={idx} className="text-center bg-green-50 p-2 rounded">
+                              <span className="text-sm text-green-700">{benefit}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      
+                      {point.advantages && (
+                        <div className="flex flex-wrap gap-2">
+                          {point.advantages.map((advantage, idx) => (
+                            <span key={idx} className="bg-purple-100 text-purple-800 text-sm px-3 py-1 rounded-full">
+                              {advantage}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4 flex justify-end">
+                    <Button variant="outline" className="hover:bg-blue-50">
+                      了解更多 <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 
