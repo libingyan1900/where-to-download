@@ -168,6 +168,29 @@ const Index = () => {
     }
   ];
 
+  const travelFeatures = [
+    {
+      icon: <Plane className="w-8 h-8" />,
+      title: "机票",
+      description: "7*24不间断服务，多渠道预订"
+    },
+    {
+      icon: <Train className="w-8 h-8" />,
+      title: "火车",
+      description: "多接口实现火车票查询、预订功能"
+    },
+    {
+      icon: <Hotel className="w-8 h-8" />,
+      title: "酒店",
+      description: "国内外近30万家酒店查询及预订"
+    },
+    {
+      icon: <Car className="w-8 h-8" />,
+      title: "用车",
+      description: "用车覆盖全国300多个城市"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -311,68 +334,50 @@ const Index = () => {
             <p className="text-xl text-gray-600">Travel Business Cloud Platform</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* App Screenshot */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="relative max-w-md mx-auto lg:max-w-lg"
-            >
-              <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl p-1 shadow-xl">
-                <div className="overflow-hidden rounded-2xl">
-                  <img 
-                    src="/lovable-uploads/5efc6822-1e0b-40dd-9e6d-83ce2367c068.png" 
-                    alt="差旅壹号APP界面" 
-                    className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300"
-                  />
+          <div className="relative max-w-6xl mx-auto">
+            {/* Center App Image */}
+            <div className="flex justify-center mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="w-64 relative z-10"
+              >
+                <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl p-1 shadow-xl">
+                  <div className="overflow-hidden rounded-2xl">
+                    <img 
+                      src="/lovable-uploads/5efc6822-1e0b-40dd-9e6d-83ce2367c068.png" 
+                      alt="差旅壹号APP界面" 
+                      className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
 
-            {/* Feature Description */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-8"
-            >
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-gray-900">便捷的差旅服务</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {travelServices.map((service, index) => (
-                    <div key={index} className="flex items-center space-x-3 p-4 bg-white rounded-xl shadow-sm">
-                      <div className={`${service.bgColor} p-2 rounded-lg`}>
-                        {service.icon}
-                      </div>
-                      <span className="font-medium">{service.title}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            {/* Surrounding Features */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 relative">
+              {travelFeatures.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="text-center"
+                >
+                  <div className="bg-white rounded-full p-4 shadow-lg mx-auto w-16 h-16 flex items-center justify-center mb-4">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
 
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-gray-900">智能企业管理</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {businessServices.slice(0, 4).map((service, index) => (
-                    <div key={index} className="flex items-center space-x-3 p-4 bg-white rounded-xl shadow-sm">
-                      <div className="bg-blue-50 p-2 rounded-lg">
-                        {service.icon}
-                      </div>
-                      <div>
-                        <p className="font-medium">{service.title}</p>
-                        <p className="text-sm text-gray-500">{service.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                立即体验
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </motion.div>
+            {/* Connecting Lines (Optional) */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="w-full h-full border-2 border-dashed border-blue-200 rounded-lg opacity-30" />
+            </div>
           </div>
         </div>
       </div>
