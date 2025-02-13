@@ -321,7 +321,7 @@ const Index = () => {
             >
               <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl p-1 shadow-xl">
                 <img 
-                  src="/travel-app.png" 
+                  src="/lovable-uploads/5efc6822-1e0b-40dd-9e6d-83ce2367c068.png" 
                   alt="差旅壹号APP界面" 
                   className="rounded-2xl w-full"
                 />
