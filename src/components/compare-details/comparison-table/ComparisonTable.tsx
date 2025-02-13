@@ -48,14 +48,6 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
     >
       {featureGroups.map((group) => (
         <React.Fragment key={group.title}>
-          <TableRow>
-            <TableCell
-              colSpan={rooms.length + (rooms.length < 5 ? 2 : 1)}
-              className="bg-blue-50/50 backdrop-blur-sm font-medium text-blue-900 border-t-2 border-blue-100"
-            >
-              {group.title}
-            </TableCell>
-          </TableRow>
           {group.features.map((feature) => (
             <TableRow 
               key={feature.key}
@@ -84,11 +76,12 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
                   )}
                 </div>
               </TableCell>
-              {sortedRooms.map((room) => (
+              {sortedRooms.map((room, index) => (
                 <TableCell 
                   key={room.id} 
                   className={cn(
-                    "w-[200px] p-2 border-r border-gray-200",
+                    "w-[200px] p-2",
+                    index < sortedRooms.length - 1 ? "border-r border-gray-200" : "",
                     pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600",
                     "focus-within:bg-blue-50/30"
                   )}
