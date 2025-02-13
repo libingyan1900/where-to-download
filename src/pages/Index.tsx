@@ -1,4 +1,3 @@
-<lov-code>
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe, Building2, Users, BadgeCheck, ArrowRight, Plane, Train, Car, Hotel, CreditCard, FileText, CheckSquare, PieChart, Wallet, TrendingUp, Clock, Receipt, Zap, ShoppingCart, Store, ChevronDown, X, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -726,4 +725,46 @@ const Index = () => {
             <p className="text-xl text-gray-600">Five Function Modules</p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {functionModules.map((module, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="flex items-center space-x-4"
+              >
+                <div className="bg-gradient-to-br from-blue-100 to-blue-50 p-3 rounded-lg">
+                  {module.icon}
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">{module.title}</h3>
+                  <p className="text-gray-600">{module.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// QR Code Component
+const QRCode = () => (
+  <svg
+    viewBox="0 0 100 100"
+    className="w-32 h-32 text-gray-300"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <rect x="20" y="20" width="60" height="60" rx="4" />
+    <path d="M30 30h20v20H30z" />
+    <path d="M50 30h20v20H50z" />
+    <path d="M30 50h20v20H30z" />
+    <path d="M50 50h20v20H50z" />
+  </svg>
+);
+
+export default Index;
