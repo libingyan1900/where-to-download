@@ -63,17 +63,17 @@ const CompareDetails = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      <div className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b z-10">
+    <div className="min-h-screen bg-[#F1F0FB]">
+      <div className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b border-[#E2D1C3] z-10">
         <div className="flex items-center h-14 px-4">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+            className="flex items-center text-[#8E9196] hover:text-[#221F26] transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
             返回
           </button>
-          <h1 className="flex-1 text-center text-lg font-medium">房型对比</h1>
+          <h1 className="flex-1 text-center text-lg font-medium text-[#221F26]">房型对比</h1>
           <div className="w-10" />
         </div>
       </div>
@@ -84,7 +84,7 @@ const CompareDetails = () => {
             <Table>
               <TableBody className="relative">
                 <TableRow className="border-b align-top">
-                  <TableCell className="w-[80px] min-w-[80px] max-w-[80px] p-2 border-r bg-[#F1F1F1] text-gray-600 sticky left-0 z-30 shadow-[2px_0_4px_rgba(0,0,0,0.1)]">
+                  <TableCell className="w-[80px] min-w-[80px] max-w-[80px] p-2 border-r bg-[#F1F1F1] text-[#8A898C] sticky left-0 z-30 shadow-[2px_0_4px_rgba(0,0,0,0.1)]">
                     <div className="h-[160px] w-full flex flex-col items-center justify-center gap-2">
                       <span className="text-sm font-medium">隐藏相同</span>
                       <Switch
@@ -96,7 +96,7 @@ const CompareDetails = () => {
                   {sortedRooms.map((room, index) => (
                     <TableCell 
                       key={room.id} 
-                      className={`w-[140px] min-w-[140px] max-w-[140px] p-2 ${index < sortedRooms.length - 1 ? 'border-r' : ''}`}
+                      className={`w-[140px] min-w-[140px] max-w-[140px] p-2 ${index < sortedRooms.length - 1 ? 'border-r border-[#E2D1C3]' : ''}`}
                     >
                       <RoomCard
                         room={room}

@@ -20,19 +20,17 @@ export const RoomCard = ({
   onTogglePin
 }: RoomCardProps) => {
   return (
-    <div 
-      className="relative w-full rounded-lg bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all duration-200"
-    >
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600 opacity-40" />
+    <div className="relative w-full rounded-lg bg-white border border-[#E2D1C3] shadow-sm hover:shadow-md transition-all duration-200">
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1EAEDB] to-[#33C3F0] opacity-40" />
       <div className="absolute top-2 right-2 z-10">
         <button
           onClick={(e) => {
             e.stopPropagation();
             onRemove(room.id);
           }}
-          className="p-1 rounded-full bg-white hover:bg-gray-50 shadow-sm hover:shadow transition-all"
+          className="p-1 rounded-full bg-white hover:bg-[#F1F0FB] shadow-sm hover:shadow transition-all"
         >
-          <X className="w-3 h-3 text-gray-400 hover:text-gray-600" />
+          <X className="w-3 h-3 text-[#8E9196] hover:text-[#221F26]" />
         </button>
       </div>
       <div className="p-2.5 space-y-2">
@@ -43,36 +41,36 @@ export const RoomCard = ({
                 e.stopPropagation();
                 onTogglePin(room.id);
               }}
-              className="flex items-center gap-1.5 w-full p-1 rounded-md bg-white hover:bg-gray-50 shadow-sm hover:shadow transition-all"
+              className="flex items-center gap-1.5 w-full p-1 rounded-md bg-white hover:bg-[#F1F0FB] shadow-sm hover:shadow transition-all"
               title={isPinned ? "取消固定" : "固定到左侧"}
             >
               {isPinned ? (
-                <Pin className="w-3.5 h-3.5 text-blue-600" />
+                <Pin className="w-3.5 h-3.5 text-[#1EAEDB]" />
               ) : (
-                <PinOff className="w-3.5 h-3.5 text-gray-400 hover:text-gray-600" />
+                <PinOff className="w-3.5 h-3.5 text-[#8E9196] hover:text-[#221F26]" />
               )}
-              <span className="text-xs text-gray-600 hover:text-gray-800">
+              <span className="text-xs text-[#8E9196] hover:text-[#221F26]">
                 {isPinned ? "取消固定" : "固定到左侧"}
               </span>
             </button>
           )}
-          <h3 className="text-sm font-semibold text-blue-900 line-clamp-2" title={room.hotelName}>
+          <h3 className="text-sm font-semibold text-[#221F26] line-clamp-2" title={room.hotelName}>
             {room.hotelName}
           </h3>
         </div>
-        <p className="text-xs text-gray-600 line-clamp-2 min-h-[28px]" title={room.roomType}>
+        <p className="text-xs text-[#8A898C] line-clamp-2 min-h-[28px]" title={room.roomType}>
           {room.roomType}
         </p>
         <div className="flex items-baseline gap-0.5">
-          <span className="text-base font-bold text-blue-600">¥{room.price}</span>
-          <span className="text-xs text-gray-500">/晚</span>
+          <span className="text-base font-bold text-[#1EAEDB]">¥{room.price}</span>
+          <span className="text-xs text-[#8E9196]">/晚</span>
         </div>
         <Button 
           onClick={(e) => {
             e.stopPropagation();
             onBook(room.id);
           }}
-          className="w-full h-6 text-xs bg-blue-500 hover:bg-blue-600 text-white shadow-sm hover:shadow"
+          className="w-full h-6 text-xs bg-[#1EAEDB] hover:bg-[#0FA0CE] text-white shadow-sm hover:shadow"
         >
           预订
         </Button>
