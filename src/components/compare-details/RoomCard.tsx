@@ -35,21 +35,21 @@ export const RoomCard = ({
           <X className="w-3 h-3 text-gray-400 hover:text-gray-600" />
         </button>
       </div>
-      <div className="p-3 space-y-2.5">
-        <div className="space-y-2">
+      <div className="p-2.5 space-y-2">
+        <div className="space-y-1.5">
           {onTogglePin && (
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onTogglePin(room.id);
               }}
-              className="flex items-center gap-1.5 w-full p-1.5 rounded-md bg-white hover:bg-gray-50 shadow-sm hover:shadow transition-all"
+              className="flex items-center gap-1.5 w-full p-1 rounded-md bg-white hover:bg-gray-50 shadow-sm hover:shadow transition-all"
               title={isPinned ? "取消固定" : "固定到左侧"}
             >
               {isPinned ? (
-                <Pin className="w-4 h-4 text-blue-600" />
+                <Pin className="w-3.5 h-3.5 text-blue-600" />
               ) : (
-                <PinOff className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                <PinOff className="w-3.5 h-3.5 text-gray-400 hover:text-gray-600" />
               )}
               <span className="text-xs text-gray-600 hover:text-gray-800">
                 {isPinned ? "取消固定" : "固定到左侧"}
@@ -60,10 +60,10 @@ export const RoomCard = ({
             {room.hotelName}
           </h3>
         </div>
-        <p className="text-xs text-gray-600 line-clamp-2 min-h-[32px]" title={room.roomType}>
+        <p className="text-xs text-gray-600 line-clamp-2 min-h-[28px]" title={room.roomType}>
           {room.roomType}
         </p>
-        <div className="flex items-baseline gap-0.5 mt-auto">
+        <div className="flex items-baseline gap-0.5">
           <span className="text-base font-bold text-blue-600">¥{room.price}</span>
           <span className="text-xs text-gray-500">/晚</span>
         </div>
@@ -72,7 +72,7 @@ export const RoomCard = ({
             e.stopPropagation();
             onBook(room.id);
           }}
-          className="w-full h-7 text-xs bg-blue-500 hover:bg-blue-600 text-white shadow-sm hover:shadow"
+          className="w-full h-6 text-xs bg-blue-500 hover:bg-blue-600 text-white shadow-sm hover:shadow"
         >
           预订
         </Button>
