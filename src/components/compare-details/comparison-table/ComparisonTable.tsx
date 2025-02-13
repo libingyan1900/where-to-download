@@ -1,3 +1,4 @@
+
 import React, { useCallback, useState } from "react";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
@@ -81,8 +82,9 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
 
   const getLabelAlignment = (label: string) => {
     if (label.length === 2) return 'pl-4';
-    // 所有四个字的标题严格居中，包括"装修时间"
-    if (label.length === 4) return 'flex items-center justify-center h-full';
+    if (label.length === 4) return 'text-center';
+    // 处理"装修时间"这样的四字标题
+    if (label === '装修时间') return 'text-center';
     // 处理较长的标题文字
     if (['酒店设施', '酒店图片', '房型图片', '取消规则', '确认时效'].includes(label)) {
       return 'pl-4 flex items-center h-full';
