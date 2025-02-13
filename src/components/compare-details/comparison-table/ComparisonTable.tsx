@@ -41,11 +41,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
   }, []);
 
   return (
-    <div 
-      className="relative"
-      role="table"
-      aria-label="房型对比表格"
-    >
+    <>
       {featureGroups.map((group) => (
         <React.Fragment key={group.title}>
           {group.features.map((feature) => (
@@ -102,7 +98,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
           ))}
         </React.Fragment>
       ))}
-    </div>
+    </>
   );
 });
 
