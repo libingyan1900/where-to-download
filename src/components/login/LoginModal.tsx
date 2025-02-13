@@ -16,10 +16,19 @@ interface LoginModalProps {
 
 export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProps) => {
   const [rememberUser, setRememberUser] = useState(false);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const { toast } = useToast();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!agreeToTerms) {
+      toast({
+        title: "请同意服务协议和隐私政策",
+        description: "您需要同意相关协议才能继续",
+        variant: "destructive",
+      });
+      return;
+    }
     toast({
       title: "登录成功",
       description: "欢迎回来！",
@@ -79,6 +88,24 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
                     >
                       忘记密码?
                     </a>
+                  </div>
+
+                  <div className="flex items-start space-x-2">
+                    <Checkbox
+                      id="terms"
+                      checked={agreeToTerms}
+                      onCheckedChange={(checked) => setAgreeToTerms(checked as boolean)}
+                      className="mt-1"
+                    />
+                    <label
+                      htmlFor="terms"
+                      className="text-sm text-gray-600"
+                    >
+                      已阅读并同意
+                      <a href="#" className="text-blue-600 hover:underline mx-1">《服务协议》</a>
+                      和
+                      <a href="#" className="text-blue-600 hover:underline mx-1">《个人信息保护政策》</a>
+                    </label>
                   </div>
 
                   <Button
