@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -81,9 +82,9 @@ const CompareDetails = () => {
         </div>
       </div>
 
-      <div className="pt-14 max-w-7xl mx-auto">
-        <div className="relative overflow-x-auto">
-          <div className="min-w-[720px]">
+      <div className="pt-14 px-4">
+        <div className="overflow-x-auto">
+          <div className="min-w-[720px] max-w-[1400px] mx-auto">
             <Table className="w-full bg-white border-collapse">
               <TableHeader className="sticky top-14 z-10">
                 <TableRow className="bg-gray-50/50 backdrop-blur-sm">
