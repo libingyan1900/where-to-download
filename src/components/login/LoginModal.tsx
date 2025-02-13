@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, MessageSquare, Send } from "lucide-react";
@@ -75,27 +74,26 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
                             transition-all duration-200 hover:border-blue-400"
                           />
                         </motion.div>
-                        <motion.div
-                          whileHover={{ scale: 1.01 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <Input
-                            type="password"
-                            placeholder="请输入密码"
-                            className="h-12 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm 
-                            focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-transparent
-                            transition-all duration-200 hover:border-blue-400"
-                          />
-                        </motion.div>
-                      </div>
-
-                      <div className="flex justify-end">
-                        <a
-                          href="#"
-                          className="text-sm font-medium text-blue-600 hover:underline"
-                        >
-                          忘记密码?
-                        </a>
+                        <div className="relative">
+                          <motion.div
+                            whileHover={{ scale: 1.01 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Input
+                              type="password"
+                              placeholder="请输入密码"
+                              className="h-12 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm 
+                              focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-transparent
+                              transition-all duration-200 hover:border-blue-400"
+                            />
+                          </motion.div>
+                          <a
+                            href="#"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-medium text-blue-600 hover:underline"
+                          >
+                            忘记密码?
+                          </a>
+                        </div>
                       </div>
 
                       <Button
@@ -140,11 +138,10 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
                             transition-all duration-200 hover:border-blue-400"
                           />
                         </motion.div>
-                        <div className="flex space-x-2">
+                        <div className="relative">
                           <motion.div
                             whileHover={{ scale: 1.01 }}
                             transition={{ duration: 0.2 }}
-                            className="flex-1"
                           >
                             <Input
                               type="text"
@@ -156,8 +153,8 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
                           </motion.div>
                           <Button
                             type="button"
-                            variant="outline"
-                            className="h-12 px-4 rounded-xl border border-gray-200 hover:bg-gray-50"
+                            variant="ghost"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 h-8 px-3 text-sm font-medium text-blue-600 hover:bg-transparent hover:text-blue-700"
                           >
                             获取验证码
                           </Button>
