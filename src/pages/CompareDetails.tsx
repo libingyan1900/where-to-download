@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -86,8 +87,8 @@ const CompareDetails = () => {
           <Table className="w-full">
             <TableHeader>
               <TableRow className="bg-white">
-                <TableHead className="w-[160px] px-2 py-4 font-semibold sticky left-0 z-20 bg-white border-r border-gray-200">
-                  酒店列表
+                <TableHead className="w-[100px] px-2 py-4 font-medium sticky left-0 z-20 bg-white border-r border-gray-200">
+                  对比项目
                 </TableHead>
                 {sortedRooms.map((room) => (
                   <TableHead 
