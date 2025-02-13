@@ -295,7 +295,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Travel Services Section */}
+      {/* Travel Services Section with App Screenshot */}
       <div className="py-20 bg-gradient-to-b from-blue-50 via-white to-blue-50">
         <div className="container px-4 mx-auto">
           <motion.div
@@ -311,56 +311,66 @@ const Index = () => {
             <p className="text-xl text-gray-600">Travel Business Cloud Platform</p>
           </motion.div>
 
-          {/* Shortcuts Grid */}
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-t-3xl p-8">
-            <div className="grid grid-cols-4 gap-8">
-              {travelServices.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex flex-col items-center cursor-pointer"
-                >
-                  <div className="mb-2">{service.icon}</div>
-                  <span className="text-white text-sm">{service.title}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* App Screenshot */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl p-1 shadow-xl">
+                <img 
+                  src="/travel-app.png" 
+                  alt="差旅壹号APP界面" 
+                  className="rounded-2xl w-full"
+                />
+              </div>
+            </motion.div>
 
-          {/* Additional Services */}
-          <div className="bg-white rounded-b-3xl shadow-lg p-8">
-            <div className="grid grid-cols-4 gap-6 mb-8">
-              {additionalServices.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex flex-col items-center p-4 cursor-pointer hover:bg-gray-50 rounded-xl transition-colors"
-                >
-                  <div className="mb-2">{service.icon}</div>
-                  <span className="text-gray-900 text-sm font-medium mb-1">{service.title}</span>
-                </motion.div>
-              ))}
-            </div>
+            {/* Feature Description */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-8"
+            >
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-gray-900">便捷的差旅服务</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {travelServices.map((service, index) => (
+                    <div key={index} className="flex items-center space-x-3 p-4 bg-white rounded-xl shadow-sm">
+                      <div className={`${service.bgColor} p-2 rounded-lg`}>
+                        {service.icon}
+                      </div>
+                      <span className="font-medium">{service.title}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-            {/* Business Services */}
-            <div className="grid grid-cols-3 gap-4">
-              {businessServices.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex flex-col items-center p-4 cursor-pointer hover:bg-blue-50 rounded-xl transition-colors"
-                >
-                  <div className="mb-2">{service.icon}</div>
-                  <span className="text-gray-900 text-sm font-medium mb-1">{service.title}</span>
-                </motion.div>
-              ))}
-            </div>
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-gray-900">智能企业管理</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {businessServices.slice(0, 4).map((service, index) => (
+                    <div key={index} className="flex items-center space-x-3 p-4 bg-white rounded-xl shadow-sm">
+                      <div className="bg-blue-50 p-2 rounded-lg">
+                        {service.icon}
+                      </div>
+                      <div>
+                        <p className="font-medium">{service.title}</p>
+                        <p className="text-sm text-gray-500">{service.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                立即体验
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </motion.div>
           </div>
         </div>
       </div>
