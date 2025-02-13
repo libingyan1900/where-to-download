@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -54,6 +55,7 @@ const CompareDetails = () => {
     if (!aIsPinned && bIsPinned) return 1;
     return 0;
   });
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <div className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b z-10">
@@ -78,7 +80,7 @@ const CompareDetails = () => {
                 {sortedRooms.map((room) => (
                   <TableHead 
                     key={room.id}
-                    className="w-[200px] p-2 border-r border-gray-200"
+                    className="w-[250px] p-2 border-r border-gray-200"
                   >
                     <RoomCard
                       room={room}
@@ -90,7 +92,7 @@ const CompareDetails = () => {
                   </TableHead>
                 ))}
                 {rooms.length < 5 && (
-                  <TableHead className="w-[200px] p-2">
+                  <TableHead className="w-[250px] p-2">
                     <AddRoomButton
                       remainingSlots={5 - rooms.length}
                       onClick={handleAddRoom}
