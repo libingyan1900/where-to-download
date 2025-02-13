@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -77,13 +78,13 @@ const CompareDetails = () => {
         </div>
       </div>
 
-      <div className="w-full overflow-x-auto">
-        <div className={`min-w-[720px] ${isMobile ? 'px-0' : 'p-4'}`}>
+      <div className="fixed top-14 bottom-0 left-0 right-0 overflow-auto overscroll-none will-change-scroll">
+        <div className={`min-w-[720px] relative ${isMobile ? 'px-0' : 'p-4'}`}>
           <div className="w-full">
             <Table>
-              <TableBody>
+              <TableBody className="relative">
                 <TableRow className="border-b align-top">
-                  <TableCell className="w-[120px] min-w-[120px] max-w-[120px] p-2 border-r bg-gray-50/30">
+                  <TableCell className="w-[120px] min-w-[120px] max-w-[120px] p-2 border-r bg-gray-50/30 sticky left-0 z-30">
                     <div className="h-[182px] w-full flex flex-col items-center justify-center gap-2">
                       <span className="text-sm font-medium text-gray-600">优势项高亮</span>
                       <Switch
