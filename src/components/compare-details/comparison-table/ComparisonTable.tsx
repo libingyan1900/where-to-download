@@ -1,3 +1,4 @@
+
 import React, { useCallback, useState } from "react";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
@@ -5,6 +6,7 @@ import { ComparisonTableProps } from "./types";
 import { featureGroups } from "./feature-groups";
 import { FeatureValue } from "./FeatureValue";
 import { Room } from "@/components/room-comparison/types";
+import { Separator } from "@/components/ui/separator";
 
 export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeated = false }: ComparisonTableProps & { hideRepeated?: boolean }) => {
   const [sortConfig, setSortConfig] = useState<{
@@ -95,10 +97,37 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
 
   return (
     <>
+      <TableRow>
+        <TableCell 
+          className="w-[80px] min-w-[80px] max-w-[80px] p-2 sticky left-0 z-20 bg-white"
+        >
+          <div className="h-8 flex items-center">
+            <span className="text-sm font-medium text-gray-900">酒店对比</span>
+          </div>
+        </TableCell>
+        {sortedRooms.map((_, index) => (
+          <TableCell 
+            key={index}
+            className="w-[140px] min-w-[140px] max-w-[140px] p-2 bg-white"
+          >
+            <div className="h-8 flex items-center justify-center">
+              <Separator className="w-full bg-gray-100" />
+            </div>
+          </TableCell>
+        ))}
+        {rooms.length < 5 && (
+          <TableCell 
+            className="w-[140px] min-w-[140px] max-w-[140px] p-2 bg-white"
+          >
+            <div className="h-8 flex items-center justify-center">
+              <Separator className="w-full bg-gray-100" />
+            </div>
+          </TableCell>
+        )}
+      </TableRow>
       {featureGroups.map((group) => (
         <React.Fragment key={group.title}>
           {group.features.map((feature) => {
-            // 如果开启了隐藏相同且该行所有值都相同，则不渲染该行
             if (hideRepeated && isRowAllSame(feature.key)) {
               return null;
             }
