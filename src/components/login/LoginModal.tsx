@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { QRCode } from "./QRCode";
 
 interface LoginModalProps {
@@ -53,68 +54,143 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
 
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-6">
-                <form onSubmit={handleLogin} className="space-y-4">
-                  <div className="space-y-4">
-                    <motion.div
-                      whileHover={{ scale: 1.01 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Input
-                        type="text"
-                        placeholder="请输入账号"
-                        className="h-12 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm 
-                        focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-transparent
-                        transition-all duration-200 hover:border-blue-400"
-                      />
-                    </motion.div>
-                    <motion.div
-                      whileHover={{ scale: 1.01 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Input
-                        type="password"
-                        placeholder="请输入密码"
-                        className="h-12 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm 
-                        focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-transparent
-                        transition-all duration-200 hover:border-blue-400"
-                      />
-                    </motion.div>
-                  </div>
+                <Tabs defaultValue="password" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2 mb-4">
+                    <TabsTrigger value="password">密码登录</TabsTrigger>
+                    <TabsTrigger value="code">验证码登录</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="password">
+                    <form onSubmit={handleLogin} className="space-y-4">
+                      <div className="space-y-4">
+                        <motion.div
+                          whileHover={{ scale: 1.01 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Input
+                            type="text"
+                            placeholder="请输入账号"
+                            className="h-12 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm 
+                            focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-transparent
+                            transition-all duration-200 hover:border-blue-400"
+                          />
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ scale: 1.01 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Input
+                            type="password"
+                            placeholder="请输入密码"
+                            className="h-12 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm 
+                            focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-transparent
+                            transition-all duration-200 hover:border-blue-400"
+                          />
+                        </motion.div>
+                      </div>
 
-                  <div className="flex justify-end">
-                    <a
-                      href="#"
-                      className="text-sm font-medium text-blue-600 hover:underline"
-                    >
-                      忘记密码?
-                    </a>
-                  </div>
+                      <div className="flex justify-end">
+                        <a
+                          href="#"
+                          className="text-sm font-medium text-blue-600 hover:underline"
+                        >
+                          忘记密码?
+                        </a>
+                      </div>
 
-                  <Button
-                    type="submit"
-                    className="w-full h-11 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg"
-                  >
-                    登录
-                  </Button>
+                      <Button
+                        type="submit"
+                        className="w-full h-11 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg"
+                      >
+                        登录
+                      </Button>
 
-                  <div className="flex items-start space-x-2">
-                    <Checkbox
-                      id="terms"
-                      checked={agreeToTerms}
-                      onCheckedChange={(checked) => setAgreeToTerms(checked as boolean)}
-                      className="mt-1"
-                    />
-                    <label
-                      htmlFor="terms"
-                      className="text-sm text-gray-600"
-                    >
-                      已阅读并同意
-                      <a href="#" className="text-blue-600 hover:underline mx-1">《服务协议》</a>
-                      和
-                      <a href="#" className="text-blue-600 hover:underline mx-1">《个人信息保护政策》</a>
-                    </label>
-                  </div>
-                </form>
+                      <div className="flex items-start space-x-2">
+                        <Checkbox
+                          id="terms"
+                          checked={agreeToTerms}
+                          onCheckedChange={(checked) => setAgreeToTerms(checked as boolean)}
+                          className="mt-1"
+                        />
+                        <label
+                          htmlFor="terms"
+                          className="text-sm text-gray-600"
+                        >
+                          已阅读并同意
+                          <a href="#" className="text-blue-600 hover:underline mx-1">《服务协议》</a>
+                          和
+                          <a href="#" className="text-blue-600 hover:underline mx-1">《个人信息保护政策》</a>
+                        </label>
+                      </div>
+                    </form>
+                  </TabsContent>
+
+                  <TabsContent value="code">
+                    <form onSubmit={handleLogin} className="space-y-4">
+                      <div className="space-y-4">
+                        <motion.div
+                          whileHover={{ scale: 1.01 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Input
+                            type="text"
+                            placeholder="请输入手机号"
+                            className="h-12 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm 
+                            focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-transparent
+                            transition-all duration-200 hover:border-blue-400"
+                          />
+                        </motion.div>
+                        <div className="flex space-x-2">
+                          <motion.div
+                            whileHover={{ scale: 1.01 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex-1"
+                          >
+                            <Input
+                              type="text"
+                              placeholder="请输入验证码"
+                              className="h-12 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm 
+                              focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-transparent
+                              transition-all duration-200 hover:border-blue-400"
+                            />
+                          </motion.div>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            className="h-12 px-4 rounded-xl border border-gray-200 hover:bg-gray-50"
+                          >
+                            获取验证码
+                          </Button>
+                        </div>
+                      </div>
+
+                      <Button
+                        type="submit"
+                        className="w-full h-11 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg"
+                      >
+                        登录
+                      </Button>
+
+                      <div className="flex items-start space-x-2">
+                        <Checkbox
+                          id="terms-code"
+                          checked={agreeToTerms}
+                          onCheckedChange={(checked) => setAgreeToTerms(checked as boolean)}
+                          className="mt-1"
+                        />
+                        <label
+                          htmlFor="terms-code"
+                          className="text-sm text-gray-600"
+                        >
+                          已阅读并同意
+                          <a href="#" className="text-blue-600 hover:underline mx-1">《服务协议》</a>
+                          和
+                          <a href="#" className="text-blue-600 hover:underline mx-1">《个人信息保护政策》</a>
+                        </label>
+                      </div>
+                    </form>
+                  </TabsContent>
+                </Tabs>
               </div>
 
               <div className="flex flex-col items-center justify-center pl-6">
