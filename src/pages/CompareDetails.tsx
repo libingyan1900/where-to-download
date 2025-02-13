@@ -83,7 +83,7 @@ const CompareDetails = () => {
               <TableBody>
                 <TableRow className="border-b">
                   <TableCell className="w-[140px] p-2 align-top border-r bg-gray-50/30">
-                    <div className="h-[182px]" />
+                    <div className="h-[182px] w-[140px]" />
                   </TableCell>
                   {sortedRooms.map((room, index) => (
                     <TableCell 
