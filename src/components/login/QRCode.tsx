@@ -5,7 +5,7 @@ import { ScanLine } from "lucide-react";
 export const QRCode = () => (
   <div className="flex flex-col items-center space-y-4">
     <img 
-      src="/lovable-uploads/b4683d36-e6f8-49ef-a501-4c7ffad6ef66.png"
+      src="/lovable-uploads/2f8e5695-9ae6-4d5c-9119-e97657d3dfe3.png"
       alt="Login QR Code"
       className="w-48 h-48 object-contain"
     />
