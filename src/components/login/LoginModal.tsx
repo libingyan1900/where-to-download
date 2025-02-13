@@ -15,7 +15,6 @@ interface LoginModalProps {
 }
 
 export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProps) => {
-  const [rememberUser, setRememberUser] = useState(false);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const { toast } = useToast();
 
@@ -68,20 +67,7 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
                     />
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <Checkbox
-                        id="remember"
-                        checked={rememberUser}
-                        onCheckedChange={(checked) => setRememberUser(checked as boolean)}
-                      />
-                      <label
-                        htmlFor="remember"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        记住用户名
-                      </label>
-                    </div>
+                  <div className="flex justify-end">
                     <a
                       href="#"
                       className="text-sm font-medium text-blue-600 hover:underline"
