@@ -90,6 +90,13 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
                     </a>
                   </div>
 
+                  <Button
+                    type="submit"
+                    className="w-full h-11 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg"
+                  >
+                    登录
+                  </Button>
+
                   <div className="flex items-start space-x-2">
                     <Checkbox
                       id="terms"
@@ -107,13 +114,6 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
                       <a href="#" className="text-blue-600 hover:underline mx-1">《个人信息保护政策》</a>
                     </label>
                   </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full h-11 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg"
-                  >
-                    登录
-                  </Button>
                 </form>
               </div>
 
