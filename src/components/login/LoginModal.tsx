@@ -42,10 +42,7 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
           
           <div className="relative p-8">
             <div className="flex justify-between items-center mb-6">
-              <div className="space-y-1">
-                <h2 className="text-2xl font-semibold tracking-tight">欢迎登录</h2>
-                <p className="text-sm text-gray-500">登录后体验更多功能</p>
-              </div>
+              <h2 className="text-2xl font-semibold tracking-tight">欢迎登录</h2>
               <button
                 onClick={() => setShowLoginModal(false)}
                 className="rounded-full p-1 hover:bg-gray-100 transition-colors"
