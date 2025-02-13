@@ -80,14 +80,14 @@ const CompareDetails = () => {
           <div className="w-full">
             <Table>
               <TableBody>
-                <TableRow>
-                  <TableCell className="w-[140px] p-2 align-top">
+                <TableRow className="border-b">
+                  <TableCell className="w-[140px] p-2 align-top border-r">
                     <div className="h-[182px]" />
                   </TableCell>
-                  {sortedRooms.map((room) => (
+                  {sortedRooms.map((room, index) => (
                     <TableCell 
                       key={room.id} 
-                      className="w-[200px] p-2 align-top"
+                      className={`w-[200px] p-2 align-top ${index < sortedRooms.length - 1 ? 'border-r' : ''}`}
                     >
                       <RoomCard
                         room={room}
