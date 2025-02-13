@@ -8,6 +8,7 @@ import { RoomCard } from "@/components/compare-details/RoomCard";
 import { AddRoomButton } from "@/components/compare-details/AddRoomButton";
 import { ComparisonTable } from "@/components/compare-details/comparison-table/ComparisonTable";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Switch } from "@/components/ui/switch";
 import { 
   Table,
   TableBody,
@@ -18,19 +19,21 @@ import {
 const CompareDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const isMobile = useIsMobile();
   const [rooms, setRooms] = React.useState<Room[]>(location.state?.selectedRooms as Room[] || []);
   const [pinnedRooms, setPinnedRooms] = React.useState<string[]>([]);
+  const [hideRepeated, setHideRepeated] = React.useState(false);
+
   const handleRemoveRoom = (roomId: string) => {
     setRooms(prev => prev.filter(room => room.id !== roomId));
     setPinnedRooms(prev => prev.filter(id => id !== roomId));
   };
+
   const handleBook = (roomId: string) => {
     console.log('Booking room:', roomId);
   };
+
   const handleAddRoom = () => {
     if (rooms.length >= 5) {
       toast({
@@ -41,13 +44,16 @@ const CompareDetails = () => {
     }
     navigate('/room-comparison');
   };
+
   const handleTogglePin = (roomId: string) => {
     setPinnedRooms(prev => prev.includes(roomId) ? prev.filter(id => id !== roomId) : [...prev, roomId]);
   };
+
   if (rooms.length === 0) {
     navigate('/room-comparison');
     return null;
   }
+
   const sortedRooms = [...rooms].sort((a, b) => {
     const aIsPinned = pinnedRooms.includes(a.id);
     const bIsPinned = pinnedRooms.includes(b.id);
@@ -79,8 +85,12 @@ const CompareDetails = () => {
               <TableBody>
                 <TableRow className="border-b align-top">
                   <TableCell className="w-[120px] min-w-[120px] max-w-[120px] p-2 border-r bg-gray-50/30">
-                    <div className="h-[182px] w-full flex items-center justify-center">
-                      <span className="text-sm font-medium text-gray-600">酒店对比</span>
+                    <div className="h-[182px] w-full flex flex-col items-center justify-center gap-2">
+                      <span className="text-sm font-medium text-gray-600">隐藏重复项</span>
+                      <Switch
+                        checked={hideRepeated}
+                        onCheckedChange={setHideRepeated}
+                      />
                     </div>
                   </TableCell>
                   {sortedRooms.map((room, index) => (
@@ -109,6 +119,7 @@ const CompareDetails = () => {
                 <ComparisonTable 
                   rooms={sortedRooms}
                   pinnedRooms={pinnedRooms}
+                  hideRepeated={hideRepeated}
                 />
               </TableBody>
             </Table>

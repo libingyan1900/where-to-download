@@ -5,8 +5,9 @@ import { cn } from "@/lib/utils";
 import { ComparisonTableProps } from "./types";
 import { featureGroups } from "./feature-groups";
 import { FeatureValue } from "./FeatureValue";
+import { Room } from "@/components/room-comparison/types";
 
-export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: ComparisonTableProps) => {
+export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeated = false }: ComparisonTableProps & { hideRepeated?: boolean }) => {
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: 'asc' | 'desc';
@@ -39,6 +40,13 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
       return { key, direction: 'asc' };
     });
   }, []);
+
+  const shouldHideCell = useCallback((rooms: Room[], index: number, featureKey: string) => {
+    if (!hideRepeated || index === 0) return false;
+    const currentValue = rooms[index][featureKey as keyof Room];
+    const previousValue = rooms[index - 1][featureKey as keyof Room];
+    return currentValue === previousValue;
+  }, [hideRepeated]);
 
   return (
     <>
@@ -83,7 +91,9 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [] }: Comparis
                   )}
                   role="cell"
                 >
-                  <FeatureValue room={room} featureKey={feature.key} />
+                  {!shouldHideCell(sortedRooms, index, feature.key) && (
+                    <FeatureValue room={room} featureKey={feature.key} />
+                  )}
                 </TableCell>
               ))}
               {rooms.length < 5 && (
