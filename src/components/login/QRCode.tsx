@@ -3,7 +3,7 @@ import React from "react";
 import { ScanLine } from "lucide-react";
 
 export const QRCode = () => (
-  <div className="flex flex-col items-center space-y-2">
+  <div className="flex flex-col items-center space-y-2 -mt-4">
     <div className="relative mb-2">
       <img 
         src="/lovable-uploads/4565d277-3d06-4c1e-ba4a-c1e499da4830.png"
