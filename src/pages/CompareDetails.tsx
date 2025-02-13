@@ -19,18 +19,19 @@ import {
 const CompareDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const [rooms, setRooms] = React.useState<Room[]>(location.state?.selectedRooms as Room[] || []);
   const [pinnedRooms, setPinnedRooms] = React.useState<string[]>([]);
+
   const handleRemoveRoom = (roomId: string) => {
     setRooms(prev => prev.filter(room => room.id !== roomId));
     setPinnedRooms(prev => prev.filter(id => id !== roomId));
   };
+
   const handleBook = (roomId: string) => {
     console.log('Booking room:', roomId);
   };
+
   const handleAddRoom = () => {
     if (rooms.length >= 5) {
       toast({
@@ -41,13 +42,16 @@ const CompareDetails = () => {
     }
     navigate('/room-comparison');
   };
+
   const handleTogglePin = (roomId: string) => {
     setPinnedRooms(prev => prev.includes(roomId) ? prev.filter(id => id !== roomId) : [...prev, roomId]);
   };
+
   if (rooms.length === 0) {
     navigate('/room-comparison');
     return null;
   }
+
   const sortedRooms = [...rooms].sort((a, b) => {
     const aIsPinned = pinnedRooms.includes(a.id);
     const bIsPinned = pinnedRooms.includes(b.id);
@@ -77,10 +81,13 @@ const CompareDetails = () => {
           <Table className="w-full">
             <TableHeader>
               <TableRow className="bg-white">
+                <TableHead className="w-[140px] p-2 border-r border-gray-200">
+                  <div className="h-[182px]" />
+                </TableHead>
                 {sortedRooms.map((room) => (
                   <TableHead 
                     key={room.id}
-                    className="w-[250px] p-2 border-r border-gray-200"
+                    className="w-[200px] p-2 border-r border-gray-200"
                   >
                     <RoomCard
                       room={room}
@@ -92,7 +99,7 @@ const CompareDetails = () => {
                   </TableHead>
                 ))}
                 {rooms.length < 5 && (
-                  <TableHead className="w-[250px] p-2">
+                  <TableHead className="w-[200px] p-2">
                     <AddRoomButton
                       remainingSlots={5 - rooms.length}
                       onClick={handleAddRoom}
