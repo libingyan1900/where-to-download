@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
@@ -10,8 +11,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { 
   Table,
   TableBody,
-  TableCell,
-  TableRow,
 } from "@/components/ui/table";
 
 const CompareDetails = () => {
@@ -80,33 +79,6 @@ const CompareDetails = () => {
           <div className="w-full">
             <Table>
               <TableBody>
-                <TableRow className="border-b">
-                  <TableCell className="w-[140px] p-2 align-top border-r">
-                    <div className="h-[182px]" />
-                  </TableCell>
-                  {sortedRooms.map((room, index) => (
-                    <TableCell 
-                      key={room.id} 
-                      className={`w-[200px] p-2 align-top ${index < sortedRooms.length - 1 ? 'border-r' : ''}`}
-                    >
-                      <RoomCard
-                        room={room}
-                        onRemove={handleRemoveRoom}
-                        onBook={handleBook}
-                        isPinned={pinnedRooms.includes(room.id)}
-                        onTogglePin={handleTogglePin}
-                      />
-                    </TableCell>
-                  ))}
-                  {rooms.length < 5 && (
-                    <TableCell className="w-[200px] p-2 align-top">
-                      <AddRoomButton
-                        remainingSlots={5 - rooms.length}
-                        onClick={handleAddRoom}
-                      />
-                    </TableCell>
-                  )}
-                </TableRow>
                 <ComparisonTable 
                   rooms={sortedRooms}
                   pinnedRooms={pinnedRooms}
