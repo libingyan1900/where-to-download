@@ -54,6 +54,7 @@ const CompareDetails = () => {
     if (!aIsPinned && bIsPinned) return 1;
     return 0;
   });
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <div className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b z-10">
@@ -76,9 +77,19 @@ const CompareDetails = () => {
             <Table>
               <TableBody>
                 <TableRow className="border-b align-top">
-                  <TableCell className="w-[200px] min-w-[200px] max-w-[200px] p-2 border-r bg-gray-50/30">
+                  <TableCell 
+                    colSpan={rooms.length + (rooms.length < 5 ? 1 : 0)} 
+                    className="p-2 border-r bg-gray-50/30"
+                  >
                     <div className="h-[182px] w-full flex items-center justify-center">
                       <span className="text-sm font-medium text-gray-600">酒店对比</span>
+                    </div>
+                  </TableCell>
+                </TableRow>
+                <TableRow className="border-b align-top">
+                  <TableCell className="w-[200px] min-w-[200px] max-w-[200px] p-2 border-r bg-gray-50/30">
+                    <div className="h-full w-full flex items-center justify-center">
+                      <span className="text-sm font-medium text-gray-600">房型信息</span>
                     </div>
                   </TableCell>
                   {sortedRooms.map((room, index) => (
