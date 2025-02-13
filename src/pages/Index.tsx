@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Globe, Building2, Users, BadgeCheck, ArrowRight, Plane, Train, Car, Hotel, CreditCard, FileText, CheckSquare, PieChart, Wallet, TrendingUp, Clock, Receipt, Zap } from "lucide-react";
+import { Globe, Building2, Users, BadgeCheck, ArrowRight, Plane, Train, Car, Hotel, CreditCard, FileText, CheckSquare, PieChart, Wallet, TrendingUp, Clock, Receipt, Zap, ShoppingCart, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -178,6 +178,11 @@ const Index = () => {
       icon: <Train className="w-8 h-8" />,
       title: "火车",
       description: "多接口实现火车票查询、预订功能"
+    },
+    {
+      icon: <ShoppingCart className="w-8 h-8" />,
+      title: "外卖",
+      description: "商旅餐饮服务，丰富美食选择"
     }
   ];
 
@@ -191,6 +196,11 @@ const Index = () => {
       icon: <Car className="w-8 h-8" />,
       title: "用车",
       description: "用车覆盖全国300多个城市"
+    },
+    {
+      icon: <Store className="w-8 h-8" />,
+      title: "壹号商城",
+      description: "品质优选商品，专享优惠价格"
     }
   ];
 
