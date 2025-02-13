@@ -43,7 +43,7 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
               <h2 className="text-2xl font-semibold tracking-tight">欢迎登录</h2>
             </div>
 
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-6">
               <div className="space-y-6">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-4">
@@ -90,7 +90,7 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
                 </form>
               </div>
 
-              <div className="flex flex-col items-center justify-center border-l border-gray-100 pl-8">
+              <div className="flex flex-col items-center justify-center pl-6">
                 <QRCode />
               </div>
             </div>
