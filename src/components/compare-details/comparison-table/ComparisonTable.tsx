@@ -85,7 +85,7 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
     if (label.length === 4) return 'text-center';
     // 处理较长的标题文字
     if (['酒店设施', '酒店图片', '房型图片', '取消规则', '确认时效'].includes(label)) {
-      return 'pl-2 flex items-center h-full';
+      return 'pl-4 flex items-center h-full';
     }
     return 'text-center';
   };
