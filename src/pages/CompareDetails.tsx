@@ -6,7 +6,7 @@ import { Room } from "@/components/room-comparison/types";
 import { useToast } from "@/components/ui/use-toast";
 import { RoomCard } from "@/components/compare-details/RoomCard";
 import { AddRoomButton } from "@/components/compare-details/AddRoomButton";
-import { ComparisonTable } from "@/components/compare-details/ComparisonTable";
+import { ComparisonTable } from "@/components/compare-details/comparison-table/ComparisonTable";
 import { 
   Table,
   TableBody,
