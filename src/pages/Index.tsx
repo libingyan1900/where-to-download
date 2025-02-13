@@ -1,12 +1,30 @@
-import { motion } from "framer-motion";
-import { Globe, Building2, Users, BadgeCheck, ArrowRight, Plane, Train, Car, Hotel, CreditCard, FileText, CheckSquare, PieChart, Wallet, TrendingUp, Clock, Receipt, Zap, ShoppingCart, Store, ChevronDown } from "lucide-react";
+<lov-code>
+import { motion, AnimatePresence } from "framer-motion";
+import { Globe, Building2, Users, BadgeCheck, ArrowRight, Plane, Train, Car, Hotel, CreditCard, FileText, CheckSquare, PieChart, Wallet, TrendingUp, Clock, Receipt, Zap, ShoppingCart, Store, ChevronDown, X, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/components/ui/use-toast";
 
 const Index = () => {
   const [activeNavItem, setActiveNavItem] = useState("首页");
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [loginType, setLoginType] = useState<'account' | 'phone'>('account');
+  const [rememberUser, setRememberUser] = useState(false);
+  const { toast } = useToast();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "登录成功",
+      description: "欢迎回来！",
+    });
+    setShowLoginModal(false);
+  };
 
   const navItems = [
     { name: "首页", link: "/" },
@@ -263,6 +281,7 @@ const Index = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded-full hover:bg-blue-50 transition-colors"
+                onClick={() => setShowLoginModal(true)}
               >
                 登录
               </motion.button>
@@ -277,6 +296,144 @@ const Index = () => {
           </div>
         </div>
       </motion.nav>
+
+      {/* Login Modal */}
+      <Dialog open={showLoginModal} onOpenChange={setShowLoginModal}>
+        <DialogContent className="sm:max-w-[425px] p-0 overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="relative"
+          >
+            {/* Background Decoration */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" />
+            
+            {/* Login Form */}
+            <div className="relative p-6">
+              <div className="flex justify-between items-center mb-6">
+                <div className="space-y-1">
+                  <h2 className="text-2xl font-semibold tracking-tight">欢迎登录</h2>
+                  <p className="text-sm text-gray-500">登录后体验更多功能</p>
+                </div>
+                <button
+                  onClick={() => setShowLoginModal(false)}
+                  className="rounded-full p-1 hover:bg-gray-100 transition-colors"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+
+              {/* Login Type Selector */}
+              <div className="flex space-x-4 mb-6">
+                <button
+                  onClick={() => setLoginType('account')}
+                  className={cn(
+                    "flex-1 py-2 text-sm font-medium rounded-full transition-all",
+                    loginType === 'account'
+                      ? "bg-blue-600 text-white shadow-lg"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  )}
+                >
+                  账号登录
+                </button>
+                <button
+                  onClick={() => setLoginType('phone')}
+                  className={cn(
+                    "flex-1 py-2 text-sm font-medium rounded-full transition-all",
+                    loginType === 'phone'
+                      ? "bg-blue-600 text-white shadow-lg"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  )}
+                >
+                  扫码登录
+                </button>
+              </div>
+
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div className="space-y-4">
+                  {loginType === 'account' ? (
+                    <>
+                      <div className="space-y-2">
+                        <Input
+                          type="text"
+                          placeholder="请输入账号"
+                          className="h-11 rounded-xl bg-gray-50 border-0 focus-visible:ring-2 focus-visible:ring-blue-600"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Input
+                          type="password"
+                          placeholder="请输入密码"
+                          className="h-11 rounded-xl bg-gray-50 border-0 focus-visible:ring-2 focus-visible:ring-blue-600"
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex justify-center p-8">
+                      <div className="w-40 h-40 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <QRCode />
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {loginType === 'account' && (
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="remember"
+                        checked={rememberUser}
+                        onCheckedChange={(checked) => setRememberUser(checked as boolean)}
+                      />
+                      <label
+                        htmlFor="remember"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        记住用户名
+                      </label>
+                    </div>
+                    <a
+                      href="#"
+                      className="text-sm font-medium text-blue-600 hover:underline"
+                    >
+                      忘记密码?
+                    </a>
+                  </div>
+                )}
+
+                {loginType === 'account' && (
+                  <Button
+                    type="submit"
+                    className="w-full h-11 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white shadow-lg"
+                  >
+                    登录
+                  </Button>
+                )}
+
+                {/* Social Login Options */}
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-white px-2 text-gray-500">其他登录方式</span>
+                  </div>
+                </div>
+
+                <div className="flex justify-center space-x-6">
+                  <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                    <MessageCircle className="w-5 h-5 text-green-600" />
+                  </button>
+                  <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                    <Phone className="w-5 h-5 text-blue-600" />
+                  </button>
+                </div>
+              </form>
+            </div>
+          </motion.div>
+        </DialogContent>
+      </Dialog>
 
       {/* Hero Section */}
       <div className="relative bg-gradient-to-b from-blue-50 via-white to-transparent">
@@ -569,123 +726,4 @@ const Index = () => {
             <p className="text-xl text-gray-600">Five Function Modules</p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {functionModules.map((module, index) => (
-              <motion.div
-                key={index}
-                initial={{ 
-                  opacity: 0,
-                  y: 100,
-                  scale: 0.8,
-                  rotateX: 45
-                }}
-                whileInView={{ 
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  rotateX: 0
-                }}
-                transition={{ 
-                  duration: 0.8,
-                  delay: index * 0.2,
-                  type: "spring",
-                  stiffness: 100
-                }}
-                whileHover={{
-                  scale: 1.05,
-                  rotateY: 5,
-                  translateY: -10
-                }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl transform perspective-1000 shadow-xl hover:shadow-2xl transition-all duration-300"
-              >
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ 
-                    delay: index * 0.2 + 0.3,
-                    type: "spring",
-                    stiffness: 200
-                  }}
-                  className="bg-white/20 p-3 rounded-lg w-fit mb-4"
-                >
-                  {module.icon}
-                </motion.div>
-                <motion.h3 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.2 + 0.4 }}
-                  className="text-xl font-semibold mb-2 text-white"
-                >
-                  {module.title}
-                </motion.h3>
-                <motion.p 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.2 + 0.5 }}
-                  className="text-white/80"
-                >
-                  {module.description}
-                </motion.p>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.2 + 0.6 }}
-                  className="absolute -bottom-2 -right-2 w-20 h-20 bg-blue-400/20 rounded-full blur-xl"
-                />
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.2 + 0.7 }}
-                  className="absolute -top-2 -left-2 w-20 h-20 bg-white/10 rounded-full blur-xl"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="py-20 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-blue-200/30 rounded-full mix-blend-multiply filter blur-3xl animate-float"></div>
-          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-200/30 rounded-full mix-blend-multiply filter blur-3xl animate-float" style={{ animationDelay: "1s" }}></div>
-        </div>
-        <div className="container px-4 mx-auto relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-600">
-              开启智能商旅新时代
-            </h2>
-            <p className="text-gray-600 mb-8">
-              立即体验差旅壹号，让您的企业差旅管理更加高效
-            </p>
-            <div className="flex justify-center gap-4">
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300"
-              >
-                预约演示
-              </motion.button>
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border border-blue-600 text-blue-600 px-8 py-3 rounded-full hover:bg-blue-50 transition-all duration-300"
-              >
-                了解更多
-              </motion.button>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Index;
+          <div className="grid grid-cols-1 md:grid-cols-
