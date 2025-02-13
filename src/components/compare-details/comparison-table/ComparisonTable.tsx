@@ -1,3 +1,4 @@
+
 import React, { useCallback, useState } from "react";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
@@ -14,15 +15,12 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
 
   const sortedRooms = React.useMemo(() => {
     if (!sortConfig) return rooms;
-
     return [...rooms].sort((a, b) => {
       const aValue = a[sortConfig.key as keyof typeof a];
       const bValue = b[sortConfig.key as keyof typeof b];
-
       if (aValue === bValue) return 0;
       if (aValue === undefined || aValue === null) return 1;
       if (bValue === undefined || bValue === null) return -1;
-
       const comparison = aValue > bValue ? 1 : -1;
       return sortConfig.direction === 'asc' ? comparison : -comparison;
     });
@@ -40,16 +38,24 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
     });
   }, []);
 
+  const isRowAllSame = useCallback((featureKey: string) => {
+    if (!hideRepeated || rooms.length <= 1) return false;
+    
+    const firstValue = rooms[0][featureKey as keyof Room];
+    return rooms.every(room => {
+      const value = room[featureKey as keyof Room];
+      return value === firstValue;
+    });
+  }, [hideRepeated, rooms]);
+
   const isAdvantage = useCallback((rooms: Room[], currentIndex: number, featureKey: string) => {
     if (!hideRepeated) return false;
     
     const currentValue = rooms[currentIndex][featureKey as keyof Room];
     if (currentValue === undefined || currentValue === null) return false;
 
-    // 对不同类型的字段进行不同的优势判断
     switch (featureKey) {
       case 'price':
-        // 价格最低为优势
         return rooms.every((room, i) => 
           i === currentIndex || 
           room.price === undefined || 
@@ -58,7 +64,6 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
         );
       case 'rating':
       case 'starRating':
-        // 评分最高为优势
         return rooms.every((room, i) => 
           i === currentIndex || 
           room[featureKey] === undefined || 
@@ -66,7 +71,6 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
           (room[featureKey] ?? 0) < (rooms[currentIndex][featureKey] ?? 0)
         );
       case 'size':
-        // 面积最大为优势（假设面积格式为"30㎡"这样的字符串）
         const getNumericSize = (size: string | undefined | null) => 
           size ? parseFloat(size.replace(/[^0-9.]/g, '')) : 0;
         const currentSize = getNumericSize(currentValue as string);
@@ -80,24 +84,13 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
   }, [hideRepeated]);
 
   const getLabelAlignment = (label: string) => {
-    // 两个字的标题靠左对齐，给予适当的内边距
     if (label.length === 2) return 'pl-6';
-    
-    // 三个字的标题居中对齐
     if (label.length === 3) return 'text-center';
-    
-    // 四个字的标题居中对齐，但给予稍大的字间距以提高可读性
     if (label.length === 4) return 'text-center tracking-wider';
-    
-    // "装修时间"这样的四字标题也使用相同的样式
     if (label === '装修时间') return 'text-center tracking-wider';
-    
-    // 较长标题采用靠左对齐并垂直居中的布局
-    if (['酒店设施', '酒店图片', '房型图片', '取消规则', '确认时效'].includes(label)) {
+    if (['酒店图片', '房型图片', '取消规则', '确认时效'].includes(label)) {
       return 'pl-4 flex items-center h-full tracking-normal';
     }
-    
-    // 默认样式
     return 'text-center';
   };
 
@@ -105,60 +98,67 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
     <>
       {featureGroups.map((group) => (
         <React.Fragment key={group.title}>
-          {group.features.map((feature) => (
-            <TableRow 
-              key={feature.key}
-              className="hover:bg-gray-50/50 transition-colors"
-            >
-              <TableCell 
-                className={cn(
-                  "w-[80px] min-w-[80px] max-w-[80px] p-2 font-medium text-gray-600",
-                  "whitespace-nowrap sticky left-0 z-20 border-r border-gray-200",
-                  "bg-[#F1F1F1] shadow-[2px_0_4px_rgba(0,0,0,0.1)]",
-                  "leading-relaxed",
-                  getLabelAlignment(feature.label),
-                  feature.sortable && "cursor-pointer hover:bg-[#E5E5E5]"
-                )}
-                onClick={() => feature.sortable && handleSort(feature.key)}
-                role="rowheader"
-                aria-sort={
-                  sortConfig?.key === feature.key 
-                    ? sortConfig.direction === 'asc' 
-                      ? 'ascending' 
-                      : 'descending'
-                    : undefined
-                }
+          {group.features.map((feature) => {
+            // 如果开启了隐藏相同且该行所有值都相同，则不渲染该行
+            if (hideRepeated && isRowAllSame(feature.key)) {
+              return null;
+            }
+
+            return (
+              <TableRow 
+                key={feature.key}
+                className="hover:bg-gray-50/50 transition-colors"
               >
-                {feature.label}
-                {feature.sortable && (
-                  <span className="ml-1 inline-block w-2 h-2 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                )}
-              </TableCell>
-              {sortedRooms.map((room, index) => (
                 <TableCell 
-                  key={room.id} 
                   className={cn(
-                    "w-[160px] min-w-[160px] max-w-[160px] p-2",
-                    index < sortedRooms.length - 1 ? "border-r border-gray-200" : "",
-                    pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600",
-                    isAdvantage(sortedRooms, index, feature.key) && "bg-blue-50/50 font-medium text-blue-600",
-                    "focus-within:bg-blue-50/30"
+                    "w-[80px] min-w-[80px] max-w-[80px] p-2 font-medium text-gray-600",
+                    "whitespace-nowrap sticky left-0 z-20 border-r border-gray-200",
+                    "bg-[#F1F1F1] shadow-[2px_0_4px_rgba(0,0,0,0.1)]",
+                    "leading-relaxed",
+                    getLabelAlignment(feature.label),
+                    feature.sortable && "cursor-pointer hover:bg-[#E5E5E5]"
                   )}
-                  role="cell"
+                  onClick={() => feature.sortable && handleSort(feature.key)}
+                  role="rowheader"
+                  aria-sort={
+                    sortConfig?.key === feature.key 
+                      ? sortConfig.direction === 'asc' 
+                        ? 'ascending' 
+                        : 'descending'
+                      : undefined
+                  }
                 >
-                  <FeatureValue room={room} featureKey={feature.key} />
+                  {feature.label}
+                  {feature.sortable && (
+                    <span className="ml-1 inline-block w-2 h-2 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  )}
                 </TableCell>
-              ))}
-              {rooms.length < 5 && (
-                <TableCell 
-                  className="w-[160px] min-w-[160px] max-w-[160px] p-2"
-                  role="cell"
-                >
-                  <div />
-                </TableCell>
-              )}
-            </TableRow>
-          ))}
+                {sortedRooms.map((room, index) => (
+                  <TableCell 
+                    key={room.id} 
+                    className={cn(
+                      "w-[160px] min-w-[160px] max-w-[160px] p-2",
+                      index < sortedRooms.length - 1 ? "border-r border-gray-200" : "",
+                      pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600",
+                      isAdvantage(sortedRooms, index, feature.key) && "bg-blue-50/50 font-medium text-blue-600",
+                      "focus-within:bg-blue-50/30"
+                    )}
+                    role="cell"
+                  >
+                    <FeatureValue room={room} featureKey={feature.key} />
+                  </TableCell>
+                ))}
+                {rooms.length < 5 && (
+                  <TableCell 
+                    className="w-[160px] min-w-[160px] max-w-[160px] p-2"
+                    role="cell"
+                  >
+                    <div />
+                  </TableCell>
+                )}
+              </TableRow>
+            );
+          })}
         </React.Fragment>
       ))}
     </>
