@@ -75,7 +75,6 @@ const CompareDetails = () => {
           <Table className="w-full">
             <TableHeader>
               <TableRow className="bg-white">
-                <TableHead className="w-[140px] px-2 sticky left-0 z-20 bg-white border-r border-gray-200 py-[3px]" />
                 {sortedRooms.map((room) => (
                   <TableHead 
                     key={room.id}
