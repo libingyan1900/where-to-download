@@ -1,3 +1,4 @@
+
 import React, { useCallback, useState } from "react";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
@@ -80,7 +81,13 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
   }, [hideRepeated]);
 
   const getLabelAlignment = (label: string) => {
-    return label.length === 2 ? 'pl-4' : 'text-center';
+    if (label.length === 2) return 'pl-4';
+    if (label.length === 4) return 'text-center';
+    // 处理较长的标题文字
+    if (['酒店设施', '酒店图片', '房型图片', '取消规则', '确认时效'].includes(label)) {
+      return 'pl-2 flex items-center h-full';
+    }
+    return 'text-center';
   };
 
   return (
@@ -97,7 +104,6 @@ export const ComparisonTable = React.memo(({ rooms, pinnedRooms = [], hideRepeat
                   "w-[100px] min-w-[100px] max-w-[100px] p-2 font-medium text-gray-600",
                   "whitespace-nowrap sticky left-0 z-20 border-r border-gray-200",
                   "bg-[#F1F1F1] shadow-[2px_0_4px_rgba(0,0,0,0.1)]",
-                  "align-top pt-3",
                   getLabelAlignment(feature.label),
                   feature.sortable && "cursor-pointer hover:bg-[#E5E5E5]"
                 )}
