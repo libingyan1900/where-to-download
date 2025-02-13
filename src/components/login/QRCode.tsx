@@ -12,8 +12,9 @@ export const QRCode = () => (
       />
     </div>
     <div className="flex items-center space-x-2 text-base">
+      <span className="text-black font-medium">打开</span>
       <span className="text-blue-500 font-medium">差旅壹号-我的，扫一扫</span>
-      <span className="text-black font-medium">打开及登录</span>
+      <span className="text-black font-medium">登录</span>
     </div>
   </div>
 );
