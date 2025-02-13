@@ -55,16 +55,30 @@ export const LoginModal = ({ showLoginModal, setShowLoginModal }: LoginModalProp
               <div className="space-y-6">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-4">
-                    <Input
-                      type="text"
-                      placeholder="请输入账号"
-                      className="h-11 rounded-xl bg-gray-50 border-0 focus-visible:ring-2 focus-visible:ring-blue-600"
-                    />
-                    <Input
-                      type="password"
-                      placeholder="请输入密码"
-                      className="h-11 rounded-xl bg-gray-50 border-0 focus-visible:ring-2 focus-visible:ring-blue-600"
-                    />
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Input
+                        type="text"
+                        placeholder="请输入账号"
+                        className="h-12 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm 
+                        focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-transparent
+                        transition-all duration-200 hover:border-blue-400"
+                      />
+                    </motion.div>
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Input
+                        type="password"
+                        placeholder="请输入密码"
+                        className="h-12 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm 
+                        focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-transparent
+                        transition-all duration-200 hover:border-blue-400"
+                      />
+                    </motion.div>
                   </div>
 
                   <div className="flex justify-end">
