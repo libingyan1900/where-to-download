@@ -96,7 +96,7 @@ const CompareDetails = () => {
                   {sortedRooms.map((room, index) => (
                     <TableCell 
                       key={room.id} 
-                      className={`w-[140px] min-w-[140px] max-w-[140px] p-2 ${index < sortedRooms.length - 1 ? 'border-r border-[#E2D1C3]' : ''}`}
+                      className={`w-[140px] min-w-[140px] max-w-[140px] p-2 bg-white ${index < sortedRooms.length - 1 ? 'border-r border-[#E2D1C3]' : ''}`}
                     >
                       <RoomCard
                         room={room}
@@ -108,7 +108,7 @@ const CompareDetails = () => {
                     </TableCell>
                   ))}
                   {rooms.length < 5 && (
-                    <TableCell className="w-[140px] min-w-[140px] max-w-[140px] p-2">
+                    <TableCell className="w-[140px] min-w-[140px] max-w-[140px] p-2 bg-white">
                       <AddRoomButton
                         remainingSlots={5 - rooms.length}
                         onClick={handleAddRoom}
