@@ -55,7 +55,7 @@ export const FeatureRow: React.FC<FeatureRowProps> = ({
         <TableCell 
           key={room.id} 
           className={cn(
-            "w-[140px] min-w-[140px] max-w-[140px] p-2",
+            "w-[140px] min-w-[140px] max-w-[140px] p-2 bg-white",
             index < rooms.length - 1 ? "border-r border-gray-200" : "",
             pinnedRooms.includes(room.id) ? "text-blue-600" : "text-gray-600",
             isAdvantage(rooms, index, feature.key) && "bg-blue-50/50 font-medium text-blue-600",
@@ -68,7 +68,7 @@ export const FeatureRow: React.FC<FeatureRowProps> = ({
       ))}
       {rooms.length < 5 && (
         <TableCell 
-          className="w-[140px] min-w-[140px] max-w-[140px] p-2"
+          className="w-[140px] min-w-[140px] max-w-[140px] p-2 bg-white"
           role="cell"
         >
           <div />
