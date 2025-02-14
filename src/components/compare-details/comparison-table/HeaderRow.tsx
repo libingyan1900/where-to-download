@@ -1,7 +1,6 @@
 
 import React from "react";
 import { TableCell, TableRow } from "@/components/ui/table";
-import { Separator } from "@/components/ui/separator";
 import { Room } from "@/components/room-comparison/types";
 
 interface HeaderRowProps {
@@ -25,18 +24,14 @@ export const HeaderRow: React.FC<HeaderRowProps> = ({ title, rooms }) => {
           key={index}
           className="w-[140px] min-w-[140px] max-w-[140px] p-2 bg-white"
         >
-          <div className="h-8 flex items-center justify-center">
-            <Separator className="w-full bg-gray-100" />
-          </div>
+          <div className="h-8" />
         </TableCell>
       ))}
       {rooms.length < 5 && (
         <TableCell 
           className="w-[140px] min-w-[140px] max-w-[140px] p-2 bg-white"
         >
-          <div className="h-8 flex items-center justify-center">
-            <Separator className="w-full bg-gray-100" />
-          </div>
+          <div className="h-8" />
         </TableCell>
       )}
     </TableRow>
